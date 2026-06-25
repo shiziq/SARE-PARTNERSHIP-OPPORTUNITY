@@ -1,0 +1,11 @@
+# SARE x Batolink Presentation
+# Confidential partnership materials
+
+# Office temp files
+~$*.docx
+
+# Build artifacts
+*.py
+*.txt
+_build/
+_v.py

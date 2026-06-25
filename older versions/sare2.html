@@ -1,0 +1,3598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARE Africa × Batolink Global — Africa's First Bitcoin Agricultural Commerce Ecosystem</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700&family=Inter:wght@200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --g: #F5A623;
+            --gb: #F7C948;
+            --r: #E41E26;
+            --gold: #F5A623;
+            --dark: #060D1A;
+            --navy: #0A1628;
+            --blue: #1B4F8A;
+            --gray: #7A8499;
+            --glass: rgba(255, 255, 255, .03);
+            --glb: rgba(255, 255, 255, .07);
+            --expo: cubic-bezier(.16, 1, .3, 1);
+            --back: cubic-bezier(.34, 1.56, .64, 1);
+            --sare-green: #2E5A3B;
+            --sare-gold: #F5A623;
+            --btc-orange: #F7931A;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff
+        }
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: var(--dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.2s var(--expo), visibility 1.2s
+        }
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none
+        }
+        .lw {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+        .lr {
+            position: absolute;
+            border-radius: 50%;
+            animation: spin 1s linear infinite
+        }
+        .lr1 {
+            width: 88px;
+            height: 88px;
+            border: 1.5px solid rgba(245, 166, 35, .1);
+            border-top-color: var(--sare-gold)
+        }
+        .lr2 {
+            width: 110px;
+            height: 110px;
+            border: 1px solid rgba(245, 166, 35, .05);
+            border-bottom-color: rgba(245, 166, 35, .25);
+            animation-direction: reverse;
+            animation-duration: 1.8s
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+        .ll {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-top: 30px;
+            opacity: 0;
+            animation: fu .8s .6s forwards
+        }
+        .ll .x {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            font-weight: 300
+        }
+        .lt {
+            margin-top: 14px;
+            font-size: .58rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gray);
+            opacity: 0;
+            animation: fu .8s 1s forwards
+        }
+        @keyframes fu {
+            from {
+                opacity: 0;
+                transform: translateY(12px)
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+        #pc {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none
+        }
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            z-index: 150;
+            pointer-events: none;
+            opacity: .025;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, #000 2px, #000 4px)
+        }
+        #pres {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            z-index: 2
+        }
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .9s var(--expo), visibility .9s;
+            overflow: hidden;
+            background: var(--dark)
+        }
+        .slide.active {
+            opacity: 1;
+            visibility: visible
+        }
+        .ndots {
+            position: fixed;
+            right: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+        .nd {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .06);
+            cursor: pointer;
+            transition: all .5s var(--expo);
+            border: 1px solid rgba(255, 255, 255, .04);
+            position: relative
+        }
+        .nd.active {
+            background: var(--sare-gold);
+            transform: scale(1.7);
+            box-shadow: 0 0 16px rgba(245, 166, 35, .6);
+            border-color: var(--sare-gold)
+        }
+        .nd::after {
+            content: attr(data-label);
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .56rem;
+            color: var(--gray);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity .3s;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase
+        }
+        .nd:hover::after {
+            opacity: 1
+        }
+        .sctr {
+            position: fixed;
+            bottom: 22px;
+            left: 52px;
+            z-index: 200;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .68rem;
+            color: var(--gray);
+            letter-spacing: 4px;
+            font-weight: 300
+        }
+        .sctr span {
+            color: var(--sare-gold);
+            font-weight: 700;
+            font-size: .85rem
+        }
+        .narr {
+            position: fixed;
+            bottom: 18px;
+            right: 52px;
+            z-index: 200;
+            display: flex;
+            gap: 10px
+        }
+        .na {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: rgba(255, 255, 255, .02);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all .4s var(--expo);
+            font-size: .85rem;
+            user-select: none
+        }
+        .na:hover {
+            background: var(--sare-gold);
+            border-color: var(--sare-gold);
+            color: #000;
+            transform: scale(1.15)
+        }
+        .na.dis {
+            opacity: .15;
+            pointer-events: none
+        }
+        .rv {
+            opacity: 0;
+            transform: translateY(55px);
+            transition: all 1s var(--expo)
+        }
+        .slide.active .rv {
+            opacity: 1;
+            transform: translateY(0)
+        }
+        .slide.active .rv.d1 {
+            transition-delay: .1s
+        }
+        .slide.active .rv.d2 {
+            transition-delay: .25s
+        }
+        .slide.active .rv.d3 {
+            transition-delay: .4s
+        }
+        .slide.active .rv.d4 {
+            transition-delay: .55s
+        }
+        .slide.active .rv.d5 {
+            transition-delay: .7s
+        }
+        .slide.active .rv.d6 {
+            transition-delay: .85s
+        }
+        .slide.active .rv.d7 {
+            transition-delay: 1s
+        }
+        .rvl {
+            opacity: 0;
+            transform: translateX(-65px);
+            transition: all 1s var(--expo)
+        }
+        .slide.active .rvl {
+            opacity: 1;
+            transform: translateX(0)
+        }
+        .slide.active .rvl.d2 {
+            transition-delay: .25s
+        }
+        .slide.active .rvl.d3 {
+            transition-delay: .4s
+        }
+        .slide.active .rvl.d4 {
+            transition-delay: .55s
+        }
+        .rvr {
+            opacity: 0;
+            transform: translateX(65px);
+            transition: all 1s var(--expo)
+        }
+        .slide.active .rvr {
+            opacity: 1;
+            transform: translateX(0)
+        }
+        .slide.active .rvr.d2 {
+            transition-delay: .25s
+        }
+        .slide.active .rvr.d3 {
+            transition-delay: .4s
+        }
+        .slide.active .rvr.d4 {
+            transition-delay: .55s
+        }
+        .slide.active .rvr.d5 {
+            transition-delay: .7s
+        }
+        .rvs {
+            opacity: 0;
+            transform: scale(.82);
+            transition: all .85s var(--back)
+        }
+        .slide.active .rvs {
+            opacity: 1;
+            transform: scale(1)
+        }
+        .slide.active .rvs.d1 {
+            transition-delay: .08s
+        }
+        .slide.active .rvs.d2 {
+            transition-delay: .2s
+        }
+        .slide.active .rvs.d3 {
+            transition-delay: .33s
+        }
+        .slide.active .rvs.d4 {
+            transition-delay: .46s
+        }
+        .slide.active .rvs.d5 {
+            transition-delay: .59s
+        }
+        .slide.active .rvs.d6 {
+            transition-delay: .72s
+        }
+        .slide.active .rvs.d7 {
+            transition-delay: .85s
+        }
+        .slide.active .rvs.d8 {
+            transition-delay: .98s
+        }
+        .slbl {
+            font-size: .6rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 14px
+        }
+        .slbl.g {
+            color: var(--sare-gold)
+        }
+        .slbl.r {
+            color: var(--r)
+        }
+        .slbl.go {
+            color: var(--sare-gold)
+        }
+        .slbl.b {
+            color: #4A9FE8
+        }
+        .stitle {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            line-height: 1.05
+        }
+        .sdesc {
+            font-size: .9rem;
+            color: var(--gray);
+            line-height: 1.75;
+            font-weight: 300
+        }
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 100px;
+            font-size: .6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase
+        }
+        .pill.g {
+            background: rgba(245, 166, 35, .1);
+            border: 1px solid rgba(245, 166, 35, .2);
+            color: var(--sare-gold)
+        }
+        .pill.go {
+            background: rgba(245, 166, 35, .1);
+            border: 1px solid rgba(245, 166, 35, .18);
+            color: var(--sare-gold)
+        }
+        .chip {
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: .68rem;
+            font-weight: 700;
+            border: 1px solid;
+            transition: all .3s;
+            cursor: default
+        }
+        .chip:hover {
+            transform: translateY(-3px)
+        }
+        .chip.cg {
+            background: rgba(245, 166, 35, .07);
+            border-color: rgba(245, 166, 35, .18);
+            color: var(--sare-gold)
+        }
+        .chip.cb {
+            background: rgba(247, 147, 26, .09);
+            border-color: rgba(247, 147, 26, .18);
+            color: #F7931A
+        }
+        .chip.cr {
+            background: rgba(228, 30, 38, .07);
+            border-color: rgba(228, 30, 38, .14);
+            color: var(--r)
+        }
+        .chip.co {
+            background: rgba(245, 166, 35, .07);
+            border-color: rgba(245, 166, 35, .14);
+            color: var(--sare-gold)
+        }
+        .itag {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: .95rem;
+            color: rgba(255, 255, 255, .43);
+            margin-top: 5px
+        }
+        .s1bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #060D1A 0%, #1A2F1A 45%, #2E5A3B 70%, #060D1A 100%)
+        }
+        .s1grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(245, 166, 35, .04) 1px, transparent 1px), linear-gradient(90deg, rgba(245, 166, 35, .04) 1px, transparent 1px);
+            background-size: 58px 58px;
+            z-index: 1
+        }
+        .s1glow {
+            position: absolute;
+            width: 750px;
+            height: 750px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 166, 35, .08) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: breathe 5s ease-in-out infinite
+        }
+        @keyframes breathe {
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1)
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.12)
+            }
+        }
+        .s1c {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 54% 46%;
+            align-items: center;
+            padding: 0 80px
+        }
+        .s1title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 5.5vw, 6.2rem);
+            font-weight: 900;
+            line-height: .97;
+            letter-spacing: -2px;
+            margin-bottom: 26px
+        }
+        .s1sub {
+            font-size: clamp(.88rem, 1.1vw, 1.1rem);
+            line-height: 1.75;
+            color: var(--gray);
+            max-width: 470px;
+            margin-bottom: 36px;
+            font-weight: 300
+        }
+        .s1btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--sare-gold);
+            color: #000;
+            padding: 16px 38px;
+            font-weight: 800;
+            font-size: .76rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all .4s var(--expo);
+            border-radius: 2px
+        }
+        .s1btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 48px rgba(245, 166, 35, .4);
+            background: var(--gb)
+        }
+        .s1lgos {
+            position: absolute;
+            bottom: 36px;
+            left: 80px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            z-index: 3
+        }
+        .s1lgos .sep {
+            width: 1px;
+            height: 26px;
+            background: rgba(255, 255, 255, .12)
+        }
+        .jd {
+            width: 100%;
+            max-width: 370px
+        }
+        .jdt {
+            font-size: .58rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 18px
+        }
+        .jn {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 11px 16px
+        }
+        .ji {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            border: 2px solid
+        }
+        .ji.a {
+            background: var(--sare-gold);
+            border-color: var(--sare-gold);
+            color: #000;
+            box-shadow: 0 0 22px rgba(245, 166, 35, .35)
+        }
+        .ji.i {
+            background: rgba(255, 255, 255, .03);
+            border-color: rgba(255, 255, 255, .1);
+            color: rgba(255, 255, 255, .4)
+        }
+        .ja {
+            font-size: .58rem;
+            letter-spacing: 2px;
+            color: var(--sare-gold);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1px
+        }
+        .js2 {
+            font-size: .88rem;
+            font-weight: 700;
+            color: #fff
+        }
+        .jp {
+            font-size: .7rem;
+            color: var(--gray)
+        }
+        .jconn {
+            width: 2px;
+            height: 24px;
+            background: linear-gradient(to bottom, var(--sare-gold), rgba(245, 166, 35, .3));
+            margin-left: 41px
+        }
+        .jbdg {
+            text-align: center;
+            margin-top: 16px;
+            padding: 10px 18px;
+            background: rgba(245, 166, 35, .07);
+            border: 1px solid rgba(245, 166, 35, .18);
+            border-radius: 8px;
+            font-size: .68rem;
+            color: var(--sare-gold);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase
+        }
+        .s2c {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 55px 80px;
+            background: linear-gradient(135deg, #060D1A, #0A1628)
+        }
+        .s2g {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%
+        }
+        .mcard {
+            padding: 32px 24px;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            transition: all .5s var(--expo)
+        }
+        .mcard:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 22px 48px rgba(0, 0, 0, .3)
+        }
+        .mcard.m1 {
+            background: linear-gradient(135deg, rgba(245, 166, 35, .12), rgba(245, 166, 35, .04));
+            border: 1px solid rgba(245, 166, 35, .2)
+        }
+        .mcard.m2 {
+            background: linear-gradient(135deg, rgba(247, 147, 26, .12), rgba(247, 147, 26, .04));
+            border: 1px solid rgba(247, 147, 26, .2)
+        }
+        .mcard.m3 {
+            background: linear-gradient(135deg, rgba(46, 90, 59, .1), rgba(46, 90, 59, .03));
+            border: 1px solid rgba(46, 90, 59, .15)
+        }
+        .mcgl {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            transform: translate(50%, -50%)
+        }
+        .mcnum {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.4rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 5px
+        }
+        .mcnum.g {
+            color: var(--sare-gold)
+        }
+        .mcnum.b {
+            color: #F7931A
+        }
+        .mcnum.go {
+            color: var(--sare-gold)
+        }
+        .mclbl {
+            font-size: .88rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px
+        }
+        .mcdesc {
+            font-size: .77rem;
+            color: var(--gray);
+            line-height: 1.6
+        }
+        .s2ins {
+            max-width: 1300px;
+            margin: 20px auto 0;
+            width: 100%;
+            padding: 16px 28px;
+            border-radius: 10px;
+            background: rgba(245, 166, 35, .06);
+            border: 1px solid rgba(245, 166, 35, .14);
+            display: flex;
+            align-items: center;
+            gap: 16px
+        }
+        .s2ins strong {
+            color: var(--sare-gold)
+        }
+        .s2ins-ico {
+            font-size: 1.4rem;
+            flex-shrink: 0
+        }
+        .s2ins-txt {
+            font-size: .84rem;
+            color: #c8d4e0;
+            line-height: 1.65
+        }
+        .s3c {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 46px 80px;
+            background: linear-gradient(160deg, #0A0D18, #0A1628)
+        }
+        .s3p {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%
+        }
+        .pcard {
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all .5s var(--expo)
+        }
+        .pcard:hover {
+            transform: translateY(-10px)
+        }
+        .pch {
+            padding: 24px 24px 16px
+        }
+        .pch.hs {
+            background: linear-gradient(135deg, rgba(228, 30, 38, .14), rgba(228, 30, 38, .04));
+            border-bottom: 1px solid rgba(228, 30, 38, .1)
+        }
+        .pch.uni {
+            background: linear-gradient(135deg, rgba(247, 147, 26, .18), rgba(247, 147, 26, .05));
+            border-bottom: 1px solid rgba(247, 147, 26, .1)
+        }
+        .pch.pro {
+            background: linear-gradient(135deg, rgba(245, 166, 35, .14), rgba(245, 166, 35, .04));
+            border-bottom: 1px solid rgba(245, 166, 35, .1)
+        }
+        .pch-a {
+            font-size: .6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 4px
+        }
+        .pch-a.hs {
+            color: var(--r)
+        }
+        .pch-a.uni {
+            color: #F7931A
+        }
+        .pch-a.pro {
+            color: var(--sare-gold)
+        }
+        .pch-t {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #fff
+        }
+        .pcb {
+            padding: 16px 24px 24px;
+            background: rgba(255, 255, 255, .02);
+            border: 1px solid rgba(255, 255, 255, .05);
+            border-top: none;
+            border-radius: 0 0 16px 16px
+        }
+        .pcl {
+            list-style: none
+        }
+        .pcl li {
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .04);
+            font-size: .8rem;
+            color: #b8c4d0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.5
+        }
+        .pcl li:last-child {
+            border-bottom: none
+        }
+        .pcl li::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 6px
+        }
+        .pcl.hs li::before {
+            background: var(--r)
+        }
+        .pcl.uni li::before {
+            background: #F7931A
+        }
+        .pcl.pro li::before {
+            background: var(--sare-gold)
+        }
+        .s4c {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 46px 80px;
+            background: radial-gradient(ellipse at center, #0D1B2A, #060D1A 80%)
+        }
+        .ecog {
+            display: grid;
+            grid-template-columns: 1fr 160px 1fr;
+            gap: 18px;
+            width: 100%;
+            max-width: 1280px;
+            align-items: center;
+            margin-bottom: 20px
+        }
+        .ecoc {
+            display: flex;
+            flex-direction: column;
+            gap: 11px
+        }
+        .en {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            transition: all .4s
+        }
+        .en:hover {
+            transform: scale(1.03)
+        }
+        .en.l {
+            flex-direction: row
+        }
+        .en.r {
+            flex-direction: row-reverse;
+            text-align: right
+        }
+        .en.ns {
+            background: rgba(228, 30, 38, .07);
+            border: 1px solid rgba(228, 30, 38, .14)
+        }
+        .en.nu {
+            background: rgba(247, 147, 26, .1);
+            border: 1px solid rgba(247, 147, 26, .18)
+        }
+        .en.np {
+            background: rgba(245, 166, 35, .07);
+            border: 1px solid rgba(245, 166, 35, .14)
+        }
+        .en.nm {
+            background: rgba(46, 90, 59, .07);
+            border: 1px solid rgba(46, 90, 59, .14)
+        }
+        .en.nk {
+            background: rgba(245, 166, 35, .09);
+            border: 1px solid rgba(245, 166, 35, .22)
+        }
+        .ei {
+            width: 34px;
+            height: 34px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .92rem;
+            flex-shrink: 0
+        }
+        .ei.er {
+            background: rgba(228, 30, 38, .15)
+        }
+        .ei.eb {
+            background: rgba(247, 147, 26, .2)
+        }
+        .ei.eg {
+            background: rgba(245, 166, 35, .14)
+        }
+        .ei.el {
+            background: rgba(46, 90, 59, .14)
+        }
+        .ei.ek {
+            background: rgba(245, 166, 35, .14)
+        }
+        .enlbl {
+            font-size: .78rem;
+            font-weight: 700;
+            color: #fff
+        }
+        .ensb {
+            font-size: .63rem;
+            color: var(--gray);
+            margin-top: 1px
+        }
+        .ece {
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+        .ebdg {
+            width: 118px;
+            height: 118px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(245, 166, 35, .18), rgba(245, 166, 35, .07));
+            border: 2px solid rgba(245, 166, 35, .38);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 55px rgba(245, 166, 35, .14);
+            animation: epulse 3s ease-in-out infinite
+        }
+        @keyframes epulse {
+            0%,
+            100% {
+                box-shadow: 0 0 55px rgba(245, 166, 35, .14)
+            }
+            50% {
+                box-shadow: 0 0 75px rgba(245, 166, 35, .25)
+            }
+        }
+        .ebdg span {
+            font-size: .5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--sare-gold);
+            font-weight: 700;
+            margin-top: 5px
+        }
+        .ecchips {
+            display: flex;
+            gap: 9px;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+        .s5c {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 50% 50%;
+            align-items: center;
+            background: linear-gradient(135deg, #060D1A, #0A1628)
+        }
+        .s5l {
+            padding: 60px 50px 60px 80px
+        }
+        .s5r {
+            padding: 46px 80px 46px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+        .bscen {
+            width: 100%;
+            max-width: 420px
+        }
+        .bcard {
+            border-radius: 14px;
+            padding: 26px;
+            margin-bottom: 11px
+        }
+        .bcard.bb {
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .07)
+        }
+        .bcard.bp {
+            background: rgba(228, 30, 38, .06);
+            border: 1px solid rgba(228, 30, 38, .12)
+        }
+        .bcard.bg {
+            background: rgba(245, 166, 35, .08);
+            border: 1px solid rgba(245, 166, 35, .2);
+            box-shadow: 0 0 36px rgba(245, 166, 35, .07)
+        }
+        .bclbl {
+            font-size: .6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 10px
+        }
+        .bclbl.lg {
+            color: var(--gray)
+        }
+        .bclbl.lr {
+            color: var(--r)
+        }
+        .bclbl.lgn {
+            color: var(--sare-gold)
+        }
+        .bcamt {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 4px
+        }
+        .bcamt.dim {
+            color: rgba(255, 255, 255, .45)
+        }
+        .bcamt.alert {
+            color: var(--r)
+        }
+        .bcamt.hero {
+            color: var(--sare-gold)
+        }
+        .bcdesc {
+            font-size: .76rem;
+            color: var(--gray);
+            line-height: 1.5
+        }
+        .barrow {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--sare-gold);
+            margin: 4px 0;
+            animation: bd 1.5s ease-in-out infinite
+        }
+        @keyframes bd {
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+            50% {
+                transform: translateY(5px)
+            }
+        }
+        .brep {
+            margin-top: 13px;
+            padding: 10px 14px;
+            background: rgba(245, 166, 35, .06);
+            border-radius: 7px;
+            border-left: 3px solid var(--sare-gold);
+            font-size: .74rem;
+            color: var(--gray);
+            line-height: 1.5
+        }
+        .brep strong {
+            color: var(--sare-gold)
+        }
+        .s5buls {
+            margin-top: 26px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px
+        }
+        .s5b {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            padding: 12px;
+            border-radius: 9px;
+            background: var(--glass);
+            border: 1px solid var(--glb)
+        }
+        .s5bi {
+            width: 32px;
+            height: 32px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .82rem;
+            flex-shrink: 0
+        }
+        .s5bt {
+            font-size: .8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2px
+        }
+        .s5bd {
+            font-size: .7rem;
+            color: var(--gray);
+            line-height: 1.4
+        }
+        .s6c {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 45% 55%;
+            align-items: center;
+            background: linear-gradient(135deg, #070F1C, #0B1929)
+        }
+        .s6l {
+            padding: 60px 42px 60px 80px
+        }
+        .s6r {
+            padding: 42px 80px 42px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+        .pf {
+            width: 100%;
+            max-width: 455px;
+            display: flex;
+            flex-direction: column;
+            gap: 0
+        }
+        .pfe {
+            border-radius: 13px;
+            padding: 17px 20px
+        }
+        .pfe.par {
+            background: rgba(245, 166, 35, .07);
+            border: 1px solid rgba(245, 166, 35, .16)
+        }
+        .pfe.stu {
+            background: rgba(247, 147, 26, .09);
+            border: 1px solid rgba(247, 147, 26, .18)
+        }
+        .pfe.kc {
+            background: rgba(46, 90, 59, .09);
+            border: 1px solid rgba(46, 90, 59, .2)
+        }
+        .pfh {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 9px
+        }
+        .pfic {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .95rem
+        }
+        .pfic.go {
+            background: rgba(245, 166, 35, .14)
+        }
+        .pfic.bl {
+            background: rgba(247, 147, 26, .18)
+        }
+        .pfic.gr {
+            background: rgba(46, 90, 59, .14)
+        }
+        .pft {
+            font-weight: 800;
+            font-size: .9rem;
+            color: #fff
+        }
+        .pfs {
+            font-size: .68rem;
+            color: var(--gray);
+            margin-top: 1px
+        }
+        .pffs {
+            display: flex;
+            flex-direction: column;
+            gap: 4px
+        }
+        .pff {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .74rem;
+            color: #b8c4d0;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .03)
+        }
+        .pff:last-child {
+            border-bottom: none
+        }
+        .pff::before {
+            content: '\2713';
+            color: var(--sare-gold);
+            font-weight: 700;
+            font-size: .7rem;
+            flex-shrink: 0
+        }
+        .pfc {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 9px 0;
+            gap: 6px
+        }
+        .pfl {
+            width: 2px;
+            height: 22px;
+            background: linear-gradient(to bottom, rgba(245, 166, 35, .4), rgba(247, 147, 26, .4))
+        }
+        .pfl2 {
+            width: 2px;
+            height: 22px;
+            background: linear-gradient(to bottom, rgba(247, 147, 26, .4), rgba(46, 90, 59, .4))
+        }
+        .pfps {
+            display: flex;
+            gap: 7px
+        }
+        .pfp {
+            padding: 3px 10px;
+            border-radius: 100px;
+            font-size: .58rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase
+        }
+        .pfp.pi {
+            background: rgba(46, 90, 59, .11);
+            border: 1px solid rgba(46, 90, 59, .18);
+            color: #2E5A3B
+        }
+        .pfp.pn {
+            background: rgba(245, 166, 35, .09);
+            border: 1px solid rgba(245, 166, 35, .14);
+            color: var(--sare-gold)
+        }
+        .s6tag {
+            margin-top: 24px;
+            padding: 14px 20px;
+            border-radius: 9px;
+            background: rgba(245, 166, 35, .05);
+            border: 1px solid rgba(245, 166, 35, .1);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: .98rem;
+            color: rgba(255, 255, 255, .65);
+            text-align: center
+        }
+        .s6tag strong {
+            color: var(--sare-gold);
+            font-style: normal
+        }
+        .s7c {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 42px 80px;
+            background: linear-gradient(160deg, #060D1A, #0D1929 60%, #0A1220 100%)
+        }
+        .cg {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .06)
+        }
+        .ctp {
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            transition: all .4s var(--expo);
+            cursor: pointer;
+            border-right: 1px solid rgba(255, 255, 255, .05);
+            border-bottom: 1px solid rgba(255, 255, 255, .05)
+        }
+        .ctp:nth-child(3n) {
+            border-right: none
+        }
+        .ctp:nth-child(n+4) {
+            border-bottom: none
+        }
+        .ctp:hover {
+            background: rgba(245, 166, 35, .05);
+            z-index: 2
+        }
+        .ctpi {
+            font-size: 1.8rem;
+            width: 54px;
+            height: 54px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .06);
+            margin: 0 auto 11px
+        }
+        .ctpn {
+            font-weight: 700;
+            font-size: .85rem;
+            color: #fff;
+            margin-bottom: 3px
+        }
+        .ctpd {
+            font-size: .68rem;
+            color: var(--gray);
+            line-height: 1.5
+        }
+        .ctptap {
+            display: inline-block;
+            margin-top: 7px;
+            font-size: .57rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--sare-gold);
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity .3s
+        }
+        .ctp:hover .ctptap {
+            opacity: 1
+        }
+        .s7f {
+            max-width: 1300px;
+            width: 100%;
+            margin: 16px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 13px 20px;
+            border-radius: 9px;
+            background: rgba(245, 166, 35, .05);
+            border: 1px solid rgba(245, 166, 35, .12)
+        }
+        .s7fc {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+        .s7fchip {
+            width: 42px;
+            height: 42px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, rgba(245, 166, 35, .28), rgba(245, 166, 35, .1));
+            border: 1px solid rgba(245, 166, 35, .28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem
+        }
+        .s7ft {
+            font-size: .8rem;
+            font-weight: 700;
+            color: #fff
+        }
+        .s7fsub {
+            font-size: .68rem;
+            color: var(--gray);
+            margin-top: 1px
+        }
+        .s7ftag {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: .9rem;
+            color: rgba(255, 255, 255, .42)
+        }
+        .s8c {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 50% 50%;
+            align-items: center;
+            background: linear-gradient(135deg, #060D1A, #0A1628)
+        }
+        .s8l {
+            padding: 60px 42px 60px 80px
+        }
+        .s8r {
+            padding: 42px 80px 42px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+        .sdemo {
+            width: 100%;
+            max-width: 400px
+        }
+        .stxn {
+            border-radius: 11px;
+            padding: 16px 18px;
+            margin-bottom: 9px
+        }
+        .stxn.sp {
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .06)
+        }
+        .stxn.sv {
+            background: rgba(245, 166, 35, .07);
+            border: 1px solid rgba(245, 166, 35, .16)
+        }
+        .stxn-t {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px
+        }
+        .stxn-m {
+            font-size: .78rem;
+            font-weight: 600;
+            color: #fff
+        }
+        .stxn-amt {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700
+        }
+        .stxn-amt.sp {
+            color: rgba(255, 255, 255, .65)
+        }
+        .stxn-amt.sv {
+            color: var(--sare-gold)
+        }
+        .stxn-s {
+            font-size: .63rem;
+            color: var(--gray)
+        }
+        .stxn-bar {
+            height: 5px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, .07);
+            margin: 8px 0;
+            overflow: hidden
+        }
+        .stxn-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: var(--sare-gold);
+            width: 0;
+            animation: fb 1s var(--expo) 1.5s forwards
+        }
+        @keyframes fb {
+            to {
+                width: 100%
+            }
+        }
+        .savtot {
+            border-radius: 13px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(245, 166, 35, .14), rgba(245, 166, 35, .05));
+            border: 1px solid rgba(245, 166, 35, .22);
+            margin-top: 12px
+        }
+        .savtl {
+            font-size: .6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--sare-gold);
+            font-weight: 700;
+            margin-bottom: 6px
+        }
+        .savta {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--sare-gold);
+            line-height: 1;
+            margin-bottom: 3px
+        }
+        .savts {
+            font-size: .73rem;
+            color: var(--gray)
+        }
+        .savgoal {
+            margin-top: 11px;
+            padding: 11px 13px;
+            border-radius: 7px;
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .06)
+        }
+        .sgh {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 7px;
+            font-size: .71rem
+        }
+        .sgh-n {
+            color: #fff;
+            font-weight: 600
+        }
+        .sgh-p {
+            color: var(--sare-gold);
+            font-weight: 700
+        }
+        .sgb {
+            height: 7px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, .06);
+            overflow: hidden
+        }
+        .sgf {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--sare-gold), var(--gb));
+            width: 0;
+            animation: fsg 1.5s var(--expo) 2s forwards
+        }
+        @keyframes fsg {
+            to {
+                width: 34%
+            }
+        }
+        .s8bens {
+            margin-top: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+        .s8b {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .78rem;
+            color: #c8d4e0;
+            padding: 8px 12px;
+            border-radius: 7px;
+            background: rgba(255, 255, 255, .02);
+            border: 1px solid rgba(255, 255, 255, .05)
+        }
+        .s9c {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 42px 80px;
+            background: linear-gradient(135deg, #060D1A 0%, #0C1825 50%, #060D1A 100%)
+        }
+        .s9j {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative
+        }
+        .s9j::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--sare-gold), rgba(245, 166, 35, .25), var(--sare-gold));
+            z-index: 0
+        }
+        .estep {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 16px 12px;
+            position: relative;
+            z-index: 1
+        }
+        .enum {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--sare-gold);
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .92rem;
+            font-weight: 700;
+            color: var(--sare-gold);
+            margin-bottom: 13px;
+            transition: all .4s
+        }
+        .estep:hover .enum {
+            background: var(--sare-gold);
+            color: #000;
+            transform: scale(1.2)
+        }
+        .eico {
+            font-size: 1.8rem;
+            margin-bottom: 9px
+        }
+        .et {
+            font-weight: 800;
+            font-size: .9rem;
+            color: #fff;
+            margin-bottom: 4px
+        }
+        .ed {
+            font-size: .74rem;
+            color: var(--gray);
+            line-height: 1.5
+        }
+        .s9f {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 13px;
+            max-width: 1300px;
+            width: 100%;
+            margin: 18px auto 0
+        }
+        .s9fi {
+            padding: 15px 13px;
+            border-radius: 11px;
+            text-align: center;
+            transition: all .4s
+        }
+        .s9fi:hover {
+            transform: translateY(-5px)
+        }
+        .s9fi.a {
+            background: rgba(245, 166, 35, .07);
+            border: 1px solid rgba(245, 166, 35, .14)
+        }
+        .s9fi.b {
+            background: rgba(247, 147, 26, .08);
+            border: 1px solid rgba(247, 147, 26, .14)
+        }
+        .s9fi.c {
+            background: rgba(46, 90, 59, .06);
+            border: 1px solid rgba(46, 90, 59, .11)
+        }
+        .s9fi.d {
+            background: rgba(228, 30, 38, .06);
+            border: 1px solid rgba(228, 30, 38, .1)
+        }
+        .s9fie {
+            font-size: 1.4rem;
+            margin-bottom: 6px
+        }
+        .s9fit {
+            font-weight: 700;
+            font-size: .79rem;
+            color: #fff;
+            margin-bottom: 3px
+        }
+        .s9fid {
+            font-size: .68rem;
+            color: var(--gray);
+            line-height: 1.4
+        }
+        .s10c {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 42px 80px;
+            background: linear-gradient(135deg, #060D1A, #0A1628)
+        }
+        .s10acc {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sare-gold), var(--btc-orange), var(--sare-gold));
+            z-index: 4
+        }
+        .seco {
+            display: grid;
+            grid-template-columns: 1fr 1.32fr 1fr;
+            gap: 20px;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            align-items: start
+        }
+        .sacs {
+            display: flex;
+            flex-direction: column;
+            gap: 11px
+        }
+        .sac {
+            border-radius: 11px;
+            padding: 15px 14px;
+            transition: all .4s
+        }
+        .sac:hover {
+            transform: translateX(4px)
+        }
+        .sac.sap {
+            background: rgba(245, 166, 35, .07);
+            border: 1px solid rgba(245, 166, 35, .14)
+        }
+        .sac.sas {
+            background: rgba(228, 30, 38, .07);
+            border: 1px solid rgba(228, 30, 38, .11)
+        }
+        .sac.sam {
+            background: rgba(247, 147, 26, .09);
+            border: 1px solid rgba(247, 147, 26, .16)
+        }
+        .sac.sau {
+            background: rgba(46, 90, 59, .07);
+            border: 1px solid rgba(46, 90, 59, .14)
+        }
+        .sac.sak {
+            background: rgba(245, 166, 35, .09);
+            border: 1px solid rgba(245, 166, 35, .18)
+        }
+        .sach {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 7px
+        }
+        .sacico {
+            font-size: .95rem;
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0
+        }
+        .sacico.sg {
+            background: rgba(245, 166, 35, .13)
+        }
+        .sacico.sr {
+            background: rgba(228, 30, 38, .11)
+        }
+        .sacico.sb {
+            background: rgba(247, 147, 26, .14)
+        }
+        .sacico.sl {
+            background: rgba(46, 90, 59, .11)
+        }
+        .sacico.sk {
+            background: rgba(245, 166, 35, .12)
+        }
+        .sact {
+            font-weight: 700;
+            font-size: .8rem;
+            color: #fff
+        }
+        .sacd {
+            font-size: .68rem;
+            color: var(--gray);
+            line-height: 1.5
+        }
+        .scc {
+            border-radius: 18px;
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(245, 166, 35, .11), rgba(245, 166, 35, .04));
+            border: 1px solid rgba(245, 166, 35, .22);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 55px rgba(245, 166, 35, .07)
+        }
+        .scc::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--sare-gold), var(--btc-orange))
+        }
+        .scc-badge {
+            display: inline-block;
+            padding: 4px 13px;
+            border-radius: 100px;
+            font-size: .57rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: rgba(245, 166, 35, .13);
+            border: 1px solid rgba(245, 166, 35, .22);
+            color: var(--sare-gold);
+            margin-bottom: 12px
+        }
+        .scc-t {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+            line-height: 1.2
+        }
+        .scc-s {
+            font-size: .77rem;
+            color: var(--gray);
+            margin-bottom: 14px;
+            line-height: 1.5
+        }
+        .scc-bs {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 14px
+        }
+        .scc-bi {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: .73rem;
+            color: #c8d4e0;
+            line-height: 1.5
+        }
+        .scc-bi::before {
+            content: '\2713';
+            color: var(--sare-gold);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px
+        }
+        .scc-cv {
+            margin: 12px 0;
+            width: 100%;
+            border-radius: 11px;
+            height: 68px;
+            background: linear-gradient(135deg, #F7931A, #F5A623);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 10px;
+            box-shadow: 0 8px 26px rgba(247, 147, 26, .2)
+        }
+        .scc-cv-lbl {
+            font-size: .6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, .65);
+            font-weight: 600;
+            flex: 1;
+            text-align: right
+        }
+        .scc-tag {
+            padding: 11px 13px;
+            border-radius: 7px;
+            background: rgba(245, 166, 35, .05);
+            border: 1px solid rgba(245, 166, 35, .1);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .58);
+            text-align: center
+        }
+        .s11c {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 42px 80px;
+            background: linear-gradient(135deg, #060D1A, #0A1628)
+        }
+        .rg {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto
+        }
+        .rc {
+            border-radius: 13px;
+            padding: 24px 18px;
+            position: relative;
+            transition: all .5s var(--expo)
+        }
+        .rc:hover {
+            transform: translateY(-7px)
+        }
+        .rc.c1 {
+            background: linear-gradient(135deg, rgba(245, 166, 35, .13), rgba(245, 166, 35, .04));
+            border: 1px solid rgba(245, 166, 35, .2)
+        }
+        .rc.c2 {
+            background: linear-gradient(135deg, rgba(247, 147, 26, .13), rgba(247, 147, 26, .04));
+            border: 1px solid rgba(247, 147, 26, .2)
+        }
+        .rc.c3 {
+            background: linear-gradient(135deg, rgba(46, 90, 59, .09), rgba(46, 90, 59, .03));
+            border: 1px solid rgba(46, 90, 59, .14)
+        }
+        .rc.c4 {
+            background: linear-gradient(135deg, rgba(228, 30, 38, .09), rgba(228, 30, 38, .03));
+            border: 1px solid rgba(228, 30, 38, .12)
+        }
+        .rc.c5 {
+            background: linear-gradient(135deg, rgba(46, 90, 59, .08), rgba(46, 90, 59, .02));
+            border: 1px solid rgba(46, 90, 59, .14)
+        }
+        .rc.c6 {
+            background: linear-gradient(135deg, rgba(245, 166, 35, .1), rgba(247, 147, 26, .05));
+            border: 1px solid rgba(245, 166, 35, .16)
+        }
+        .rc.c7 {
+            background: linear-gradient(135deg, rgba(245, 166, 35, .08), rgba(228, 30, 38, .04));
+            border: 1px solid rgba(245, 166, 35, .14)
+        }
+        .rc.c8 {
+            background: rgba(245, 166, 35, .08);
+            border: 1px solid rgba(245, 166, 35, .22);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 155px
+        }
+        .rcico {
+            font-size: 1.6rem;
+            margin-bottom: 11px
+        }
+        .rct {
+            font-weight: 800;
+            font-size: .86rem;
+            color: #fff;
+            margin-bottom: 4px
+        }
+        .rcd {
+            font-size: .7rem;
+            color: var(--gray);
+            line-height: 1.5;
+            margin-bottom: 9px
+        }
+        .rcv {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1
+        }
+        .rc.c1 .rcv {
+            color: var(--sare-gold)
+        }
+        .rc.c2 .rcv {
+            color: #F7931A
+        }
+        .rc.c3 .rcv {
+            color: #2E5A3B
+        }
+        .rc.c4 .rcv {
+            color: var(--r)
+        }
+        .rc.c5 .rcv {
+            color: #2E5A3B
+        }
+        .rc.c6 .rcv {
+            color: var(--sare-gold)
+        }
+        .rc.c7 .rcv {
+            color: var(--sare-gold)
+        }
+        .rtot {
+            max-width: 1300px;
+            width: 100%;
+            margin: 16px auto 0;
+            border-radius: 11px;
+            padding: 14px 26px;
+            background: rgba(245, 166, 35, .06);
+            border: 1px solid rgba(245, 166, 35, .13);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px
+        }
+        .rtl {
+            font-size: .76rem;
+            color: var(--gray)
+        }
+        .rtv {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--sare-gold)
+        }
+        .rts {
+            font-size: .68rem;
+            color: var(--gray)
+        }
+        .s12c {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 42px 80px;
+            background: linear-gradient(135deg, #060D1A, #0A1628)
+        }
+        .clvcmp {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 26px;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto
+        }
+        .clvt {
+            border-radius: 15px;
+            padding: 24px
+        }
+        .clvt.trad {
+            background: rgba(255, 255, 255, .02);
+            border: 1px solid rgba(255, 255, 255, .07)
+        }
+        .clvt.bato {
+            background: rgba(245, 166, 35, .06);
+            border: 1px solid rgba(245, 166, 35, .2);
+            box-shadow: 0 0 38px rgba(245, 166, 35, .06)
+        }
+        .clvth {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px
+        }
+        .clvbdg {
+            padding: 4px 13px;
+            border-radius: 100px;
+            font-size: .57rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase
+        }
+        .clvt.trad .clvbdg {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: var(--gray)
+        }
+        .clvt.bato .clvbdg {
+            background: rgba(245, 166, 35, .11);
+            border: 1px solid rgba(245, 166, 35, .18);
+            color: var(--sare-gold)
+        }
+        .clvtht {
+            font-weight: 700;
+            font-size: 1.02rem;
+            color: #fff
+        }
+        .clvtl {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative
+        }
+        .clvtl::before {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255, 255, 255, .05);
+            z-index: 0
+        }
+        .clvt.bato .clvtl::before {
+            background: rgba(245, 166, 35, .14)
+        }
+        .clvev {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 0;
+            z-index: 1;
+            position: relative
+        }
+        .clvd {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid;
+            flex-shrink: 0;
+            margin-top: 3px;
+            background: var(--dark)
+        }
+        .clvt.trad .clvd {
+            border-color: rgba(255, 255, 255, .18)
+        }
+        .clvt.bato .clvd {
+            border-color: var(--sare-gold)
+        }
+        .clvt.bato .clvev:hover .clvd {
+            background: var(--sare-gold)
+        }
+        .clvage {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .86rem;
+            font-weight: 700;
+            min-width: 28px
+        }
+        .clvt.trad .clvage {
+            color: var(--gray)
+        }
+        .clvt.bato .clvage {
+            color: var(--sare-gold)
+        }
+        .clvprod {
+            font-size: .78rem;
+            font-weight: 600;
+            color: #fff
+        }
+        .clvpsub {
+            font-size: .63rem;
+            color: var(--gray);
+            margin-top: 1px
+        }
+        .clvadv {
+            max-width: 1300px;
+            width: 100%;
+            margin: 18px auto 0;
+            padding: 12px 24px;
+            border-radius: 9px;
+            background: rgba(245, 166, 35, .06);
+            border: 1px solid rgba(245, 166, 35, .14);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 14px
+        }
+        .clvstat {
+            text-align: center
+        }
+        .clvnum {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--sare-gold);
+            line-height: 1
+        }
+        .clvlbl {
+            font-size: .63rem;
+            color: var(--gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 3px
+        }
+        .clvdiv {
+            width: 1px;
+            height: 42px;
+            background: rgba(255, 255, 255, .06)
+        }
+        .s13c {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 42px 80px;
+            background: linear-gradient(135deg, #060D1A, #0A1628)
+        }
+        .ig {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto
+        }
+        .yc {
+            border-radius: 15px;
+            padding: 26px 24px;
+            position: relative;
+            transition: all .5s var(--expo)
+        }
+        .yc:hover {
+            transform: translateY(-10px)
+        }
+        .yc.y1 {
+            background: rgba(247, 147, 26, .1);
+            border: 1px solid rgba(247, 147, 26, .2)
+        }
+        .yc.y2 {
+            background: rgba(245, 166, 35, .09);
+            border: 1px solid rgba(245, 166, 35, .2)
+        }
+        .yc.y3 {
+            background: linear-gradient(135deg, rgba(245, 166, 35, .14), rgba(46, 90, 59, .05));
+            border: 1px solid rgba(245, 166, 35, .3);
+            box-shadow: 0 0 46px rgba(245, 166, 35, .07)
+        }
+        .ylbl {
+            font-size: .57rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 10px
+        }
+        .yc.y1 .ylbl {
+            color: #F7931A
+        }
+        .yc.y2 .ylbl {
+            color: var(--sare-gold)
+        }
+        .yc.y3 .ylbl {
+            color: var(--gb)
+        }
+        .ysts {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.6rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 2px
+        }
+        .yc.y1 .ysts {
+            color: #F7931A
+        }
+        .yc.y2 .ysts {
+            color: var(--sare-gold)
+        }
+        .yc.y3 .ysts {
+            color: var(--gb)
+        }
+        .yunit {
+            font-size: .76rem;
+            color: var(--gray);
+            margin-bottom: 16px;
+            font-weight: 500
+        }
+        .ykpis {
+            display: flex;
+            flex-direction: column;
+            gap: 6px
+        }
+        .ykpi {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .04);
+            font-size: .74rem
+        }
+        .ykpi:last-child {
+            border-bottom: none
+        }
+        .ykpi-l {
+            color: var(--gray)
+        }
+        .ykpi-v {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700
+        }
+        .yc.y1 .ykpi-v {
+            color: #F7931A
+        }
+        .yc.y2 .ykpi-v {
+            color: var(--sare-gold)
+        }
+        .yc.y3 .ykpi-v {
+            color: var(--gb)
+        }
+        .ybw {
+            margin-top: 13px;
+            height: 5px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, .05);
+            overflow: hidden
+        }
+        .yb {
+            height: 100%;
+            border-radius: 3px;
+            width: 0
+        }
+        .yc.y1 .yb {
+            background: #F7931A;
+            animation: yb1 1.5s var(--expo) .5s forwards
+        }
+        .yc.y2 .yb {
+            background: var(--sare-gold);
+            animation: yb2 1.5s var(--expo) .8s forwards
+        }
+        .yc.y3 .yb {
+            background: linear-gradient(90deg, var(--sare-gold), var(--gb));
+            animation: yb3 1.5s var(--expo) 1.1s forwards
+        }
+        @keyframes yb1 {
+            to {
+                width: 33%
+            }
+        }
+        @keyframes yb2 {
+            to {
+                width: 66%
+            }
+        }
+        @keyframes yb3 {
+            to {
+                width: 100%
+            }
+        }
+        .s13tot {
+            max-width: 1300px;
+            width: 100%;
+            margin: 16px auto 0;
+            border-radius: 11px;
+            padding: 13px 28px;
+            background: rgba(245, 166, 35, .06);
+            border: 1px solid rgba(245, 166, 35, .14);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 14px
+        }
+        .s13ts {
+            text-align: center
+        }
+        .s13tn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--sare-gold);
+            line-height: 1
+        }
+        .s13tl {
+            font-size: .62rem;
+            color: var(--gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 3px
+        }
+        .s13div {
+            width: 1px;
+            height: 36px;
+            background: rgba(255, 255, 255, .06)
+        }
+        .s14bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #060D1A 0%, #1A2F1A 45%, #2E5A3B 70%, #060D1A 100%)
+        }
+        .s14grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(245, 166, 35, .032) 1px, transparent 1px), linear-gradient(90deg, rgba(245, 166, 35, .032) 1px, transparent 1px);
+            background-size: 58px 58px
+        }
+        .s14glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 166, 35, .07) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+        .s14c {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 76px;
+            text-align: center
+        }
+        .s14eye {
+            font-size: .6rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--sare-gold);
+            font-weight: 700;
+            margin-bottom: 20px
+        }
+        .s14t {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 5vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -2px;
+            margin-bottom: 20px
+        }
+        .s14stmt {
+            max-width: 710px;
+            font-size: clamp(.87rem, 1vw, 1rem);
+            color: var(--gray);
+            line-height: 1.85;
+            margin: 0 auto 8px;
+            font-weight: 300
+        }
+        .s14stmt strong {
+            color: #c8d4e0;
+            font-weight: 600
+        }
+        .s14fm {
+            max-width: 570px;
+            margin: 16px auto 29px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(.95rem, 1.3vw, 1.2rem);
+            font-style: italic;
+            color: rgba(255, 255, 255, .5);
+            line-height: 1.65
+        }
+        .s14btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--sare-gold);
+            color: #000;
+            padding: 17px 48px;
+            font-weight: 900;
+            font-size: .77rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all .5s var(--expo);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 33px
+        }
+        .s14btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .22), transparent);
+            transition: left .6s
+        }
+        .s14btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 22px 56px rgba(245, 166, 35, .4)
+        }
+        .s14btn:hover::before {
+            left: 100%
+        }
+        .s14lg {
+            display: flex;
+            align-items: center;
+            gap: 17px
+        }
+        .s14lg .sep {
+            width: 1px;
+            height: 24px;
+            background: rgba(255, 255, 255, .12)
+        }
+        .s14cf {
+            margin-top: 13px;
+            font-size: .57rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .14);
+            font-weight: 500
+        }
+        .s10-new {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            background: linear-gradient(135deg, #060D1A 0%, #1A2F1A 50%, #060D1A 100%);
+            overflow: hidden
+        }
+        .s10-acc-new {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, var(--sare-gold), var(--btc-orange), var(--sare-gold), transparent);
+            z-index: 4
+        }
+        .card-showcase {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 400px 1fr;
+            gap: 0;
+            align-items: stretch
+        }
+        .cs-left {
+            padding: 36px 28px 36px 72px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+            border-right: 1px solid rgba(245, 166, 35, .1)
+        }
+        .cs-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 36px 24px;
+            position: relative
+        }
+        .cs-center::before {
+            content: '';
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 166, 35, .14), transparent);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none
+        }
+        .cs-right {
+            padding: 36px 72px 36px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 12px;
+            border-left: 1px solid rgba(245, 166, 35, .1)
+        }
+        .sare-card-img {
+            width: 100%;
+            max-width: 340px;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 20px 60px rgba(245, 166, 35, .45)) drop-shadow(0 4px 16px rgba(0, 0, 0, .6));
+            animation: cardFloat 4s ease-in-out infinite;
+            cursor: pointer;
+            transition: filter .4s;
+            border-radius: 16px
+        }
+        .sare-card-img:hover {
+            animation: none;
+            transform: perspective(900px) rotateY(0) scale(1.06);
+            filter: drop-shadow(0 28px 70px rgba(245, 166, 35, .6)) drop-shadow(0 4px 20px rgba(0, 0, 0, .7));
+            transition: transform .5s var(--expo), filter .4s
+        }
+        @keyframes cardFloat {
+            0%,
+            100% {
+                transform: perspective(900px) rotateY(-7deg) rotateX(3deg) translateY(0)
+            }
+            50% {
+                transform: perspective(900px) rotateY(-7deg) rotateX(3deg) translateY(-14px)
+            }
+        }
+        .cs-eyebrow {
+            font-size: .58rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--sare-gold);
+            margin-bottom: 6px
+        }
+        .cs-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 2.5vw, 2.6rem);
+            font-weight: 900;
+            line-height: 1.05;
+            color: #fff;
+            margin-bottom: 4px
+        }
+        .cs-sub {
+            font-size: .82rem;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 16px
+        }
+        .ux-step {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 11px 14px;
+            border-radius: 11px;
+            border: 1px solid rgba(255, 255, 255, .06);
+            background: rgba(255, 255, 255, .02);
+            transition: all .35s;
+            margin-bottom: 8px
+        }
+        .ux-step:hover {
+            border-color: rgba(245, 166, 35, .3);
+            background: rgba(245, 166, 35, .06);
+            transform: translateX(5px)
+        }
+        .ux-step-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .58rem;
+            font-weight: 800;
+            color: var(--sare-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2px
+        }
+        .ux-step-title {
+            font-size: .88rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2
+        }
+        .ux-step-desc {
+            font-size: .7rem;
+            color: var(--gray);
+            line-height: 1.4;
+            margin-top: 2px
+        }
+        .ux-connector {
+            width: 2px;
+            height: 10px;
+            background: linear-gradient(to bottom, rgba(245, 166, 35, .5), rgba(245, 166, 35, .1));
+            margin-left: 36px;
+            margin-bottom: 8px
+        }
+        .cs-tag {
+            padding: 12px 16px;
+            border-radius: 8px;
+            background: rgba(245, 166, 35, .07);
+            border: 1px solid rgba(245, 166, 35, .15);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .6);
+            text-align: center;
+            margin-top: 4px
+        }
+        .impact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 11px
+        }
+        .impact-block {
+            padding: 14px 16px;
+            border-radius: 11px;
+            border: 1px solid rgba(255, 255, 255, .07);
+            background: rgba(255, 255, 255, .02);
+            transition: all .35s
+        }
+        .impact-block:hover {
+            border-color: rgba(245, 166, 35, .25);
+            background: rgba(245, 166, 35, .06);
+            transform: translateY(-3px)
+        }
+        .impact-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--sare-gold);
+            line-height: 1;
+            margin-bottom: 2px
+        }
+        .impact-lbl {
+            font-size: .64rem;
+            color: var(--gray);
+            letter-spacing: 1px;
+            line-height: 1.4
+        }
+        .impact-block.wide {
+            grid-column: 1/-1;
+            background: rgba(245, 166, 35, .06);
+            border-color: rgba(245, 166, 35, .18)
+        }
+        .impact-block.wide .impact-num {
+            font-size: 2.4rem
+        }
+        .cs-photo-strip {
+            display: flex;
+            gap: 6px;
+            margin-top: 12px
+        }
+        .cs-strip-photo {
+            flex: 1;
+            height: 72px;
+            border-radius: 8px;
+            object-fit: cover;
+            filter: brightness(.6);
+            transition: filter .3s, transform .3s
+        }
+        .cs-strip-photo:hover {
+            filter: brightness(.9);
+            transform: scale(1.04)
+        }
+        .boost-hero-photo {
+            width: 100%;
+            height: 120px;
+            border-radius: 12px;
+            object-fit: cover;
+            filter: brightness(.65) saturate(.85);
+            margin-bottom: 14px;
+            transition: filter .4s
+        }
+        .boost-hero-photo:hover {
+            filter: brightness(.85)
+        }
+        .ctp-pw {
+            overflow: hidden;
+            border-radius: 9px;
+            margin-bottom: 10px;
+            height: 110px
+        }
+        .ctp-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(.65) saturate(0.8);
+            transition: filter .45s var(--expo), transform .5s var(--expo)
+        }
+        .ctp:hover .ctp-photo {
+            filter: brightness(.9) saturate(1);
+            transform: scale(1.08)
+        }
+        .mc-bg-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: .1;
+            border-radius: 16px;
+            transition: opacity .4s
+        }
+        .mcard:hover .mc-bg-photo {
+            opacity: .18
+        }
+        @media(max-width:1100px) {
+            .s9j,
+            .s9f,
+            .rg,
+            .ig {
+                grid-template-columns: repeat(2, 1fr)
+            }
+            .clvcmp {
+                grid-template-columns: 1fr
+            }
+        }
+        @media(max-width:860px) {
+            .s2g,
+            .s3p,
+            .cg,
+            .ecog,
+            .seco {
+                grid-template-columns: 1fr
+            }
+            .s5c,
+            .s6c,
+            .s8c {
+                grid-template-columns: 1fr
+            }
+            .s1c {
+                grid-template-columns: 1fr
+            }
+            .ndots {
+                display: none
+            }
+        }
+        @media print {
+            .ndots,
+            .narr,
+            .sctr,
+            .scanlines,
+            #loader,
+            #pc {
+                display: none!important
+            }
+            .slide {
+                position: relative;
+                opacity: 1!important;
+                visibility: visible!important;
+                page-break-after: always;
+                height: 100vh;
+                overflow: hidden
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanlines"></div>
+    <canvas id="pc"></canvas>
+    <div id="loader">
+        <div class="lw"><div class="lr lr2"></div><div class="lr lr1"></div></div>
+        <div class="ll">
+            <span style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--sare-gold);font-weight:900;letter-spacing:-1px">SARE</span>
+            <span class="x">&times;</span>
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;color:#fff;font-weight:700;letter-spacing:2px">BATOLINK</span>
+        </div>
+        <div class="lt">Building Africa's First Bitcoin Agricultural Commerce Ecosystem</div>
+    </div>
+    <div class="ndots">
+        <div class="nd active" data-index="0" data-label="Vision"></div>
+        <div class="nd" data-index="1" data-label="Market"></div>
+        <div class="nd" data-index="2" data-label="Problem"></div>
+        <div class="nd" data-index="3" data-label="Ecosystem"></div>
+        <div class="nd" data-index="4" data-label="BTC Payments"></div>
+        <div class="nd" data-index="5" data-label="Diaspora"></div>
+        <div class="nd" data-index="6" data-label="Commerce Hub"></div>
+        <div class="nd" data-index="7" data-label="Smart Contracts"></div>
+        <div class="nd" data-index="8" data-label="Enterprise"></div>
+        <div class="nd" data-index="9" data-label="SARE Card"></div>
+        <div class="nd" data-index="10" data-label="Revenue"></div>
+        <div class="nd" data-index="11" data-label="Lifetime Value"></div>
+        <div class="nd" data-index="12" data-label="3-Year Impact"></div>
+        <div class="nd" data-index="13" data-label="Partnership"></div>
+    </div>
+    <div class="sctr"><span id="cslide">01</span> / 14</div>
+    <div class="narr"><div class="na" id="prev">&#8592;</div><div class="na" id="next">&#8594;</div></div>
+    <div id="pres">
+
+        <!-- SLIDE 1: HERO -->
+        <div class="slide active" data-index="0">
+            <div class="s1bg"></div><div class="s1grid"></div><div class="s1glow"></div>
+            <div class="s1c">
+                <div>
+                    <div class="rv d1" style="display:flex;align-items:center;gap:13px;margin-bottom:34px">
+                        <div style="height:1px;width:48px;background:linear-gradient(90deg,var(--sare-gold),transparent)"></div>
+                        <span class="slbl g" style="margin:0">Confidential Partnership Proposal — June 2026</span>
+                        <div style="height:1px;width:48px;background:linear-gradient(90deg,transparent,var(--sare-gold))"></div>
+                    </div>
+                    <div class="rv d2" style="margin-bottom:12px"><div class="pill g">Strategic Collaboration</div></div>
+                    <h1 class="s1title rv d2">
+                        <span style="color:#fff">Africa's Food<br>Moves On </span><span style="color:var(--sare-gold)">Bitcoin.</span><br>
+                        <span style="color:rgba(255,255,255,.32);font-size:.62em">Powered by </span><span style="color:var(--btc-orange);font-size:.62em">Batolink Technology.</span>
+                    </h1>
+                    <p class="s1sub rv d3">SARE Africa has built the largest Bitcoin-accepting agricultural merchant network in East Africa. <strong style="color:#fff">Batolink provides the smart card infrastructure that turns Bitcoin into everyday commerce</strong> — from rural farmers to urban consumers, across borders, instantly.</p>
+                    <div class="rv d4" style="display:flex;align-items:center;gap:15px;flex-wrap:wrap">
+                        <button class="s1btn" onclick="nextSlide()">Explore the Ecosystem &#8594;</button>
+                        <span style="font-size:.7rem;color:var(--gray)">14 Slides · Executive Pitch</span>
+                    </div>
+                </div>
+                <div class="rvr d3" style="display:flex;align-items:center;justify-content:center;padding-left:36px">
+                    <div class="jd">
+                        <div class="jdt">The SARE Commerce Journey</div>
+                        <div class="jn">
+                            <div class="ji a">₿</div>
+                            <div><div class="ja">Consumer</div><div class="js2">Pays in Bitcoin</div><div class="jp">Lightning Network — Instant</div></div>
+                        </div>
+                        <div class="jconn"></div>
+                        <div class="jn"><div class="ji a">🏪</div><div><div class="ja">SARE Merchant</div><div class="js2">Accepts BTC</div><div class="jp">Auto-convert or Hold</div></div></div>
+                        <div class="jconn"></div>
+                        <div class="jn"><div class="ji a">👨‍🌾</div><div><div class="ja">Farmer</div><div class="js2">Receives Value</div><div class="jp">BTC · Local Fiat · Stablecoins</div></div></div>
+                        <div class="jconn" style="background:linear-gradient(to bottom,rgba(245,166,35,.5),rgba(245,166,35,.15))"></div>
+                        <div class="jn"><div class="ji i">🌍</div><div><div class="ja" style="color:var(--gray)">Global Markets</div><div class="js2">Cross-Border Trade</div><div class="jp">No correspondent banks</div></div></div>
+                        <div class="jbdg">⚡ SARE Bitcoin Commerce Network — Powered by Batolink</div>
+                    </div>
+                </div>
+            </div>
+            <div class="s1lgos rv d6">
+                <span style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--sare-gold);font-weight:900">SARE</span>
+                <div class="sep"></div>
+                <span style="font-family:'Space Grotesk',sans-serif;font-size:1rem;color:#fff;font-weight:700;letter-spacing:2px">BATOLINK</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: MARKET -->
+        <div class="slide" data-index="1">
+            <div class="s2c">
+                <div style="text-align:center;margin-bottom:40px">
+                    <div class="slbl g rv d1" style="text-align:center">Section 1 — Market Opportunity</div>
+                    <h2 class="stitle rv d2" style="font-size:clamp(2.2rem,4vw,4rem);margin-bottom:10px">Africa's Greatest Untapped<br>Bitcoin Commerce Opportunity</h2>
+                    <p class="sdesc rv d3" style="max-width:570px;margin:0 auto">East Africa's agricultural economy is a $100B+ market that still runs on cash. SARE has built the Bitcoin merchant network. Batolink provides the infrastructure to scale it to millions.</p>
+                </div>
+                <div class="s2g">
+                    <div class="mcard m1 rvs d2">
+                        <img class="mc-bg-photo" src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=800&q=60" alt="African agriculture">
+                        <div class="mcgl" style="background:radial-gradient(circle,rgba(245,166,35,.14),transparent)"></div>
+                        <div class="mcnum g" data-count="100">0</div>
+                        <div style="font-size:.9rem;color:var(--gray);margin-bottom:4px">Billion USD — East Africa's agricultural economy</div>
+                        <div class="mclbl">A Cash-Dominated Market</div>
+                        <div class="mcdesc">Less than 5% of agricultural payments are digital. <strong style="color:#fff">Bitcoin changes that instantly.</strong></div>
+                    </div>
+                    <div class="mcard m2 rvs d3">
+                        <img class="mc-bg-photo" src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&q=60" alt="Bitcoin">
+                        <div class="mcgl" style="background:radial-gradient(circle,rgba(247,147,26,.18),transparent)"></div>
+                        <div class="mcnum b" data-count="50000">0</div>
+                        <div style="font-size:.9rem;color:var(--gray);margin-bottom:4px">farmers in SARE's network</div>
+                        <div class="mclbl">Ready-Made Bitcoin Merchant Network</div>
+                        <div class="mcdesc">SARE has already onboarded farmers who accept Bitcoin. <strong style="color:#fff">Batolink gives them a card to spend it.</strong></div>
+                    </div>
+                    <div class="mcard m3 rvs d4">
+                        <img class="mc-bg-photo" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=60" alt="Payment">
+                        <div class="mcgl" style="background:radial-gradient(circle,rgba(46,90,59,.13),transparent)"></div>
+                        <div class="mcnum go" data-count="250000">0</div>
+                        <div style="font-size:.9rem;color:var(--gray);margin-bottom:4px">target cardholders by Year 3</div>
+                        <div class="mclbl">Scalable Through Batolink Technology</div>
+                        <div class="mcdesc">Smart cards, mobile app, POS integration. <strong style="color:#fff">One card. Bitcoin and local currency. Everywhere.</strong></div>
+                    </div>
+                </div>
+                <div class="s2ins rv d5">
+                    <div class="s2ins-ico">💡</div>
+                    <div class="s2ins-txt"><strong>Key Strategic Insight:</strong> Africa's agricultural value chain is the perfect use case for Bitcoin — slow settlements, high remittance costs, currency volatility. SARE has the network. Batolink has the technology. <strong>Together, they build the infrastructure for a Bitcoin-powered agricultural economy.</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: PROBLEM -->
+        <div class="slide" data-index="2">
+            <div class="s3c">
+                <div style="text-align:center;margin-bottom:32px">
+                    <div class="slbl r rv d1" style="text-align:center">Section 2 — The Problem</div>
+                    <h2 class="stitle rv d2" style="font-size:clamp(2rem,3.5vw,3.8rem);margin-bottom:7px">The Agricultural Payment<br>System Is Broken</h2>
+                    <p class="sdesc rv d3" style="max-width:530px;margin:0 auto">Three critical pain points across the agricultural value chain. One solution: Bitcoin, made accessible through Batolink-powered smart cards.</p>
+                </div>
+                <div class="s3p">
+                    <div class="pcard rvs d2">
+                        <div class="pch hs"><div class="pch-e">🏪</div><div class="pch-a hs">Merchants & Agro-Dealers</div><div class="pch-t">Can't Accept Digital Payments</div></div>
+                        <div class="pcb"><ul class="pcl hs">
+                            <li>Rural merchants locked out of digital payment infrastructure</li>
+                            <li>Card networks charge 3-5% fees — unsustainable for agriculture</li>
+                            <li>No access to cross-border customers or diaspora buyers</li>
+                            <li>Cash handling risk, theft, and no transaction records</li>
+                            <li>Cannot build credit history without digital transaction data</li>
+                        </ul></div>
+                    </div>
+                    <div class="pcard rvs d3">
+                        <div class="pch uni"><div class="pch-e">👨‍🌾</div><div class="pch-a uni">Farmers & Producers</div><div class="pch-t">No Store of Value</div></div>
+                        <div class="pcb"><ul class="pcl uni">
+                            <li>Paid in cash — no savings mechanism, no interest, no security</li>
+                            <li>Local currency loses value; no access to inflation hedges</li>
+                            <li>Cannot receive payments from international buyers directly</li>
+                            <li>No verifiable income history for loan applications</li>
+                            <li>Excluded from the global digital economy entirely</li>
+                        </ul></div>
+                    </div>
+                    <div class="pcard rvs d4">
+                        <div class="pch pro"><div class="pch-e">🌍</div><div class="pch-a pro">Diaspora & Institutional Buyers</div><div class="pch-t">Friction at Every Step</div></div>
+                        <div class="pcb"><ul class="pcl pro">
+                            <li>7-12% remittance fees to send money home for goods</li>
+                            <li>3-7 day settlement for cross-border agricultural trade</li>
+                            <li>No way to purchase goods directly for rural delivery</li>
+                            <li>Multiple currency conversions eat into margins</li>
+                            <li>No payment-linked traceability for supply chains</li>
+                        </ul></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: ECOSYSTEM -->
+        <div class="slide" data-index="3">
+            <div class="s4c">
+                <div style="text-align:center;margin-bottom:28px">
+                    <div class="slbl g rv d1" style="text-align:center">Section 3 — The Solution</div>
+                    <h2 class="stitle rv d2" style="font-size:clamp(2rem,3.5vw,3.5rem);margin-bottom:7px">One Ecosystem.<br><span style="color:var(--sare-gold)">Bitcoin at the Core.</span></h2>
+                    <p class="sdesc rv d3" style="max-width:530px;margin:0 auto">SARE's Bitcoin merchant network, powered by Batolink's smart card technology, connects every participant in the agricultural value chain.</p>
+                </div>
+                <div style="width:100%;max-width:1280px;margin:0 auto">
+                    <div class="ecog rv d3">
+                        <div class="ecoc">
+                            <div class="en ns l rvl d2"><div class="ei er">🏪</div><div><div class="enlbl">Merchants</div><div class="ensb">Accept BTC · Auto-Convert</div></div></div>
+                            <div class="en nu l rvl d3"><div class="ei eb">👨‍🌾</div><div><div class="enlbl">Farmers</div><div class="ensb">Receive BTC · Save or Spend</div></div></div>
+                            <div class="en np l rvl d4"><div class="ei eg">🌍</div><div><div class="enlbl">Diaspora Buyers</div><div class="ensb">Send BTC · Purchase Goods</div></div></div>
+                        </div>
+                        <div class="ece"><div class="ebdg rvs d2"><span style="font-family:'Playfair Display',serif;font-weight:900">SARE</span><span>+ BATOLINK</span></div></div>
+                        <div class="ecoc">
+                            <div class="en ns r rvr d2"><div><div class="enlbl" style="text-align:right">Institutional Buyers</div><div class="ensb" style="text-align:right">Bulk Procurement · BTC</div></div><div class="ei er">🏢</div></div>
+                            <div class="en nm r rvr d3"><div><div class="enlbl" style="text-align:right">Logistics Partners</div><div class="ensb" style="text-align:right">Escrow · Delivery Verification</div></div><div class="ei el">🚚</div></div>
+                            <div class="en nk r rvr d4"><div><div class="enlbl" style="text-align:right">SARE + Batolink</div><div class="ensb" style="text-align:right">Network Operator · Technology</div></div><div class="ei ek">⚡</div></div>
+                        </div>
+                    </div>
+                    <div class="ecchips rv d5" style="margin-top:20px">
+                        <div class="chip cg">Bitcoin Payments</div><div class="chip cb">Lightning Network</div><div class="chip cg">Smart Cards</div>
+                        <div class="chip cr">Auto-Convert</div><div class="chip co">Escrow Contracts</div><div class="chip cb">Mobile App</div>
+                        <div class="chip cg">Cross-Border</div><div class="chip cr">Traceability</div><div class="chip co">Savings</div><div class="chip cb">Credit Building</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: BTC PAYMENTS -->
+        <div class="slide" data-index="4">
+            <div class="s5c">
+                <div class="s5l">
+                    <div class="slbl g rv d1">Use Case 1 — Bitcoin Payments</div>
+                    <h2 class="stitle rv d2" style="font-size:clamp(2rem,3.5vw,3.5rem);margin-bottom:11px">Consumer Pays BTC.<br><span style="color:var(--sare-gold)">Merchant Receives Value.</span></h2>
+                    <p class="sdesc rv d3" style="max-width:400px;margin-bottom:5px">A consumer walks into any SARE merchant, scans a QR code, pays in Bitcoin via Lightning Network. The merchant receives value instantly — in BTC or auto-converted to local currency. <strong style="color:#fff">No volatility risk. Zero chargebacks. Under $0.01 in fees.</strong></p>
+                    <div class="itag rv d3">"Bitcoin payments, made as simple as tapping a card."</div>
+                    <div class="s5buls rv d4">
+                        <div class="s5b"><div class="s5bi" style="background:rgba(245,166,35,.11);color:var(--sare-gold)">🛒</div><div><div class="s5bt">For Consumers</div><div class="s5bd">Pay with Bitcoin at any SARE merchant. Instant. Private. Borderless.</div></div></div>
+                        <div class="s5b"><div class="s5bi" style="background:rgba(247,147,26,.14);color:#F7931A">🏪</div><div><div class="s5bt">For Merchants</div><div class="s5bd">Accept BTC without volatility — auto-convert to local currency instantly.</div></div></div>
+                        <div class="s5b"><div class="s5bi" style="background:rgba(46,90,59,.11);color:#2E5A3B">⚡</div><div><div class="s5bt">Lightning Fast</div><div class="s5bd">Transactions settle in under 3 seconds. Fees under $0.01. No banks required.</div></div></div>
+                    </div>
+                </div>
+                <div class="s5r">
+                    <div class="bscen">
+                        <img class="boost-hero-photo rvs d2" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=75" alt="Bitcoin payment">
+                        <div class="bcard bb rvs d2"><div class="bclbl lg">Consumer Wallet</div><div class="bcamt dim">0.0012 BTC</div><div class="bcdesc">Consumer scans QR code at SARE merchant</div></div>
+                        <div class="barrow rv d3">↓</div>
+                        <div class="bcard bp rvs d3"><div class="bclbl lr">Lightning Network</div><div class="bcamt alert">Instant ⚡</div><div class="bcdesc">Payment routes through Lightning — under 3 seconds</div></div>
+                        <div class="barrow rv d4">↓</div>
+                        <div class="bcard bg rvs d4">
+                            <div class="bclbl lgn">⚡ Merchant Receives</div>
+                            <div class="bcamt hero">KES 15,000</div>
+                            <div class="bcdesc">Auto-converted at best rate. Or held in BTC.</div>
+                            <div style="display:flex;height:10px;border-radius:5px;overflow:hidden;margin:11px 0 6px"><div style="width:70%;background:var(--sare-gold);border-radius:5px 0 0 5px"></div><div style="flex:1;background:rgba(247,147,26,.4);border-radius:0 5px 5px 0"></div></div>
+                            <div style="display:flex;justify-content:space-between;font-size:.66rem;color:var(--gray)"><span>70% Auto-Convert to KES</span><span>30% Held in BTC</span></div>
+                        </div>
+                        <div class="brep rv d5"><strong>Zero Volatility Risk:</strong> Merchant configures auto-conversion rules. Receive BTC, spend fiat. Best of both worlds.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: DIASPORA -->
+        <div class="slide" data-index="5">
+            <div class="s6c">
+                <div class="s6l">
+                    <div class="slbl go rv d1">Use Case 2 — Diaspora Commerce</div>
+                    <h2 class="stitle rv d2" style="font-size:clamp(2rem,3.5vw,3.5rem);margin-bottom:11px">Send Goods Home.<br><span style="color:var(--sare-gold)">Not Just Money.</span></h2>
+                    <p class="sdesc rv d3" style="max-width:390px;margin-bottom:5px">A Kenyan in London buys fresh produce for their parents in Kisumu — directly from a SARE farmer, paid in Bitcoin. No remittance fees. No cash that gets spent on other things. <strong style="color:#fff">Goods delivered. Value transferred. Family fed.</strong></p>
+                    <div class="s6tag rv d4">"<strong>7% remittance fees</strong> eliminated. <strong>100%</strong> of value reaches the family."</div>
+                    <div class="rv d5" style="margin-top:20px;display:flex;flex-direction:column;gap:8px">
+                        <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;color:#c8d4e0;padding:8px 11px;border-radius:7px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05)"><span style="color:var(--sare-gold)">₿</span><span>Pay in Bitcoin from anywhere in the world</span></div>
+                        <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;color:#c8d4e0;padding:8px 11px;border-radius:7px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05)"><span style="color:var(--sare-gold)">📦</span><span>Goods delivered directly to family — no cash handling</span></div>
+                        <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;color:#c8d4e0;padding:8px 11px;border-radius:7px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05)"><span style="color:var(--sare-gold)">🔍</span><span>Full traceability — payment recorded on Bitcoin blockchain</span></div>
+                        <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;color:#c8d4e0;padding:8px 11px;border-radius:7px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05)"><span style="color:var(--sare-gold)">🌍</span><span>Supports local farmers — strengthens rural economies</span></div>
+                    </div>
+                </div>
+                <div class="s6r">
+                    <div class="pf">
+                        <div class="pfe par rvs d2">
+                            <div class="pfh"><div class="pfic go">🌍</div><div><div class="pft">Diaspora Buyer</div><div class="pfs">London · New York · Dubai — Anywhere</div></div></div>
+                            <div class="pffs"><div class="pff">Browse SARE Marketplace from anywhere</div><div class="pff">Select produce for rural delivery</div><div class="pff">Pay in Bitcoin — instant, near-zero fees</div><div class="pff">Track delivery on blockchain</div></div>
+                        </div>
+                        <div class="pfc rv d3"><div class="pfl"></div><div class="pfps"><div class="pfp pi">Lightning ⚡</div><div class="pfp pn">No Remittance Fee</div></div><div class="pfl"></div></div>
+                        <div class="pfe stu rvs d4">
+                            <div class="pfh"><div class="pfic bl">👨‍🌾</div><div><div class="pft">SARE Farmer</div><div class="pfs">Kisumu · Rural Kenya</div></div></div>
+                            <div class="pffs"><div class="pff">Receives order and payment confirmation</div><div class="pff">Prepares fresh produce for delivery</div><div class="pff">Receives value in BTC or local currency</div><div class="pff">Builds reputation on SARE network</div></div>
+                        </div>
+                        <div class="pfc rv d5"><div class="pfl2"></div><div class="pfps"><div class="pfp pi">SARE Revenue</div><div class="pfp pn">Marketplace Fee</div></div><div class="pfl2"></div></div>
+                        <div class="pfe kc rvs d6">
+                            <div class="pfh"><div class="pfic gr">⚡</div><div><div class="pft">SARE + Batolink</div><div class="pfs">Network · Technology · Trust</div></div></div>
+                            <div class="pffs"><div class="pff">Transaction commission on every purchase</div><div class="pff">Card issuance and annual fees</div><div class="pff">Bitcoin conversion spread revenue</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: COMMERCE HUB -->
+        <div class="slide" data-index="6">
+            <div class="s7c">
+                <div style="text-align:center;margin-bottom:20px">
+                    <div class="slbl g rv d1" style="text-align:center">Use Case 3 — Commerce Hub</div>
+                    <h2 class="stitle rv d2" style="font-size:clamp(2rem,3.5vw,4rem);margin-bottom:4px">One Card. <span style="color:var(--sare-gold)">Every Transaction.</span></h2>
+                    <p class="sdesc rv d3" style="max-width:500px;margin:0 auto">From farm input purchases to produce sales, from transport payments to market fees — the SARE Commerce Card, powered by Batolink, works everywhere.</p>
+                </div>
+                <div class="cg rv d3">
+                    <div class="ctp">
+                        <div class="ctp-pw"><img class="ctp-photo" src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=500&q=75" alt="Farm inputs"></div>
+                        <div class="ctpn">Agro-Dealer Inputs</div>
+                        <div class="ctpd">Seeds, fertilizer, equipment — tap to pay with BTC or fiat.</div>
+                        <div class="ctptap">₿ Tap & Go</div>
+                    </div>
+                    <div class="ctp">
+                        <div class="ctp-pw"><img class="ctp-photo" src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=500&q=75" alt="Market"></div>
+                        <div class="ctpn">Farmers' Markets</div>
+                        <div class="ctpd">Sell produce, receive instant Bitcoin or local currency.</div>
+                        <div class="ctptap">₿ Tap & Go</div>
+                    </div>
+                    <div class="ctp">
+                        <div class="ctp-pw"><img class="ctp-photo" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=500&q=75" alt="Logistics"></div>
+                        <div class="ctpn">Transport & Logistics</div>
+                        <div class="ctpd">Pay drivers, track deliveries, release escrow on arrival.</div>
+                        <div class="ctptap">₿ Tap & Go</div>
+                    </div>
+                    <div class="ctp">
+                        <div class="ctp-pw"><img class="ctp-photo" src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=500&q=75" alt="Processing"></div>
+                        <div class="ctpn">Processing Centers</div>
+                        <div class="ctpd">Value addition, packaging, quality grading — all cashless.</div>
+                        <div class="ctptap">₿ Tap & Go</div>
+                    </div>
+                    <div class="ctp">
+                        <div class="ctp-pw"><img class="ctp-photo" src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=75" alt="Retail"></div>
+                        <div class="ctpn">Retail & Wholesale</div>
+                        <div class="ctpd">Supermarkets, restaurants, hotels — procure from SARE farmers.</div>
+                        <div class="ctptap">₿ Tap & Go</div>
+                    </div>
+                    <div class="ctp">
+                        <div class="ctp-pw"><img class="ctp-photo" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=500&q=75" alt="Export"></div>
+                        <div class="ctpn">Export Hubs</div>
+                        <div class="ctpd">Cross-border trade settled in Bitcoin — no correspondent banks.</div>
+                        <div class="ctptap">₿ Tap & Go</div>
+                    </div>
+                </div>
+                <div class="s7f rv d5">
+                    <div class="s7fc">
+                        <div class="s7fchip">₿</div>
+                        <div><div class="s7ft">One SARE Commerce Card. Powered by Batolink.</div><div class="s7fsub">NFC contactless · Bitcoin & Local Currency · Works at every SARE merchant</div></div>
+                    </div>
+                    <div class="s7ftag">"Agriculture. Simplified."</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: SMART CONTRACTS -->
+        <div class="slide" data-index="7">
+            <div class="s8c">
+                <div class="s8l">
+                    <div class="slbl g rv d1">Use Case 4 — Smart Contracts</div>
+                    <h2 class="stitle rv d2" style="font-size:clamp(2rem,3.5vw,3.5rem);margin-bottom:11px">Escrow & Milestones —<br><span style="color:var(--sare-gold)">Trust Through Code</span></h2>
+                    <p class="sdesc rv d3" style="max-width:400px;margin-bottom:5px">Bitcoin multi-signature contracts enable trustless escrow for agricultural trade. Payment is held until delivery is verified. Milestone payments for contract farming. <strong style="color:#fff">No intermediaries. No disputes. Code enforces the agreement.</strong></p>
+                    <div class="itag rv d3">"Trust is programmed, not promised."</div>
+                    <div class="s8bens rv d4">
+                        <div class="s8b">🔐 2-of-3 multi-signature escrow — Buyer, Seller, SARE mediator</div>
+                        <div class="s8b">📋 Milestone payments for contract farming — planting, mid-season, harvest</div>
+                        <div class="s8b">🚚 Payment released automatically upon delivery confirmation</div>
+                        <div class="s8b">📜 Immutable Bitcoin blockchain record — audit-ready, transparent</div>
+                    </div>
+                </div>
+                <div class="s8r">
+                    <div class="sdemo">
+                        <div class="stxn sp rvs d2">
+                            <div class="stxn-t"><div class="stxn-m">🌱 Contract Farming — Maize</div><div class="stxn-amt sp">30% Released</div></div>
+                            <div class="stxn-s">Planting verified · SARE extension officer confirms</div>
+                            <div class="stxn-bar"><div class="stxn-fill"></div></div>
+                            <div style="font-size:.66rem;color:var(--gray)">HTLC unlocks with SARE verification hash</div>
+                        </div>
+                        <div class="stxn sv rvs d3">
+                            <div class="stxn-t"><div class="stxn-m">🌿 Mid-Season Review</div><div class="stxn-amt sv">+ 30% Released</div></div>
+                            <div class="stxn-s" style="color:var(--sare-gold)">Field visit confirmed · Crop healthy</div>
+                        </div>
+                        <div class="stxn sp rvs d3" style="margin-top:7px">
+                            <div class="stxn-t"><div class="stxn-m">🚚 Delivery to Buyer</div><div class="stxn-amt sp">Escrow Held</div></div>
+                            <div class="stxn-s">Goods in transit · GPS verified</div>
+                        </div>
+                        <div class="stxn sv rvs d4" style="margin-top:4px">
+                            <div class="stxn-t"><div class="stxn-m">✅ Delivery Confirmed</div><div class="stxn-amt sv">+ 40% Released</div></div>
+                            <div class="stxn-s" style="color:var(--sare-gold)">Quality check passed · Full payment released</div>
+                        </div>
+                        <div class="savtot rvs d4">
+                            <div class="savtl">Total Contract Value Settled</div>
+                            <div class="savta">KES 150,000</div>
+                            <div class="savts">3 milestones · 0 disputes · Fully on-chain</div>
+                            <div class="savgoal">
+                                <div class="sgh"><div class="sgh-n">⏱ Settlement Time</div><div class="sgh-p">Instant</div></div>
+                                <div class="sgb"><div class="sgf"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: ENTERPRISE -->
+        <div class="slide" data-index="8">
+            <div class="s9c">
+                <div style="text-align:center;margin-bottom:32px">
+                    <div class="slbl g rv d1" style="text-align:center">Use Case 5 — Institutional Procurement</div>
+                    <h2 class="stitle rv d2" style="font-size:clamp(2rem,3.5vw,3.8rem);margin-bottom:7px">Bulk Buying.<br><span style="color:var(--sare-gold)">Bitcoin Settlement.</span></h2>
+                    <p class="sdesc rv d3" style="max-width:530px;margin:0 auto">Hotels, restaurants, schools, processors, and exporters procure directly from SARE's farmer network — paying in Bitcoin with full supply chain traceability.</p>
+                </div>
+                <div class="s9j">
+                    <div class="estep rvs d2">
+                        <div class="enum">01</div>
+                        <div style="width:60px;height:60px;border-radius:12px;overflow:hidden;margin-bottom:10px"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=200&q=75" alt="Procurement" style="width:100%;height:100%;object-fit:cover;filter:brightness(.75)"></div>
+                        <div class="et">Source from SARE</div>
+                        <div class="ed">Browse verified farmer cooperatives. Quality assured. Prices in BTC and local currency.</div>
+                    </div>
+                    <div class="estep rvs d3">
+                        <div class="enum">02</div>
+                        <div style="width:60px;height:60px;border-radius:12px;overflow:hidden;margin-bottom:10px"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=200&q=75" alt="Payment" style="width:100%;height:100%;object-fit:cover;filter:brightness(.75)"></div>
+                        <div class="et">Pay in Bitcoin</div>
+                        <div class="ed">Bulk payment via Lightning or on-chain. Instant settlement. No bank delays.</div>
+                    </div>
+                    <div class="estep rvs d4">
+                        <div class="enum">03</div>
+                        <div style="width:60px;height:60px;border-radius:12px;overflow:hidden;margin-bottom:10px"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=200&q=75" alt="Logistics" style="width:100%;height:100%;object-fit:cover;filter:brightness(.75)"></div>
+                        <div class="et">Track Delivery</div>
+                        <div class="ed">Escrow-protected. Payment released on delivery confirmation. Full audit trail.</div>
+                    </div>
+                    <div class="estep rvs d5">
+                        <div class="enum">04</div>
+                        <div style="width:60px;height:60px;border-radius:12px;overflow:hidden;margin-bottom:10px"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=200&q=75" alt="Reporting" style="width:100%;height:100%;object-fit:cover;filter:brightness(.75)"></div>
+                        <div class="et">Audit & Report</div>
+                        <div class="ed">Blockchain-verified procurement records. Tax-ready. Compliance simplified.</div>
+                    </div>
+                </div>
+                <div class="s9f">
+                    <div class="s9fi a rvs d3"><div class="s9fie">🏨</div><div class="s9fit">Hotels & Restaurants</div><div class="s9fid">Fresh produce daily from SARE farmers</div></div>
+                    <div class="s9fi b rvs d4"><div class="s9fie">🏫</div><div class="s9fit">Schools & Hospitals</div><div class="s9fid">Institutional feeding programs</div></div>
+                    <div class="s9fi c rvs d5"><div class="s9fie">🏭</div><div class="s9fit">Processors</div><div class="s9fid">Raw material sourcing at scale</div></div>
+                    <div class="s9fi d rvs d6"><div class="s9fie">🚢</div><div class="s9fit">Exporters</div><div class="s9fid">Cross-border trade without banks</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: SARE COMMERCE CARD — WITH LOCAL IMAGE -->
+        <div class="slide" data-index="9">
+            <div class="s10-new">
+                <div class="s10-acc-new"></div>
+                <div class="card-showcase">
+                    <div class="cs-left">
+                        <div class="cs-eyebrow rv d1">Use Case 6 — SARE Commerce Card</div>
+                        <h2 class="cs-headline rv d2">Cash is the past.<br><span style="color:var(--sare-gold)">This card is the future.</span></h2>
+                        <p class="cs-sub rv d3" style="max-width:340px">50,000 farmers. Thousands of merchants. Millions of consumers. One card that unifies Bitcoin and local currency — powered by Batolink Technology.</p>
+                        <div class="rv d3">
+                            <div class="ux-step">
+                                <div>
+                                    <div class="ux-step-num">Step 01</div>
+                                    <div class="ux-step-title">Consumer Funds Wallet</div>
+                                    <div class="ux-step-desc">Load Bitcoin or local currency via mobile money, bank transfer, or Lightning.</div>
+                                </div>
+                            </div>
+                            <div class="ux-connector"></div>
+                            <div class="ux-step">
+                                <div>
+                                    <div class="ux-step-num">Step 02</div>
+                                    <div class="ux-step-title">Tap at Any SARE Merchant</div>
+                                    <div class="ux-step-desc">NFC contactless. Bitcoin or fiat. 3 seconds. Transaction complete.</div>
+                                </div>
+                            </div>
+                            <div class="ux-connector"></div>
+                            <div class="ux-step">
+                                <div>
+                                    <div class="ux-step-num">Step 03</div>
+                                    <div class="ux-step-title">Merchant Receives Instantly</div>
+                                    <div class="ux-step-desc">Auto-convert to local currency or hold BTC. Full transaction history on blockchain.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cs-tag rv d4">"One card. Bitcoin and local currency. Every SARE merchant. Everywhere."</div>
+                    </div>
+                    <div class="cs-center">
+                        <div class="cs-eyebrow rv d2" style="text-align:center;margin-bottom:12px">The SARE Commerce Card</div>
+                        <img class="sare-card-img rvs d2" src="C:\Users\User\Batolink\SARE\assets\Sare BTC Card.png" alt="SARE Bitcoin Commerce Card">
+                        <div style="margin-top:20px;text-align:center" class="rv d3">
+                            <div style="font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:700;color:var(--sare-gold);letter-spacing:2px;text-transform:uppercase">SARE × Batolink</div>
+                            <div style="font-size:.7rem;color:var(--gray);margin-top:4px">Bitcoin Commerce Card</div>
+                            <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px">
+                                <div style="padding:4px 12px;border-radius:100px;background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.2);font-size:.6rem;font-weight:700;color:var(--sare-gold);letter-spacing:1px">NFC ₿</div>
+                                <div style="padding:4px 12px;border-radius:100px;background:rgba(247,147,26,.08);border:1px solid rgba(247,147,26,.15);font-size:.6rem;font-weight:700;color:#F7931A;letter-spacing:1px">CONTACTLESS</div>
+                                <div style="padding:4px 12px;border-radius:100px;background:rgba(46,90,59,.1);border:1px solid rgba(46,90,59,.18);font-size:.6rem;font-weight:700;color:#2E5A3B;letter-spacing:1px">BATOLINK</div>
+                            </div>
+                        </div>
+                        <div class="cs-photo-strip rv d4">
+                            <img class="cs-strip-photo" src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=300&q=70" alt="Farm">
+                            <img class="cs-strip-photo" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=300&q=70" alt="Market">
+                            <img class="cs-strip-photo" src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=300&q=70" alt="Produce">
+                        </div>
+                    </div>
+                    <div class="cs-right">
+                        <div class="cs-eyebrow rv d2">Network Opportunity</div>
+                        <div class="impact-row rv d3">
+                            <div class="impact-block">
+                                <div class="impact-num">50K+</div>
+                                <div class="impact-lbl">Farmers in SARE network ready to accept Bitcoin</div>
+                            </div>
+                            <div class="impact-block">
+                                <div class="impact-num">15K+</div>
+                                <div class="impact-lbl">Merchant points to activate with Batolink cards</div>
+                            </div>
+                        </div>
+                        <div class="impact-block wide rv d3">
+                            <div style="font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--sare-gold);font-weight:700;margin-bottom:8px">Revenue Per 1,000 Cardholders / Year</div>
+                            <div class="impact-row" style="gap:8px">
+                                <div>
+                                    <div style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--sare-gold)">$3,500</div>
+                                    <div style="font-size:.62rem;color:var(--gray)">Card issuance</div>
+                                </div>
+                                <div>
+                                    <div style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--sare-gold)">$12,000+</div>
+                                    <div style="font-size:.62rem;color:var(--gray)">Transaction & conversion fees</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid rgba(245,166,35,.15)">
+                                <span style="font-size:.78rem;color:#fff;font-weight:700">Per 1,000 cards total</span>
+                                <span style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;color:var(--btc-orange)">$18,000+</span>
+                            </div>
+                        </div>
+                        <div class="rv d4" style="display:flex;flex-direction:column;gap:9px">
+                            <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;color:#c8d4e0;padding:9px 12px;border-radius:8px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05)">
+                                <span style="color:var(--sare-gold);font-size:.9rem">✓</span>
+                                <span>No cash handling — reduced theft & security incidents</span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;color:#c8d4e0;padding:9px 12px;border-radius:8px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05)">
+                                <span style="color:var(--sare-gold);font-size:.9rem">✓</span>
+                                <span>Full transaction visibility — blockchain-verified audit trail</span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;color:#c8d4e0;padding:9px 12px;border-radius:8px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05)">
+                                <span style="color:var(--sare-gold);font-size:.9rem">✓</span>
+                                <span>Farmer builds credit history from every harvest sale</span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;color:#c8d4e0;padding:9px 12px;border-radius:8px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05)">
+                                <span style="color:var(--sare-gold);font-size:.9rem">✓</span>
+                                <span>SARE acquires a lifetime network participant with every card</span>
+                            </div>
+                        </div>
+                        <div class="rv d5" style="padding:13px 16px;border-radius:9px;background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.2);margin-top:4px">
+                            <div style="font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--sare-gold);font-weight:700;margin-bottom:4px">The Opportunity</div>
+                            <div style="font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;color:var(--sare-gold)">$4.5M+</div>
+                            <div style="font-size:.7rem;color:var(--gray)">annual revenue potential at 250,000 cardholders</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: REVENUE -->
+        <div class="slide" data-index="10">
+            <div class="s11c">
+                <div style="text-align:center;margin-bottom:32px">
+                    <div class="slbl g rv d1" style="text-align:center">Section 10 — Revenue Model</div>
+                    <h2 class="stitle rv d2" style="font-size:clamp(2rem,3.5vw,4rem);margin-bottom:7px">How SARE + Batolink Win</h2>
+                    <p class="sdesc rv d3" style="max-width:540px;margin:0 auto">Seven distinct, growing revenue streams — unlocked through a single strategic collaboration.</p>
+                </div>
+                <div class="rg" style="grid-template-columns:repeat(2,1fr);max-width:900px;margin:0 auto;gap:22px">
+                    <div class="rc c1 rvs d2" style="padding:36px 32px">
+                        <div style="font-size:2.6rem;margin-bottom:16px">💳</div>
+                        <div class="rct" style="font-size:1.05rem;margin-bottom:8px">Card Issuance</div>
+                        <div class="rcd" style="font-size:.85rem;margin-bottom:14px">One-time fee per SARE Commerce Card issued. Scales with network growth.</div>
+                        <div class="rcv" style="font-size:1.7rem;color:var(--sare-gold)">$3–5 <span style="font-size:.75rem;color:var(--gray);font-weight:400">per card</span></div>
+                    </div>
+                    <div class="rc c2 rvs d3" style="padding:36px 32px">
+                        <div style="font-size:2.6rem;margin-bottom:16px">⚡</div>
+                        <div class="rct" style="font-size:1.05rem;margin-bottom:8px">Transaction & Conversion Fees</div>
+                        <div class="rcd" style="font-size:.85rem;margin-bottom:14px">Revenue on every Bitcoin and fiat transaction across the SARE merchant network.</div>
+                        <div class="rcv" style="font-size:1.7rem;color:#F7931A">1–1.5% <span style="font-size:.75rem;color:var(--gray);font-weight:400">per txn</span></div>
+                    </div>
+                    <div class="rc c6 rvs d4" style="padding:36px 32px">
+                        <div style="font-size:2.6rem;margin-bottom:16px">🌐</div>
+                        <div class="rct" style="font-size:1.05rem;margin-bottom:8px">Marketplace Commission</div>
+                        <div class="rcd" style="font-size:.85rem;margin-bottom:14px">Percentage of every transaction on the SARE Marketplace — diaspora purchases, institutional procurement, direct sales.</div>
+                        <div class="rcv" style="font-size:1.7rem;color:var(--btc-orange)">2–3% <span style="font-size:.75rem;color:var(--gray);font-weight:400">marketplace</span></div>
+                    </div>
+                    <div class="rc c7 rvs d5" style="padding:36px 32px">
+                        <div style="font-size:2.6rem;margin-bottom:16px">📈</div>
+                        <div class="rct" style="font-size:1.05rem;margin-bottom:8px">Subscription & Data</div>
+                        <div class="rcd" style="font-size:.85rem;margin-bottom:14px">Merchant subscriptions, institutional accounts, data analytics, API access for third-party developers.</div>
+                        <div class="rcv" style="font-size:1.7rem;color:#2E5A3B">Recurring <span style="font-size:.75rem;color:var(--gray);font-weight:400">revenue</span></div>
+                    </div>
+                </div>
+                <div class="rtot rv d6">
+                    <div><div class="rtl">Addressable Market</div><div style="font-size:.7rem;color:var(--gray)">Farmers + Merchants + Consumers + Institutions</div></div>
+                    <div><div class="rtv" data-count="250000">0</div><div class="rts">Cardholders by Year 3</div></div>
+                    <div style="width:1px;height:38px;background:rgba(255,255,255,.06)"></div>
+                    <div><div class="rtv" style="color:var(--btc-orange)" data-count="15000">0</div><div class="rts">Target Merchants</div></div>
+                    <div style="width:1px;height:38px;background:rgba(255,255,255,.06)"></div>
+                    <div><div class="rtv">$4.5M+</div><div class="rts">Revenue Potential Year 3</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: LIFETIME VALUE -->
+        <div class="slide" data-index="11">
+            <div class="s12c">
+                <div style="text-align:center;margin-bottom:28px">
+                    <div class="slbl g rv d1" style="text-align:center">Section 11 — Network Lifetime Value</div>
+                    <h2 class="stitle rv d2" style="font-size:clamp(2rem,3.5vw,3.8rem);margin-bottom:7px">Onboard Once.<br><span style="color:var(--sare-gold)">Transact Forever.</span></h2>
+                    <p class="sdesc rv d3" style="max-width:540px;margin:0 auto">Every farmer, merchant, and consumer onboarded into the SARE Bitcoin Commerce Network becomes a lifelong participant in Africa's agricultural economy.</p>
+                </div>
+                <div class="clvcmp">
+                    <div class="clvt trad rvl d2">
+                        <div class="clvth"><div class="clvbdg">Traditional Agriculture</div><div class="clvtht">Without SARE + Batolink</div></div>
+                        <div class="clvtl">
+                            <div class="clvev"><div class="clvd"></div><div class="clvage">Cash</div><div><div class="clvprod">Cash Transactions Only</div><div class="clvpsub">No digital record · No credit history · Theft risk</div></div></div>
+                            <div class="clvev"><div class="clvd"></div><div class="clvage">Bank</div><div><div class="clvprod">Bank Dependent</div><div class="clvpsub">23% rural bank penetration · Slow · Expensive</div></div></div>
+                            <div class="clvev"><div class="clvd"></div><div class="clvage">Local</div><div><div class="clvprod">Local Only</div><div class="clvpsub">No cross-border capability · Currency risk</div></div></div>
+                            <div class="clvev"><div class="clvd"></div><div class="clvage">Silo</div><div><div class="clvprod">Isolated</div><div class="clvpsub">No network effects · Each participant alone</div></div></div>
+                        </div>
+                    </div>
+                    <div class="clvt bato rvr d2">
+                        <div class="clvth"><div class="clvbdg">SARE + Batolink Network</div><div class="clvtht">Bitcoin Commerce Ecosystem</div></div>
+                        <div class="clvtl">
+                            <div class="clvev"><div class="clvd"></div><div class="clvage">Day 1</div><div><div class="clvprod" style="color:var(--sare-gold)">Card Issued</div><div class="clvpsub">Bitcoin wallet + local currency — one card, both rails</div></div></div>
+                            <div class="clvev"><div class="clvd"></div><div class="clvage">Week 1</div><div><div class="clvprod" style="color:var(--sare-gold)">First Transaction</div><div class="clvpsub">Pay or receive Bitcoin at any SARE merchant</div></div></div>
+                            <div class="clvev"><div class="clvd"></div><div class="clvage">Month 1</div><div><div class="clvprod" style="color:var(--sare-gold)">Credit History Begins</div><div class="clvpsub">Every transaction builds a verifiable financial profile</div></div></div>
+                            <div class="clvev"><div class="clvd"></div><div class="clvage">Month 3</div><div><div class="clvprod" style="color:var(--sare-gold)">Cross-Border Enabled</div><div class="clvpsub">Receive payments from anywhere in the world</div></div></div>
+                            <div class="clvev"><div class="clvd"></div><div class="clvage">Year 1</div><div><div class="clvprod" style="color:var(--sare-gold)">Input Financing</div><div class="clvpsub">Bitcoin-collateralized loans for farm inputs</div></div></div>
+                            <div class="clvev"><div class="clvd"></div><div class="clvage">Year 3</div><div><div class="clvprod" style="color:var(--sare-gold)">Full Network Participant</div><div class="clvpsub">Buying, selling, saving, borrowing — all on SARE</div></div></div>
+                            <div class="clvev"><div class="clvd"></div><div class="clvage">Lifetime</div><div><div class="clvprod" style="color:var(--sare-gold)">Ecosystem Anchor</div><div class="clvpsub">A lifetime participant in Africa's agricultural economy</div></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clvadv rv d4">
+                    <div class="clvstat"><div class="clvnum">250K+</div><div class="clvlbl">Lifetime Cardholders</div></div>
+                    <div class="clvdiv"></div>
+                    <div class="clvstat"><div class="clvnum">$50M+</div><div class="clvlbl">Annual Transaction Volume</div></div>
+                    <div class="clvdiv"></div>
+                    <div class="clvstat"><div class="clvnum">5×</div><div class="clvlbl">Network Growth Rate</div></div>
+                    <div class="clvdiv"></div>
+                    <div class="clvstat"><div class="clvnum" style="font-size:1.6rem">$180+</div><div class="clvlbl">Revenue Per Cardholder/Year</div></div>
+                    <div class="clvdiv"></div>
+                    <div style="text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:rgba(255,255,255,.46);max-width:200px">"Onboard once.<br>Transact forever."</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13: 3-YEAR IMPACT -->
+        <div class="slide" data-index="12">
+            <div class="s13c">
+                <div style="text-align:center;margin-bottom:36px">
+                    <div class="slbl g rv d1" style="text-align:center">Section 12 — Growth Projection</div>
+                    <h2 class="stitle rv d2" style="font-size:clamp(2rem,3.5vw,3.8rem);margin-bottom:7px">3-Year Impact Projection</h2>
+                    <p class="sdesc rv d3" style="max-width:540px;margin:0 auto">Conservative projections based on phased rollout across SARE's existing network in Kenya, Uganda, and Tanzania.</p>
+                </div>
+                <div class="ig">
+                    <div class="yc y1 rvs d2">
+                        <div class="ylbl">Year 1</div>
+                        <div class="ysts" data-count="25000">0</div>
+                        <div class="yunit">Cardholders</div>
+                        <div class="ykpis">
+                            <div class="ykpi"><span class="ykpi-l">Merchants Onboarded</span><span class="ykpi-v">1,500+</span></div>
+                            <div class="ykpi"><span class="ykpi-l">Monthly Transactions</span><span class="ykpi-v">500,000+</span></div>
+                            <div class="ykpi"><span class="ykpi-l">Transaction Volume</span><span class="ykpi-v">$18M</span></div>
+                            <div class="ykpi"><span class="ykpi-l">Revenue Target</span><span class="ykpi-v">$540K</span></div>
+                        </div>
+                        <div class="ybw"><div class="yb"></div></div>
+                    </div>
+                    <div class="yc y2 rvs d3">
+                        <div class="ylbl">Year 2</div>
+                        <div class="ysts" data-count="100000">0</div>
+                        <div class="yunit">Cardholders</div>
+                        <div class="ykpis">
+                            <div class="ykpi"><span class="ykpi-l">Merchants Onboarded</span><span class="ykpi-v">8,000+</span></div>
+                            <div class="ykpi"><span class="ykpi-l">Monthly Transactions</span><span class="ykpi-v">3M+</span></div>
+                            <div class="ykpi"><span class="ykpi-l">Transaction Volume</span><span class="ykpi-v">$85M</span></div>
+                            <div class="ykpi"><span class="ykpi-l">Revenue Target</span><span class="ykpi-v">$2.5M</span></div>
+                        </div>
+                        <div class="ybw"><div class="yb"></div></div>
+                    </div>
+                    <div class="yc y3 rvs d4">
+                        <div class="ylbl">Year 3</div>
+                        <div class="ysts" data-count="250000">0</div>
+                        <div class="yunit">Cardholders</div>
+                        <div class="ykpis">
+                            <div class="ykpi"><span class="ykpi-l">Merchants Onboarded</span><span class="ykpi-v">15,000+</span></div>
+                            <div class="ykpi"><span class="ykpi-l">Monthly Transactions</span><span class="ykpi-v">10M+</span></div>
+                            <div class="ykpi"><span class="ykpi-l">Transaction Volume</span><span class="ykpi-v">$200M</span></div>
+                            <div class="ykpi"><span class="ykpi-l">Revenue Target</span><span class="ykpi-v">$6M+</span></div>
+                        </div>
+                        <div class="ybw"><div class="yb"></div></div>
+                    </div>
+                </div>
+                <div class="s13tot rv d5">
+                    <div class="s13ts"><div class="s13tn">250K+</div><div class="s13tl">Total Cardholders</div></div>
+                    <div class="s13div"></div>
+                    <div class="s13ts"><div class="s13tn">15K+</div><div class="s13tl">Merchants</div></div>
+                    <div class="s13div"></div>
+                    <div class="s13ts"><div class="s13tn">3</div><div class="s13tl">Countries</div></div>
+                    <div class="s13div"></div>
+                    <div class="s13ts"><div class="s13tn">$6M+</div><div class="s13tl">Year 3 Revenue</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14: CLOSING -->
+        <div class="slide" data-index="13">
+            <div class="s14bg"></div><div class="s14grid"></div><div class="s14glow"></div>
+            <div class="s14c">
+                <div class="s14eye rv d1">Section 13 — The Partnership</div>
+                <h1 class="s14t rv d2">Building Africa's First<br><span style="color:var(--sare-gold)">Bitcoin Agricultural Commerce Ecosystem</span></h1>
+                <p class="s14stmt rv d3"><strong>SARE Africa has built the network. Batolink provides the technology.</strong> Together, they create the infrastructure that enables consumers, farmers, merchants, and institutions across Africa to transact seamlessly using Bitcoin and local currency — through a single smart card, powered by Batolink Technology.</p>
+                <div class="s14fm rv d4">The future of African agriculture is digital.<br>The future of money is Bitcoin.<br>Let's build it together.</div>
+                <button class="s14btn rv d5" onclick="window.print()">Begin the Collaboration →</button>
+                <div class="s14lg rv d6">
+                    <span style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--sare-gold);font-weight:900">SARE</span>
+                    <div class="sep"></div>
+                    <span style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;color:#fff;font-weight:700;letter-spacing:2px">BATOLINK</span>
+                </div>
+                <div class="s14cf rv d7">Confidential — Strategic Collaboration Proposal — June 2026</div>
+            </div>
+        </div>
+
+    </div><!-- end #pres -->
+
+    <script>
+        const canvas = document.getElementById('pc');
+        const ctx = canvas.getContext('2d');
+        let particles = [],
+            mouse = { x: 0, y: 0 };
+
+        function resizeCanvas() { canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.8 + 0.4;
+                this.speedX = (Math.random() - .5) * .4;
+                this.speedY = (Math.random() - .5) * .4;
+                this.color = Math.random() > .5 ? 'rgba(245,166,35,' : 'rgba(247,147,26,';
+                this.opacity = Math.random() * .4 + .08;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                const dx = mouse.x - this.x,
+                    dy = mouse.y - this.y,
+                    dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 130) { this.x -= dx * .018;
+                    this.y -= dy * .018 }
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() { ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color + this.opacity + ')';
+                ctx.fill() }
+        }
+        for (let i = 0; i < 70; i++) particles.push(new Particle());
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update();
+                p.draw() });
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x,
+                        dy = particles[i].y - particles[j].y,
+                        dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 110) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = 'rgba(245,166,35,' + (0.08 - dist / 1375) + ')';
+                        ctx.lineWidth = .4;
+                        ctx.stroke()
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+        document.addEventListener('mousemove', e => { mouse.x = e.clientX;
+            mouse.y = e.clientY });
+
+        let cur = 0;
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+        const dots = document.querySelectorAll('.nd');
+        const cslide = document.getElementById('cslide');
+        const prev = document.getElementById('prev');
+        const next = document.getElementById('next');
+
+        function updateSlides() {
+            slides.forEach((s, i) => { s.classList.toggle('active', i === cur) });
+            dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+            cslide.textContent = String(cur + 1).padStart(2, '0');
+            prev.classList.toggle('dis', cur === 0);
+            next.classList.toggle('dis', cur === total - 1);
+            if ([0, 1, 2, 10, 12].includes(cur)) animateCounters();
+        }
+
+        function nextSlide() { if (cur < total - 1) { cur++;
+                updateSlides() } }
+
+        function prevSlide() { if (cur > 0) { cur--;
+                updateSlides() } }
+
+        function goToSlide(i) { cur = i;
+            updateSlides() }
+        prev.addEventListener('click', prevSlide);
+        next.addEventListener('click', nextSlide);
+        dots.forEach((d, i) => d.addEventListener('click', () => goToSlide(i)));
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevSlide();
+        });
+        let tsy = 0;
+        document.addEventListener('touchstart', e => { tsy = e.touches[0].clientY });
+        document.addEventListener('touchend', e => { const d = tsy - e.changedTouches[0].clientY; if (Math.abs(d) >
+                50) d > 0 ? nextSlide() : prevSlide() });
+
+        function animateCounters() {
+            document.querySelectorAll('[data-count]').forEach(el => {
+                const target = parseInt(el.dataset.count);
+                const dur = 1800;
+                const start = performance.now();
+
+                function update(now) {
+                    const p = Math.min((now - start) / dur, 1);
+                    const eased = 1 - Math.pow(1 - p, 3);
+                    const v = Math.floor(target * eased);
+                    if (target >= 1000000) el.textContent = (v / 1000000).toFixed(0) + 'M+';
+                    else if (target >= 1000) el.textContent = v.toLocaleString() + '+';
+                    else el.textContent = v + '%';
+                    if (p < 1) requestAnimationFrame(update);
+                }
+                requestAnimationFrame(update);
+            });
+            document.querySelectorAll('[data-count-sav]').forEach(el => {
+                const target = parseInt(el.dataset.countSav);
+                const dur = 1500;
+                const start = performance.now();
+
+                function update(now) {
+                    const p = Math.min((now - start) / dur, 1);
+                    const eased = 1 - Math.pow(1 - p, 3);
+                    el.textContent = 'KES ' + Math.floor(target * eased).toLocaleString();
+                    if (p < 1) requestAnimationFrame(update);
+                }
+                requestAnimationFrame(update);
+            });
+        }
+
+        setTimeout(() => document.getElementById('loader').classList.add('hidden'), 2000);
+        updateSlides();
+    </script>
+</body>
+</html>

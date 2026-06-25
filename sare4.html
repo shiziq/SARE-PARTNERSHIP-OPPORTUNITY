@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SARE x Batolink — This Is The Moment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700&family=Inter:wght@200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+--gold:#F5A623; --gb:#F7C948; --red:#E41E26; --dark:#060D1A; --navy:#0A1628;
+--earth:#2E5A3B; --btc:#F7931A; --gray:#7A8499; --warm-gray:#B8A99A;
+--expo:cubic-bezier(.16,1,.3,1); --back:cubic-bezier(.34,1.56,.64,1);
+--glass:rgba(255,255,255,.03); --glb:rgba(255,255,255,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;background:#000;color:#fff}
+#loader{position:fixed;inset:0;z-index:99999;background:#060D1A;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 1s var(--expo),visibility 1s}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.lw{position:relative;width:120px;height:120px;display:flex;align-items:center;justify-content:center}
+.lr{position:absolute;border-radius:50%;animation:spin 1s linear infinite}
+.lr1{width:98px;height:98px;border:1.5px solid rgba(245,166,35,.1);border-top-color:var(--gold)}
+.lr2{width:120px;height:120px;border:1px solid rgba(245,166,35,.05);border-bottom-color:rgba(245,166,35,.25);animation-direction:reverse;animation-duration:1.8s}
+.lr3{width:75px;height:75px;border:1.2px solid rgba(247,147,26,.08);border-left-color:rgba(247,147,26,.3);animation-duration:1.4s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ll{display:flex;align-items:center;gap:18px;margin-top:28px;opacity:0;animation:fu .8s .6s forwards}
+.lt{margin-top:14px;font-size:.56rem;letter-spacing:5px;text-transform:uppercase;color:var(--gray);opacity:0;animation:fu .8s 1.1s forwards}
+@keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+#pc{position:fixed;inset:0;z-index:1;pointer-events:none}
+.scanlines{position:fixed;inset:0;z-index:150;pointer-events:none;opacity:.018;background:repeating-linear-gradient(0deg,transparent,transparent 2px,#000 2px,#000 4px)}
+#pres{width:100vw;height:100vh;position:relative;z-index:2}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .8s var(--expo),visibility .8s;overflow:hidden;background:var(--dark)}
+
+.slide.active{opacity:1;visibility:visible}
+
+/* NAV */
+.ndots{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:200;display:flex;flex-direction:column;gap:11px}
+.nd{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.06);cursor:pointer;transition:all .5s var(--expo);border:1px solid rgba(255,255,255,.04);position:relative}
+.nd.active{background:var(--gold);transform:scale(1.8);box-shadow:0 0 18px rgba(245,166,35,.6);border-color:var(--gold)}
+.nd::after{content:attr(data-label);position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:.54rem;color:var(--gray);white-space:nowrap;opacity:0;transition:opacity .3s;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.nd:hover::after{opacity:1}
+.sctr{position:fixed;bottom:22px;left:52px;z-index:200;font-family:'Space Grotesk',sans-serif;font-size:.62rem;color:var(--gray);letter-spacing:3px;font-weight:300}
+.sctr span{color:var(--gold);font-weight:700;font-size:.8rem}
+.narr{position:fixed;bottom:18px;right:52px;z-index:200;display:flex;gap:10px}
+.na{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .4s var(--expo);font-size:.85rem;user-select:none}
+.na:hover{background:var(--gold);border-color:var(--gold);color:#000;transform:scale(1.15)}
+.na.dis{opacity:.15;pointer-events:none}
+
+/* REVEAL ANIMS */
+.rv{opacity:0;transform:translateY(48px);transition:all .9s var(--expo)}
+.slide.active .rv{opacity:1;transform:translateY(0)}
+.slide.active .rv.d1{transition-delay:.08s}.slide.active .rv.d2{transition-delay:.2s}
+.slide.active .rv.d3{transition-delay:.35s}.slide.active .rv.d4{transition-delay:.5s}
+.slide.active .rv.d5{transition-delay:.65s}.slide.active .rv.d6{transition-delay:.8s}
+.slide.active .rv.d7{transition-delay:.95s}.slide.active .rv.d8{transition-delay:1.1s}
+.rvl{opacity:0;transform:translateX(-55px);transition:all .9s var(--expo)}
+.slide.active .rvl{opacity:1;transform:translateX(0)}
+.slide.active .rvl.d2{transition-delay:.2s}.slide.active .rvl.d3{transition-delay:.35s}
+.slide.active .rvl.d4{transition-delay:.5s}.slide.active .rvl.d5{transition-delay:.65s}
+.rvr{opacity:0;transform:translateX(55px);transition:all .9s var(--expo)}
+.slide.active .rvr{opacity:1;transform:translateX(0)}
+.slide.active .rvr.d2{transition-delay:.2s}.slide.active .rvr.d3{transition-delay:.35s}
+.slide.active .rvr.d4{transition-delay:.5s}.slide.active .rvr.d5{transition-delay:.65s}
+.rvs{opacity:0;transform:scale(.84);transition:all .8s var(--back)}
+.slide.active .rvs{opacity:1;transform:scale(1)}
+.slide.active .rvs.d1{transition-delay:.06s}.slide.active .rvs.d2{transition-delay:.18s}
+.slide.active .rvs.d3{transition-delay:.3s}.slide.active .rvs.d4{transition-delay:.42s}
+.slide.active .rvs.d5{transition-delay:.54s}.slide.active .rvs.d6{transition-delay:.66s}
+
+/* TYPOGRAPHY */
+.eyebrow{font-size:.56rem;letter-spacing:5px;text-transform:uppercase;font-weight:700;margin-bottom:12px}
+.eyebrow.g{color:var(--gold)}.eyebrow.r{color:var(--red)}
+.hed{font-family:'Playfair Display',serif;font-weight:800;line-height:1.05}
+.sub{font-size:.85rem;color:var(--gray);line-height:1.7;font-weight:300}
+.itag{font-family:'Playfair Display',serif;font-style:italic;font-size:.88rem;color:rgba(255,255,255,.38)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:100px;font-size:.56rem;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.pill.g{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.2);color:var(--gold)}
+.pill.b{background:rgba(247,147,26,.1);border:1px solid rgba(247,147,26,.2);color:var(--btc)}
+.tagline{font-size:.64rem;color:var(--gray);letter-spacing:3px;text-transform:uppercase;font-weight:600}
+
+/* =========== SLIDE 1: CINEMATIC HERO =========== */
+.s1-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,#1A2F1A 0%,#060D1A 45%,#020810 100%)}
+.s1-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(245,166,35,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(245,166,35,.025) 1px,transparent 1px);background-size:64px 64px}
+.s1-glow{position:absolute;width:820px;height:820px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,.06) 0%,transparent 70%);top:55%;left:25%;transform:translate(-50%,-50%);animation:breathe 5.5s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.1)}}
+.s1c{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;padding:60px 90px}
+.s1-pre{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.s1-pre-line{height:1px;width:40px;background:linear-gradient(90deg,var(--gold),transparent)}
+.s1-hed{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,6vw,7rem);font-weight:900;line-height:.94;letter-spacing:-2px;margin-bottom:22px}
+.s1-sub{font-size:clamp(.9rem,1.15vw,1.15rem);line-height:1.8;color:var(--gray);max-width:620px;margin-bottom:32px;font-weight:300}
+.s1-cta{display:inline-flex;align-items:center;gap:12px;background:var(--gold);color:#000;padding:16px 40px;font-weight:900;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;transition:all .4s var(--expo);border-radius:2px}
+.s1-cta:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(245,166,35,.45);background:var(--gb)}
+.s1-stats{display:flex;gap:50px;margin-top:24px}
+.s1-stat-num{font-family:'Space Grotesk',sans-serif;font-size:2.6rem;font-weight:700;color:var(--gold);line-height:1}
+.s1-stat-lbl{font-size:.58rem;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.s1-logos{position:absolute;bottom:34px;left:90px;display:flex;align-items:center;gap:20px;z-index:3;background:rgba(0,0,0,.5);padding:10px 24px;border-radius:60px;backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.06)}
+.s1-logos img{height:34px;width:auto;filter:brightness(1.1)}
+.s1-logos .sep{width:1px;height:26px;background:rgba(255,255,255,.15);margin:0 6px}
+.s1-quote{position:absolute;bottom:44px;right:90px;z-index:3;text-align:right;font-family:'Playfair Display',serif;font-style:italic;font-size:.88rem;color:rgba(255,255,255,.25);max-width:320px;line-height:1.55}
+
+/* =========== SLIDE 2: THE MOMENT =========== */
+.s2c{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;padding:50px 90px;background:linear-gradient(135deg,#060D1A,#0C1A2B)}
+.s2-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1350px;margin:0 auto;width:100%;align-items:center}
+.s2-left{padding-right:40px;border-right:1px solid rgba(245,166,35,.08)}
+.s2-right{padding-left:40px;display:flex;flex-direction:column;gap:14px}
+.s2-stat-card{padding:20px 24px;border-radius:14px;display:flex;align-items:center;gap:16px;transition:all .35s;cursor:default}
+.s2-stat-card:hover{transform:translateX(6px)}
+.s2-stat-card.bad{background:rgba(228,30,38,.06);border:1px solid rgba(228,30,38,.12);border-left:3px solid var(--red)}
+.s2-stat-card.good{background:rgba(46,90,59,.06);border:1px solid rgba(46,90,59,.14);border-left:3px solid var(--earth)}
+.s2-stat-ico{font-size:1.5rem;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.s2-stat-card.bad .s2-stat-ico{background:rgba(228,30,38,.1)}
+.s2-stat-card.good .s2-stat-ico{background:rgba(46,90,59,.1)}
+.s2-stat-num{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;line-height:1}
+.s2-stat-card.bad .s2-stat-num{color:var(--red)}
+.s2-stat-card.good .s2-stat-num{color:var(--earth)}
+.s2-stat-lbl{font-size:.64rem;color:var(--gray);margin-top:2px}
+
+/* =========== SLIDE 3: MEET THEM =========== */
+.s3c{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;padding:46px 90px;background:linear-gradient(160deg,#060D1A,#0D1522)}
+.s3-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1300px;margin:0 auto;width:100%}
+.persona-card{border-radius:18px;padding:32px 26px;position:relative;overflow:hidden;transition:all .5s var(--expo)}
+.persona-card:hover{transform:translateY(-10px)}
+.persona-card.farmer{background:linear-gradient(135deg,rgba(46,90,59,.12),rgba(46,90,59,.03));border:1px solid rgba(46,90,59,.18)}
+.persona-card.merchant{background:linear-gradient(135deg,rgba(247,147,26,.1),rgba(247,147,26,.03));border:1px solid rgba(247,147,26,.16)}
+.persona-card.diaspora{background:linear-gradient(135deg,rgba(245,166,35,.1),rgba(245,166,35,.03));border:1px solid rgba(245,166,35,.18)}
+.persona-glow{position:absolute;top:-50px;right:-50px;width:140px;height:140px;border-radius:50%;opacity:.12}
+.persona-card.farmer .persona-glow{background:radial-gradient(circle,rgba(46,90,59,.8),transparent)}
+.persona-card.merchant .persona-glow{background:radial-gradient(circle,rgba(247,147,26,.8),transparent)}
+.persona-card.diaspora .persona-glow{background:radial-gradient(circle,rgba(245,166,35,.8),transparent)}
+.persona-emoji{font-size:2.6rem;margin-bottom:14px;position:relative;z-index:1}
+.persona-name{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:800;color:#fff;margin-bottom:4px;position:relative;z-index:1}
+.persona-loc{font-size:.64rem;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;position:relative;z-index:1}
+.persona-pain{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:8px;position:relative;z-index:1}
+.persona-pain-desc{font-size:.72rem;color:var(--gray);line-height:1.6;margin-bottom:14px;position:relative;z-index:1}
+.persona-fix{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;position:relative;z-index:1}
+.persona-fix-desc{font-size:.72rem;color:#c8d4e0;line-height:1.5;font-weight:500;position:relative;z-index:1}
+
+/* =========== SLIDE 4: FOUR FUNCTIONS CARD DIAGRAM =========== */
+.s4c{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;padding:50px 90px;background:radial-gradient(ellipse at center,#0D1A15,#060D1A 70%)}
+.s4-diagram{max-width:1100px;margin:0 auto;width:100%}
+.s4-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.s4-fn-card{border-radius:18px;padding:28px 22px;text-align:center;transition:all .45s var(--expo);position:relative;overflow:hidden}
+.s4-fn-card:hover{transform:translateY(-10px)}
+.s4-fn-card.c1{background:linear-gradient(180deg,rgba(245,166,35,.12),rgba(245,166,35,.03));border:1px solid rgba(245,166,35,.22)}
+.s4-fn-card.c2{background:linear-gradient(180deg,rgba(247,147,26,.12),rgba(247,147,26,.03));border:1px solid rgba(247,147,26,.22)}
+.s4-fn-card.c3{background:linear-gradient(180deg,rgba(46,90,59,.1),rgba(46,90,59,.03));border:1px solid rgba(46,90,59,.18)}
+.s4-fn-card.c4{background:linear-gradient(180deg,rgba(245,166,35,.1),rgba(228,30,38,.03));border:1px solid rgba(245,166,35,.18)}
+.s4-fn-ico{font-size:2rem;margin-bottom:14px}
+.s4-fn-num{font-size:.5rem;letter-spacing:4px;text-transform:uppercase;font-weight:700;margin-bottom:8px}
+.s4-fn-card.c1 .s4-fn-num{color:var(--gold)}.s4-fn-card.c2 .s4-fn-num{color:var(--btc)}
+.s4-fn-card.c3 .s4-fn-num{color:var(--earth)}.s4-fn-card.c4 .s4-fn-num{color:var(--gold)}
+.s4-fn-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:800;color:#fff;margin-bottom:6px}
+.s4-fn-desc{font-size:.7rem;color:var(--gray);line-height:1.55}
+.s4-plus-row{display:flex;align-items:center;justify-content:center;gap:30px;margin:20px 0}
+.s4-plus{font-size:1.6rem;color:var(--gold);opacity:.4}
+.s4-equals{text-align:center;font-size:.62rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:700;margin:16px 0}
+.s4-result{padding:18px 32px;border-radius:14px;background:linear-gradient(135deg,rgba(245,166,35,.12),rgba(245,166,35,.03));border:1px solid rgba(245,166,35,.3);text-align:center;margin-top:4px}
+.s4-result-t{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:var(--gold)}
+.s4-result-s{font-size:.76rem;color:var(--gray);margin-top:4px}
+
+/* =========== SLIDE 5: THE PEOPLE =========== */
+.s5c{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;padding:50px 90px;background:linear-gradient(135deg,#060D1A,#0A1628)}
+.s5-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1300px;margin:0 auto;width:100%}
+.s5-story{border-radius:18px;padding:28px;position:relative;overflow:hidden;transition:all .4s}
+.s5-story:hover{transform:translateY(-6px)}
+.s5-story.s1{background:linear-gradient(135deg,rgba(245,166,35,.08),rgba(247,147,26,.03));border:1px solid rgba(245,166,35,.18)}
+.s5-story.s2{background:linear-gradient(135deg,rgba(46,90,59,.09),rgba(245,166,35,.03));border:1px solid rgba(46,90,59,.16)}
+.s5-story-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.s5-story-ico{font-size:1.6rem;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.s5-story.s1 .s5-story-ico{background:rgba(245,166,35,.12)}
+.s5-story.s2 .s5-story-ico{background:rgba(46,90,59,.11)}
+.s5-story-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;color:#fff}
+.s5-story-sub{font-size:.62rem;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-top:1px}
+.s5-flow{display:flex;align-items:center;gap:10px;margin:8px 0;font-family:'DM Mono',monospace;font-size:.65rem;color:var(--gray);letter-spacing:1px}
+.s5-flow-arrow{color:var(--gold);font-size:.8rem}
+.s5-impact{padding:10px 14px;border-radius:8px;margin-top:12px;font-size:.68rem;color:#c8d4e0;line-height:1.5;font-weight:500}
+.s5-story.s1 .s5-impact{background:rgba(245,166,35,.06);border-left:3px solid var(--gold)}
+.s5-story.s2 .s5-impact{background:rgba(46,90,59,.06);border-left:3px solid var(--earth)}
+.s5-impact strong{color:#fff}
+
+/* =========== SLIDE 6: THE ARCHITECTURE =========== */
+.s6c{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;padding:40px 70px;background:linear-gradient(160deg,#060D1A,#0D1929 60%,#0A1220 100%);font-family:'DM Mono',monospace}
+.arch-box{border:1px solid rgba(245,166,35,.18);border-radius:16px;padding:28px 32px;background:rgba(0,0,0,.3);max-width:1100px;margin:0 auto;width:100%}
+.arch-title{font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:20px;text-align:center}
+.arch-layer{border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:14px 18px;margin-bottom:10px;text-align:center;font-size:.68rem;color:var(--gray);letter-spacing:2px;text-transform:uppercase;background:rgba(255,255,255,.015)}
+.arch-layer.highlight{border-color:rgba(245,166,35,.25);background:rgba(245,166,35,.04);color:var(--gold)}
+.arch-services{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.arch-svc{padding:10px 12px;border-radius:8px;text-align:center;font-size:.62rem;color:#c8d4e0;letter-spacing:1px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.015);transition:all .3s}
+.arch-svc:hover{border-color:rgba(245,166,35,.3);background:rgba(245,166,35,.05)}
+.arch-svc.gold{border-color:rgba(245,166,35,.2);color:var(--gold);font-weight:600}
+.arch-arrow{text-align:center;color:var(--gold);font-size:.7rem;margin:4px 0;opacity:.5}
+.arch-owned{display:flex;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.05)}
+.arch-owned-item{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
+.arch-owned-item strong{color:#fff}
+
+/* =========== SLIDE 7: BEFORE/AFTER =========== */
+.s7c{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;padding:44px 90px;background:linear-gradient(135deg,#060D1A,#0A1628)}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:1300px;margin:0 auto;width:100%}
+.ba-col{padding:28px;border-radius:16px}
+.ba-col.before{background:rgba(228,30,38,.05);border:1px solid rgba(228,30,38,.12)}
+.ba-col.after{background:rgba(46,90,59,.06);border:2px solid rgba(46,90,59,.25);box-shadow:0 0 40px rgba(46,90,59,.06)}
+.ba-col-header{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.ba-col-badge{padding:4px 14px;border-radius:100px;font-size:.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.ba-col.before .ba-col-badge{background:rgba(228,30,38,.1);color:var(--red)}
+.ba-col.after .ba-col-badge{background:rgba(46,90,59,.12);color:var(--earth)}
+.ba-col-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;color:#fff}
+.ba-items{display:flex;flex-direction:column;gap:0}
+.ba-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.74rem;color:#c8d4e0;line-height:1.5}
+.ba-item:last-child{border-bottom:none}
+.ba-item-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.ba-col.before .ba-item-dot{background:var(--red)}
+.ba-col.after .ba-item-dot{background:var(--earth)}
+.ba-result{text-align:center;padding:16px;border-radius:10px;margin-top:14px;font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:rgba(255,255,255,.55);background:rgba(245,166,35,.04);border:1px solid rgba(245,166,35,.1)}
+.ba-result strong{color:var(--gold);font-style:normal}
+
+/* =========== SLIDE 8: USE CASES =========== */
+.s8c{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;padding:44px 70px;background:linear-gradient(135deg,#060D1A,#0A1628)}
+.use-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:1250px;margin:0 auto;width:100%}
+.use-card{border-radius:16px;padding:22px 24px;transition:all .4s;cursor:default;position:relative;overflow:hidden}
+.use-card:hover{transform:translateY(-6px)}
+.use-card.u1{background:linear-gradient(135deg,rgba(247,147,26,.08),rgba(247,147,26,.02));border:1px solid rgba(247,147,26,.16)}
+.use-card.u2{background:linear-gradient(135deg,rgba(245,166,35,.08),rgba(245,166,35,.02));border:1px solid rgba(245,166,35,.16)}
+.use-card.u3{background:linear-gradient(135deg,rgba(46,90,59,.08),rgba(46,90,59,.02));border:1px solid rgba(46,90,59,.14)}
+.use-card.u4{background:linear-gradient(135deg,rgba(228,30,38,.06),rgba(228,30,38,.01));border:1px solid rgba(228,30,38,.1)}
+.use-card.u5{background:linear-gradient(135deg,rgba(245,166,35,.1),rgba(46,90,59,.03));border:1px solid rgba(245,166,35,.22);grid-column:1/-1}
+.use-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.use-ico{font-size:1.4rem;width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.use-card.u1 .use-ico{background:rgba(247,147,26,.12)}
+.use-card.u2 .use-ico{background:rgba(245,166,35,.12)}
+.use-card.u3 .use-ico{background:rgba(46,90,59,.1)}
+.use-card.u4 .use-ico{background:rgba(228,30,38,.08)}
+.use-card.u5 .use-ico{background:rgba(245,166,35,.14)}
+.use-title{font-weight:800;font-size:.84rem;color:#fff}
+.use-desc{font-size:.68rem;color:var(--gray);line-height:1.55}
+.use-metric{display:flex;align-items:center;gap:10px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.04)}
+.use-metric-val{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700}
+.use-card.u1 .use-metric-val{color:var(--btc)}.use-card.u2 .use-metric-val{color:var(--gold)}
+.use-card.u3 .use-metric-val{color:var(--earth)}.use-card.u4 .use-metric-val{color:var(--red)}
+.use-card.u5 .use-metric-val{color:var(--gold)}
+.use-metric-lbl{font-size:.6rem;color:var(--gray)}
+
+/* =========== SLIDE 9: THE CARD =========== */
+.s9c{position:relative;z-index:3;height:100%;background:radial-gradient(ellipse at 65% 50%,#1A2F1A 0%,#060D1A 55%,#020810 100%);overflow:hidden}
+.s9c::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,var(--gold),var(--btc),var(--gold),transparent);z-index:4}
+.s9-layout{height:100%;display:grid;grid-template-columns:1fr 1.3fr;gap:0;align-items:center;padding:40px 60px 40px 80px}
+.s9-left{display:flex;flex-direction:column;justify-content:center;gap:8px}
+.s9-right{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:20px}
+.s9-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,.1) 0%,rgba(245,166,35,.03) 40%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);animation:s9pulse 4s ease-in-out infinite}
+@keyframes s9pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.7}50%{transform:translate(-50%,-50%) scale(1.12);opacity:1}}
+.s9-card-img{width:90%;max-width:550px;position:relative;z-index:3;filter:drop-shadow(0 35px 85px rgba(245,166,35,.5)) drop-shadow(0 10px 30px rgba(0,0,0,.65));animation:s9float 5s ease-in-out infinite;cursor:pointer;border-radius:18px;transition:all .5s var(--expo)}
+@keyframes s9float{0%,100%{transform:perspective(1000px) rotateY(-7deg) rotateX(3deg) translateY(0)}50%{transform:perspective(1000px) rotateY(-7deg) rotateX(3deg) translateY(-20px)}}
+.s9-card-img:hover{animation:none;transform:perspective(1000px) rotateY(0deg) scale(1.07);filter:drop-shadow(0 45px 100px rgba(245,166,35,.65)) drop-shadow(0 12px 38px rgba(0,0,0,.75))}
+.s9-feature{display:flex;align-items:flex-start;gap:14px;padding:15px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);transition:all .3s}
+.s9-feature:hover{border-color:rgba(245,166,35,.28);background:rgba(245,166,35,.04);transform:translateX(5px)}
+.s9-feat-ico{font-size:1.2rem;width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(245,166,35,.1)}
+.s9-feat-title{font-weight:800;font-size:.82rem;color:#fff;margin-bottom:2px}
+.s9-feat-desc{font-size:.65rem;color:var(--gray);line-height:1.45}
+.s9-stats-row{display:flex;gap:14px;margin-top:14px;position:relative;z-index:3}
+.s9-stat-block{padding:13px 18px;border-radius:10px;background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.12);text-align:center;flex:1}
+.s9-stat-num{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;color:var(--gold);line-height:1}
+.s9-stat-lbl{font-size:.55rem;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-top:3px}
+.s9-tagline{text-align:center;margin-top:16px;position:relative;z-index:3;font-family:'Playfair Display',serif;font-style:italic;font-size:.82rem;color:rgba(255,255,255,.3)}
+
+/* =========== SLIDE 10: REVENUE WATERFALL =========== */
+.s10c{position:relative;z-index:3;height:100%;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;padding:46px 80px;background:linear-gradient(135deg,#060D1A,#0A1628);align-items:center}
+.s10-left{display:flex;flex-direction:column;justify-content:center}
+.s10-right{display:flex;flex-direction:column;justify-content:center;gap:12px}
+.wf-item{padding:18px 22px;border-radius:12px;position:relative;transition:all .35s}
+.wf-item:hover{transform:translateX(5px)}
+.wf-item.w1{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.18)}
+.wf-item.w2{background:rgba(247,147,26,.07);border:1px solid rgba(247,147,26,.14)}
+.wf-item.w3{background:rgba(46,90,59,.06);border:1px solid rgba(46,90,59,.12)}
+.wf-label{font-size:.52rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.wf-item.w1 .wf-label{color:var(--gold)}.wf-item.w2 .wf-label{color:var(--btc)}.wf-item.w3 .wf-label{color:var(--earth)}
+.wf-amt{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;color:#fff;line-height:1;margin-bottom:2px}
+.wf-desc{font-size:.66rem;color:var(--gray);line-height:1.45}
+.wf-total{padding:20px 26px;border-radius:14px;background:linear-gradient(135deg,rgba(245,166,35,.14),rgba(245,166,35,.03));border:2px solid rgba(245,166,35,.35);text-align:center;margin-top:8px}
+.wf-total-lbl{font-size:.55rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
+.wf-total-val{font-family:'Space Grotesk',sans-serif;font-size:3.4rem;font-weight:700;color:var(--gold);line-height:1}
+.wf-total-sub{font-size:.68rem;color:var(--gray);margin-top:4px}
+.s10-highlight{display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:10px;background:rgba(245,166,35,.05);border:1px solid rgba(245,166,35,.12);font-size:.7rem;color:#c8d4e0}
+.s10-highlight strong{color:var(--gold)}
+.s10-year-bar{margin-top:14px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;text-align:center}
+.s10-yb{padding:10px 6px;border-radius:8px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);transition:all .3s}
+.s10-yb:hover{background:rgba(245,166,35,.04);border-color:rgba(245,166,35,.15);transform:translateY(-3px)}
+.s10-yb-yr{font-size:.52rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);font-weight:600;margin-bottom:4px}
+.s10-yb-amt{font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:700;color:var(--gold)}
+.s10-yb-sub{font-size:.52rem;color:var(--gray)}
+
+/* =========== SLIDE 11: RISK & GOVERNANCE =========== */
+.s11c{position:relative;z-index:3;height:100%;display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:44px 80px;background:linear-gradient(135deg,#060D1A,#0A1628);align-items:center}
+.s11-panel{border-radius:16px;padding:24px}
+.s11-panel.risks{background:rgba(228,30,38,.04);border:1px solid rgba(228,30,38,.1)}
+.s11-panel.gov{background:rgba(46,90,59,.04);border:1px solid rgba(46,90,59,.12)}
+.risk-row{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-radius:7px;margin-bottom:6px;font-size:.68rem;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.03);gap:8px}
+.risk-name{color:#c8d4e0;font-weight:600;min-width:120px}
+.risk-mitigation{color:var(--gray);font-size:.62rem;text-align:right;flex:1}
+.gov-row{display:flex;align-items:center;gap:10px;padding:9px 12px;font-size:.68rem;color:#c8d4e0;border-bottom:1px solid rgba(255,255,255,.03)}
+.gov-row:last-child{border-bottom:none}
+.gov-ico{font-size:.85rem;width:30px;text-align:center}
+
+/* =========== SLIDE 12: TIMELINE =========== */
+.s12c{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;padding:44px 70px;background:linear-gradient(135deg,#060D1A,#0A1628)}
+.tl-phases{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1250px;margin:0 auto;width:100%}
+.tl-phase{border-radius:14px;padding:22px 18px;text-align:center;transition:all .4s;position:relative;overflow:hidden}
+.tl-phase:hover{transform:translateY(-8px)}
+.tl-phase.p1{background:linear-gradient(180deg,rgba(247,147,26,.1),rgba(247,147,26,.02));border:1px solid rgba(247,147,26,.16)}
+.tl-phase.p2{background:linear-gradient(180deg,rgba(245,166,35,.1),rgba(245,166,35,.02));border:1px solid rgba(245,166,35,.18)}
+.tl-phase.p3{background:linear-gradient(180deg,rgba(46,90,59,.08),rgba(46,90,59,.02));border:1px solid rgba(46,90,59,.14)}
+.tl-phase.p4{background:linear-gradient(180deg,rgba(245,166,35,.14),rgba(46,90,59,.03));border:2px solid rgba(245,166,35,.28);box-shadow:0 0 40px rgba(245,166,35,.06)}
+.tl-phase-num{width:38px;height:38px;border-radius:50%;border:2px solid;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.78rem}
+.tl-phase.p1 .tl-phase-num{border-color:var(--btc);color:var(--btc)}
+.tl-phase.p2 .tl-phase-num{border-color:var(--gold);color:var(--gold)}
+.tl-phase.p3 .tl-phase-num{border-color:var(--earth);color:var(--earth)}
+.tl-phase.p4 .tl-phase-num{border-color:var(--gold);color:var(--gold)}
+.tl-phase-title{font-family:'Playfair Display',serif;font-weight:800;font-size:.95rem;color:#fff;margin-bottom:4px}
+.tl-phase-time{font-size:.58rem;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.tl-phase-items{font-size:.66rem;color:#c8d4e0;line-height:1.6}
+.tl-bar{display:flex;align-items:center;max-width:1250px;width:100%;margin:12px auto;gap:0}
+.tl-bar-seg{flex:1;height:4px;border-radius:2px}
+.tl-bar-seg.s1{background:var(--btc)}.tl-bar-seg.s2{background:var(--gold)}
+.tl-bar-seg.s3{background:var(--earth)}.tl-bar-seg.s4{background:linear-gradient(90deg,var(--gold),var(--btc))}
+
+/* =========== SLIDE 13: 5-YEAR VISION =========== */
+.s13c{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;padding:44px 80px;background:linear-gradient(135deg,#060D1A,#0A1628)}
+.vision-table{max-width:1100px;margin:0 auto;width:100%;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.05)}
+.vision-row{display:grid;grid-template-columns:100px 1fr 1fr 1fr;font-size:.72rem;padding:13px 20px;align-items:center}
+.vision-row.header{background:rgba(245,166,35,.08);font-weight:700;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.vision-row:nth-child(even){background:rgba(255,255,255,.01)}
+.vision-row:nth-child(odd){background:rgba(255,255,255,.005)}
+.vision-row .yr{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--gold);font-size:.85rem}
+.vision-row .users{color:#fff;font-weight:600}
+.vision-row .vol{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--btc)}
+.vision-row .rev{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--gold)}
+.vision-footer{padding:14px 20px;text-align:center;background:rgba(245,166,35,.05);border-top:1px solid rgba(245,166,35,.1);margin-top:-1px;font-size:.68rem;color:var(--gray);line-height:1.5}
+.vision-footer strong{color:#fff}
+
+/* =========== SLIDE 14: THE DEAL =========== */
+.s14c{position:relative;z-index:3;height:100%;display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:46px 80px;background:linear-gradient(135deg,#060D1A,#0A1628);align-items:center}
+.deal-col{border-radius:18px;padding:28px;position:relative;overflow:hidden}
+.deal-col.sare{background:linear-gradient(135deg,rgba(46,90,59,.1),rgba(46,90,59,.02));border:1px solid rgba(46,90,59,.18)}
+.deal-col.bato{background:linear-gradient(135deg,rgba(245,166,35,.13),rgba(245,166,35,.03));border:2px solid rgba(245,166,35,.3);box-shadow:0 0 45px rgba(245,166,35,.07)}
+.deal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.deal-name{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:#fff}
+.deal-pct{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700}
+.deal-col.sare .deal-pct{color:var(--earth)}.deal-col.bato .deal-pct{color:var(--gold)}
+.deal-role{font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:14px}
+.deal-item{display:flex;align-items:flex-start;gap:9px;padding:6px 0;font-size:.7rem;color:#c8d4e0;line-height:1.45}
+.deal-item::before{content:'\2713';color:var(--gold);font-weight:700;flex-shrink:0;font-size:.6rem;margin-top:2px}
+.deal-bottom{grid-column:1/-1;padding:22px 30px;border-radius:14px;background:linear-gradient(135deg,rgba(245,166,35,.1),rgba(245,166,35,.03));border:1px solid rgba(245,166,35,.22);text-align:center}
+.deal-bottom-lbl{font-size:.55rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
+.deal-bottom-val{font-family:'Space Grotesk',sans-serif;font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1}
+.deal-bottom-sub{font-size:.68rem;color:var(--gray);margin-top:4px}
+
+/* =========== SLIDE 15: CLOSING =========== */
+.s15-bg{position:absolute;inset:0;background:radial-gradient(ellipse at center,#1A2F1A 0%,#060D1A 50%,#020810 100%)}
+.s15-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(245,166,35,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(245,166,35,.02) 1px,transparent 1px);background-size:60px 60px}
+.s15-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,.05) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%)}
+.s15-layout{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px;text-align:center}
+.s15-eyebrow{font-size:.56rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:18px}
+.s15-hed{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,5.2rem);font-weight:900;line-height:1;letter-spacing:-2px;margin-bottom:22px}
+.s15-body{max-width:680px;font-size:clamp(.82rem,1vw,1rem);color:var(--gray);line-height:1.85;margin:0 auto 12px;font-weight:300}
+.s15-body strong{color:#c8d4e0;font-weight:600}
+.s15-quote{max-width:560px;margin:14px auto 26px;font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(.9rem,1.2vw,1.1rem);color:rgba(255,255,255,.42);line-height:1.6}
+.s15-cta{display:inline-flex;align-items:center;gap:12px;background:var(--gold);color:#000;padding:17px 46px;font-weight:900;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;transition:all .5s var(--expo);border-radius:2px;position:relative;overflow:hidden;margin-bottom:30px}
+.s15-cta::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .6s}
+.s15-cta:hover{transform:translateY(-4px);box-shadow:0 22px 55px rgba(245,166,35,.4)}
+.s15-cta:hover::before{left:100%}
+.s15-logos{display:flex;align-items:center;gap:20px;background:rgba(0,0,0,.5);padding:12px 28px;border-radius:60px;backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.06)}
+.s15-logos img{height:40px;width:auto;filter:brightness(1.1)}
+.s15-logos .sep{width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 6px}
+.s15-conf{font-size:.52rem;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.12);font-weight:500;margin-top:14px}
+
+@media(max-width:1100px){
+.s2-grid,.s5-row,.s10c,.s11c,.s14c,.s9-layout{grid-template-columns:1fr}
+.s3-cards,.s4-cards,.tl-phases{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:860px){
+.s3-cards,.s4-cards,.tl-phases,.use-grid{grid-template-columns:1fr}
+.ba-grid{grid-template-columns:1fr}
+.ndots{display:none}
+}
+@media print{
+.ndots,.narr,.sctr,.scanlines,#loader,#pc{display:none!important}
+.slide{position:relative;opacity:1!important;visibility:visible!important;page-break-after:always;height:100vh;overflow:hidden}
+}
+</style>
+</head>
+<body>
+<div class="scanlines"></div>
+<canvas id="pc"></canvas>
+<div id="loader">
+<div class="lw"><div class="lr lr2"></div><div class="lr lr1"></div><div class="lr lr3"></div></div>
+<div class="ll">
+<img src="assets/Sare Logo.png" alt="SARE" style="height:48px;width:auto;filter:brightness(1.1)">
+<span style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);font-weight:300">&times;</span>
+<img src="assets/Bato Logo.png" alt="Batolink" style="height:36px;width:auto;filter:brightness(1.05)">
+</div>
+<div class="lt">This Is The Moment</div>
+</div>
+<div class="ndots">
+<div class="nd active" data-index="0" data-label="The Moment"></div>
+<div class="nd" data-index="1" data-label="The Reality"></div>
+<div class="nd" data-index="2" data-label="The People"></div>
+<div class="nd" data-index="3" data-label="The Card"></div>
+<div class="nd" data-index="4" data-label="Their Stories"></div>
+<div class="nd" data-index="5" data-label="Blueprint"></div>
+<div class="nd" data-index="6" data-label="Transformation"></div>
+<div class="nd" data-index="7" data-label="Use Cases"></div>
+<div class="nd" data-index="8" data-label="The Engine"></div>
+<div class="nd" data-index="9" data-label="Economics"></div>
+<div class="nd" data-index="10" data-label="Trust"></div>
+<div class="nd" data-index="11" data-label="Timeline"></div>
+<div class="nd" data-index="12" data-label="5Y Vision"></div>
+<div class="nd" data-index="13" data-label="The Deal"></div>
+<div class="nd" data-index="14" data-label="Yes"></div>
+</div>
+<div class="sctr"><span id="cslide">01</span> / 15</div>
+<div class="narr"><div class="na" id="prev">&larr;</div><div class="na" id="next">&rarr;</div></div>
+<div id="pres">
+<!-- SLIDE 1: CINEMATIC HERO -->
+<div class="slide active" data-index="0">
+<div class="s1-bg"></div><div class="s1-grid"></div><div class="s1-glow"></div>
+<div class="s1c">
+<div class="s1-pre rv d1">
+<div class="s1-pre-line"></div>
+<span class="eyebrow g" style="margin:0">SARE x Batolink — Confidential — June 2026</span>
+<div class="s1-pre-line" style="background:linear-gradient(90deg,transparent,var(--gold))"></div>
+</div>
+<h1 class="s1-hed rv d2" style="max-width:850px">
+<span style="color:#fff">The future of African agriculture</span><br>
+<span style="color:var(--gold)">runs on Bitcoin.</span>
+</h1>
+<p class="s1-sub rv d3">A $100B+ market, still running on cash. 50,000 farmers already accepting Bitcoin through SARE. <strong style="color:#fff">One missing piece: the smart card infrastructure that Batolink provides.</strong> This is the moment where technology meets network. Where Bitcoin becomes everyday commerce. Where Africa leads.</p>
+<div class="rv d4" style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+<button class="s1-cta" onclick="nextSlide()">See The Opportunity &rarr;</button>
+<span style="font-size:.64rem;color:var(--gray)">15-minute executive presentation</span>
+</div>
+<div class="s1-stats rv d5">
+<div><div class="s1-stat-num" data-count="50000">0</div><div class="s1-stat-lbl">Farmers Ready</div></div>
+<div><div class="s1-stat-num">$100B+</div><div class="s1-stat-lbl">Addressable Market</div></div>
+<div><div class="s1-stat-num" data-count="100000">0</div><div class="s1-stat-lbl">Unbanked to Include</div></div>
+</div>
+</div>
+<div class="s1-logos rv d7">
+<img src="assets/Sare Logo.png" alt="SARE">
+<div class="sep"></div>
+<img src="assets/Bato Logo.png" alt="Batolink">
+</div>
+<div class="s1-quote rv d8">"The missing element is a<br>scalable interface — the card and<br>application layer that Batolink provides."</div>
+</div>
+
+<!-- SLIDE 2: THE REALITY -->
+<div class="slide" data-index="1">
+<div class="s2c">
+<div style="text-align:center;margin-bottom:32px">
+<div class="eyebrow g rv d1" style="text-align:center">The Reality</div>
+<h2 class="hed rv d2" style="font-size:clamp(2.2rem,3.5vw,3.8rem);margin-bottom:6px">East Africa's Agriculture<br><span style="color:var(--gold)">Is Stuck in the Past</span></h2>
+<p class="sub rv d3" style="max-width:520px;margin:0 auto">A $100B+ market. 3 countries. 50 million farmers. And the payments infrastructure is still cash, delays, and predatory fees.</p>
+</div>
+<div class="s2-grid rv d3">
+<div class="s2-left">
+<div style="margin-bottom:20px">
+<div style="font-size:.62rem;letter-spacing:4px;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:12px">The Pain Points</div>
+<div class="s2-stat-card bad rvl d2">
+<div class="s2-stat-ico">&#128176;</div>
+<div><div class="s2-stat-num">7-12%</div><div class="s2-stat-lbl">Remittance fees to send money home</div></div>
+</div>
+<div class="s2-stat-card bad rvl d3">
+<div class="s2-stat-ico">&#9200;</div>
+<div><div class="s2-stat-num">3-7 Days</div><div class="s2-stat-lbl">Cross-border settlement for agricultural trade</div></div>
+</div>
+<div class="s2-stat-card bad rvl d4">
+<div class="s2-stat-ico">&#127974;</div>
+<div><div class="s2-stat-num">Only 23%</div><div class="s2-stat-lbl">Of rural adults have formal bank accounts</div></div>
+</div>
+<div class="s2-stat-card bad rvl d5">
+<div class="s2-stat-ico">&#128184;</div>
+<div><div class="s2-stat-num">18-24%</div><div class="s2-stat-lbl">Annual interest on agricultural microloans</div></div>
+</div>
+</div>
+</div>
+<div class="s2-right">
+<div style="font-size:.62rem;letter-spacing:4px;text-transform:uppercase;color:var(--earth);font-weight:700;margin-bottom:12px">Bitcoin Changes Everything</div>
+<div class="s2-stat-card good rvr d2">
+<div class="s2-stat-ico">&#9889;</div>
+<div><div class="s2-stat-num">Under $0.01</div><div class="s2-stat-lbl">Transaction fee via Lightning Network</div></div>
+</div>
+<div class="s2-stat-card good rvr d3">
+<div class="s2-stat-ico">&#9889;</div>
+<div><div class="s2-stat-num">3 Seconds</div><div class="s2-stat-lbl">Instant settlement. No banks. No borders.</div></div>
+</div>
+<div class="s2-stat-card good rvr d4">
+<div class="s2-stat-ico">&#127758;</div>
+<div><div class="s2-stat-num">No Bank Required</div><div class="s2-stat-lbl">Bitcoin wallet = store of value. Cards powered by Batolink.</div></div>
+</div>
+<div class="s2-stat-card good rvr d5">
+<div class="s2-stat-ico">&#127806;</div>
+<div><div class="s2-stat-num">5-8% Interest</div><div class="s2-stat-lbl">BTC-collateralized input financing. Dramatically lower.</div></div>
+</div>
+</div>
+</div>
+<div style="max-width:1350px;margin:18px auto 0;width:100%;padding:14px 22px;border-radius:10px;background:rgba(245,166,35,.05);border:1px solid rgba(245,166,35,.12);text-align:center" class="rv d5">
+<div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--gold);margin-bottom:2px">SARE has already built the Bitcoin merchant network. Batolink provides the interface to scale it.</div>
+<div style="font-size:.72rem;color:var(--gray)">50,000+ farmers. Active Lightning node. Multi-currency settlement. All that's missing is the card.</div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 3: MEET THE PEOPLE -->
+<div class="slide" data-index="2">
+<div class="s3c">
+<div style="text-align:center;margin-bottom:28px">
+<div class="eyebrow g rv d1" style="text-align:center">The People</div>
+<h2 class="hed rv d2" style="font-size:clamp(2rem,3.2vw,3.5rem);margin-bottom:6px">These Are the People<br><span style="color:var(--gold)">Who Need This</span></h2>
+<p class="sub rv d3" style="max-width:500px;margin:0 auto">Real humans. Real pain. Real opportunity. The SARE x Batolink network transforms their financial lives.</p>
+</div>
+<div class="s3-cards">
+<div class="persona-card farmer rvs d2">
+<div class="persona-glow"></div>
+<div class="persona-emoji">&#128105;&#8205;&#127806;</div>
+<div class="persona-name">Sarah Wanjiku</div>
+<div class="persona-loc">Maize Farmer &middot; Eldoret, Kenya</div>
+<div class="persona-pain">Current Pain</div>
+<div class="persona-pain-desc">Sells harvest for cash. No bank account. No credit history. Local currency loses value. Can't get a loan for inputs.</div>
+<div class="persona-fix">With SARE x Batolink</div>
+<div class="persona-fix-desc">Receives Bitcoin for her harvest. Holds savings that don't depreciate. Builds verifiable credit history. Gets 5-8% input loans backed by her own BTC holdings.</div>
+</div>
+<div class="persona-card merchant rvs d3">
+<div class="persona-glow"></div>
+<div class="persona-emoji">&#127978;</div>
+<div class="persona-name">David Okonkwo</div>
+<div class="persona-loc">Agro-Dealer &middot; Kampala, Uganda</div>
+<div class="persona-pain">Current Pain</div>
+<div class="persona-pain-desc">Sells fertilizer and seeds. Cash-only. No way to accept digital payments. 3-5% card fees are too high. Can't reach diaspora buyers.</div>
+<div class="persona-fix">With SARE x Batolink</div>
+<div class="persona-fix-desc">Accepts Bitcoin at 0.01% fees. Auto-converts to local currency. Zero chargeback risk. Gains new customers from SARE's network and international diaspora buyers.</div>
+</div>
+<div class="persona-card diaspora rvs d4">
+<div class="persona-glow"></div>
+<div class="persona-emoji">&#127758;</div>
+<div class="persona-name">Mary Achieng</div>
+<div class="persona-loc">Nurse &middot; London, UK</div>
+<div class="persona-pain">Current Pain</div>
+<div class="persona-pain-desc">Sends money home to parents in Kisumu. 7% fees. Cash gets spent on other things. No way to buy goods directly for rural delivery.</div>
+<div class="persona-fix">With SARE x Batolink</div>
+<div class="persona-fix-desc">Buys fresh produce from SARE farmers with Bitcoin. 100% of value reaches her family as goods. Zero remittance fees. Parents receive weekly food deliveries.</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 4: FOUR FUNCTIONS -->
+<div class="slide" data-index="3">
+<div class="s4c">
+<div style="text-align:center;margin-bottom:30px">
+<div class="eyebrow g rv d1" style="text-align:center">The Product</div>
+<h2 class="hed rv d2" style="font-size:clamp(2rem,3.2vw,3.8rem);margin-bottom:4px">One Card.<br><span style="color:var(--gold)">Four Functions.</span></h2>
+<p class="sub rv d3" style="max-width:480px;margin:0 auto">The SARE Bitcoin Commerce Card. Powered by Batolink Technology. Every participant. One instrument.</p>
+</div>
+<div class="s4-diagram">
+<div class="s4-cards rv d3">
+<div class="s4-fn-card c1 rvs d2">
+<div class="s4-fn-ico">&#127380;</div>
+<div class="s4-fn-num">Function 01</div>
+<div class="s4-fn-title">Identity</div>
+<div class="s4-fn-desc">Verifiable digital ID. KYC-compliant. Your key to the entire SARE merchant network.</div>
+</div>
+<div class="s4-fn-card c2 rvs d3">
+<div class="s4-fn-ico">&#8383;</div>
+<div class="s4-fn-num">Function 02</div>
+<div class="s4-fn-title">Bitcoin Wallet</div>
+<div class="s4-fn-desc">Custodial BTC wallet. Lightning-ready. Optional non-custodial upgrade. Save in hard money.</div>
+</div>
+<div class="s4-fn-card c3 rvs d4">
+<div class="s4-fn-ico">&#128179;</div>
+<div class="s4-fn-num">Function 03</div>
+<div class="s4-fn-title">Fiat Wallet</div>
+<div class="s4-fn-desc">KES, UGX, TZS. Mobile money integration. Auto-conversion from BTC. Best of both worlds.</div>
+</div>
+<div class="s4-fn-card c4 rvs d5">
+<div class="s4-fn-ico">&#127978;</div>
+<div class="s4-fn-num">Function 04</div>
+<div class="s4-fn-title">Marketplace Access</div>
+<div class="s4-fn-desc">Browse SARE Marketplace. Buy from 50,000+ farmers. Tap to pay. Scan. Done.</div>
+</div>
+</div>
+<div class="s4-plus-row rv d4">
+<span class="s4-plus">+</span><span class="s4-plus">+</span><span class="s4-plus">+</span>
+</div>
+<div class="s4-equals rv d5">=</div>
+<div class="s4-result rv d5">
+<div class="s4-result-t">The SARE Bitcoin Commerce Card</div>
+<div class="s4-result-s">Powered by Batolink Technology &middot; Issued to consumers, farmers, merchants, and institutions across East Africa</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 5: THEIR STORIES -->
+<div class="slide" data-index="4">
+<div class="s5c">
+<div style="text-align:center;margin-bottom:32px">
+<div class="eyebrow g rv d1" style="text-align:center">Their Stories</div>
+<h2 class="hed rv d2" style="font-size:clamp(2rem,3.2vw,3.8rem);margin-bottom:6px">Two Transformations.<br><span style="color:var(--gold)">One Technology.</span></h2>
+<p class="sub rv d3" style="max-width:520px;margin:0 auto">Concrete examples of how the SARE x Batolink network transforms lives — powered by Bitcoin, enabled by smart cards.</p>
+</div>
+<div class="s5-row">
+<div class="s5-story s1 rvl d2">
+<div class="s5-story-head">
+<div class="s5-story-ico">&#127758;</div>
+<div><div class="s5-story-title">Diaspora Goods Purchase</div><div class="s5-story-sub">Mary in London &rarr; Parents in Kisumu</div></div>
+</div>
+<div class="s5-flow"><span>Browse Marketplace</span><span class="s5-flow-arrow">&rarr;</span><span>Pay in BTC</span><span class="s5-flow-arrow">&rarr;</span><span>Lightning Instant</span><span class="s5-flow-arrow">&rarr;</span><span>Farmer Confirms</span></div>
+<div class="s5-impact"><strong>Before:</strong> 7% remittance fee. Cash arrives, may not be used for intended purpose.<br><strong>After:</strong> $0.01 fee. Goods delivered to parents' door in 24 hours. Farmer paid instantly. Receipt on Bitcoin blockchain.</div>
+</div>
+<div class="s5-story s2 rvr d2">
+<div class="s5-story-head">
+<div class="s5-story-ico">&#127758;</div>
+<div><div class="s5-story-title">Cross-Border Agricultural Trade</div><div class="s5-story-sub">Tanzanian Exporter &rarr; Kenyan Cooperative</div></div>
+</div>
+<div class="s5-flow"><span>Fund Card with BTC</span><span class="s5-flow-arrow">&rarr;</span><span>Bulk Purchase</span><span class="s5-flow-arrow">&rarr;</span><span>Lightning Payment</span><span class="s5-flow-arrow">&rarr;</span><span>Instant Settlement</span></div>
+<div class="s5-impact"><strong>Before:</strong> TZS &rarr; USD &rarr; KES double conversion. 3-5 days. $25-50 bank fees.<br><strong>After:</strong> No currency conversion loss. Instant settlement. Under $0.10 in fees. Smart contract escrow releases payment at customs clearance.</div>
+</div>
+</div>
+<div style="max-width:1300px;margin:16px auto 0;width:100%;padding:14px 22px;border-radius:10px;background:rgba(245,166,35,.05);border:1px solid rgba(245,166,35,.1);text-align:center" class="rv d4">
+<div style="font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:rgba(255,255,255,.48)">"This isn't just a payment system. It's a <strong style="color:var(--gold);font-style:normal">lifeline</strong> for families. A <strong style="color:var(--gold);font-style:normal">growth engine</strong> for farmers. A <strong style="color:var(--gold);font-style:normal">market</strong> for merchants."</div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 6: ARCHITECTURE -->
+<div class="slide" data-index="5">
+<div class="s6c">
+<div style="text-align:center;margin-bottom:24px">
+<div class="eyebrow g rv d1" style="text-align:center">The Blueprint</div>
+<h2 class="hed rv d2" style="font-size:clamp(2rem,3.2vw,3.5rem);margin-bottom:6px">SBCN System Architecture<br><span style="color:var(--gold)">Powered by Batolink</span></h2>
+<p class="sub rv d3" style="max-width:500px;margin:0 auto">Every layer. Every service. Every transaction. Batolink technology is the backbone.</p>
+</div>
+<div class="arch-box rv d3">
+<div class="arch-title">SARE Network &mdash; Powered by Batolink</div>
+<div class="arch-layer">User Interface Layer</div>
+<div class="arch-services">
+<div class="arch-svc">Mobile App (iOS/Android)</div><div class="arch-svc">Physical Smart Card</div><div class="arch-svc">Web Portal</div><div class="arch-svc">USSD (*347#)</div>
+</div>
+<div class="arch-layer highlight">API Gateway Layer &mdash; BATOLINK</div>
+<div class="arch-layer highlight">Core Services Layer &mdash; BATOLINK</div>
+<div class="arch-services">
+<div class="arch-svc gold">Identity Service (KYC)</div><div class="arch-svc gold">Payment Orchestrator</div><div class="arch-svc gold">Bitcoin Service</div><div class="arch-svc gold">Card Management</div>
+</div>
+<div class="arch-services">
+<div class="arch-svc gold">Fiat Gateway</div><div class="arch-svc gold">Lightning Node Manager</div><div class="arch-svc gold">Conversion Engine</div><div class="arch-svc gold">Smart Contracts</div>
+</div>
+<div class="arch-layer highlight">Integration Layer &mdash; BATOLINK</div>
+<div class="arch-services">
+<div class="arch-svc">M-Pesa Gateway</div><div class="arch-svc">Airtel Money</div><div class="arch-svc gold">SARE Marketplace API</div><div class="arch-svc gold">Bitcoin Node (BTC)</div>
+</div>
+<div class="arch-services">
+<div class="arch-svc gold">Exchange Rate Oracles</div><div class="arch-svc gold">Blockchain Analytics</div><div class="arch-svc">IPFS (Receipts)</div><div class="arch-svc">Redis Cache</div>
+</div>
+<div class="arch-owned">
+<div class="arch-owned-item"><strong>SARE Africa</strong> &mdash; Network Owner & Operator</div>
+<div class="arch-owned-item"><strong>Batolink Technologies</strong> &mdash; Technology Infrastructure Provider</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 7: BEFORE/AFTER -->
+<div class="slide" data-index="6">
+<div class="s7c">
+<div style="text-align:center;margin-bottom:30px">
+<div class="eyebrow g rv d1" style="text-align:center">The Transformation</div>
+<h2 class="hed rv d2" style="font-size:clamp(2rem,3.2vw,3.8rem);margin-bottom:4px">This Is What<br><span style="color:var(--gold)">The Partnership Delivers</span></h2>
+<p class="sub rv d3" style="max-width:500px;margin:0 auto">Every problem the concept note identifies. Every solution the SARE x Batolink network provides. Side by side.</p>
+</div>
+<div class="ba-grid rv d3">
+<div class="ba-col before rvl d2">
+<div class="ba-col-header"><div class="ba-col-badge">Before</div><div class="ba-col-title">Without SARE x Batolink</div></div>
+<div class="ba-items">
+<div class="ba-item"><div class="ba-item-dot"></div>Cash-dominant rural economy — security risks, no transaction history</div>
+<div class="ba-item"><div class="ba-item-dot"></div>7-12% remittance fees to send value to rural relatives</div>
+<div class="ba-item"><div class="ba-item-dot"></div>3-7 day cross-border settlement for agricultural trade</div>
+<div class="ba-item"><div class="ba-item-dot"></div>Only 23% of rural adults have formal bank accounts</div>
+<div class="ba-item"><div class="ba-item-dot"></div>18-24% interest on agricultural microloans</div>
+<div class="ba-item"><div class="ba-item-dot"></div>No payment-linked traceability for supply chains</div>
+</div>
+</div>
+<div class="ba-col after rvr d2">
+<div class="ba-col-header"><div class="ba-col-badge">After</div><div class="ba-col-title">With SARE x Batolink</div></div>
+<div class="ba-items">
+<div class="ba-item"><div class="ba-item-dot"></div>Bitcoin and local currency — one card. Every transaction recorded.</div>
+<div class="ba-item"><div class="ba-item-dot"></div>Under $0.01 fee. 100% of value reaches the family. Goods delivered, not just money sent.</div>
+<div class="ba-item"><div class="ba-item-dot"></div>Instant Lightning settlement. No correspondent banks. No currency conversion loss.</div>
+<div class="ba-item"><div class="ba-item-dot"></div>Bitcoin wallet = store of value. No bank required. Financial sovereignty.</div>
+<div class="ba-item"><div class="ba-item-dot"></div>5-8% BTC-collateralized input financing. Build credit from harvest history.</div>
+<div class="ba-item"><div class="ba-item-dot"></div>Immutable Bitcoin blockchain audit trail. Full supply chain provenance.</div>
+</div>
+</div>
+</div>
+<div class="ba-result rv d4" style="max-width:1300px;margin:16px auto 0;width:100%">
+"The SARE Bitcoin Commerce Network, <strong>powered by Batolink Technology</strong>, transforms agriculture from a cash-dependent, high-friction sector into a <strong>digitally native, Bitcoin-enabled economic engine.</strong>"
+</div>
+</div>
+</div>
+
+<!-- SLIDE 8: USE CASES -->
+<div class="slide" data-index="7">
+<div class="s8c">
+<div style="text-align:center;margin-bottom:24px">
+<div class="eyebrow g rv d1" style="text-align:center">Use Cases</div>
+<h2 class="hed rv d2" style="font-size:clamp(2rem,3.2vw,3.8rem);margin-bottom:4px">Five Ways the Network<br><span style="color:var(--gold)">Creates Value</span></h2>
+<p class="sub rv d3" style="max-width:520px;margin:0 auto">From the concept note. These are the Bitcoin-native capabilities that no competitor can match.</p>
+</div>
+<div class="use-grid rv d3">
+<div class="use-card u1 rvs d2">
+<div class="use-head"><div class="use-ico">&#127758;</div><div class="use-title">Diaspora Goods Purchase</div></div>
+<div class="use-desc">Buy fresh produce for rural family from anywhere in the world. Pay in Bitcoin. Goods delivered within 24 hours. Zero remittance fees.</div>
+<div class="use-metric"><span class="use-metric-val">0% Fee</span><span class="use-metric-lbl">vs 7-12% remittance</span></div>
+</div>
+<div class="use-card u2 rvs d3">
+<div class="use-head"><div class="use-ico">&#127760;</div><div class="use-title">Cross-Border Agricultural Trade</div></div>
+<div class="use-desc">Tanzanian exporter buys Kenyan avocados. Pays BTC via Lightning. Instant settlement. No correspondent banks. Multi-signature escrow.</div>
+<div class="use-metric"><span class="use-metric-val">3 Seconds</span><span class="use-metric-lbl">vs 3-7 days</span></div>
+</div>
+<div class="use-card u3 rvs d4">
+<div class="use-head"><div class="use-ico">&#127806;</div><div class="use-title">Input Financing with BTC Collateral</div></div>
+<div class="use-desc">Farmer uses accumulated Bitcoin as collateral for input loans. 5-8% interest vs 18-24% from traditional microfinance. Time-locked multi-sig.</div>
+<div class="use-metric"><span class="use-metric-val">5-8%</span><span class="use-metric-lbl">vs 18-24% interest</span></div>
+</div>
+<div class="use-card u4 rvs d5">
+<div class="use-head"><div class="use-ico">&#128179;</div><div class="use-title">Cooperative Bulk Purchasing</div></div>
+<div class="use-desc">200 farmers pool BTC for bulk fertilizer at 30% discount. Multi-signature wallet. Every member verifies the transaction on blockchain.</div>
+<div class="use-metric"><span class="use-metric-val">30%</span><span class="use-metric-lbl">bulk discount unlocked</span></div>
+</div>
+<div class="use-card u5 rvs d6">
+<div class="use-head"><div class="use-ico">&#127793;</div><div class="use-title">Carbon Credit Integration (Future Phase)</div></div>
+<div class="use-desc">SARE farmers practicing regenerative agriculture earn tokenized carbon credits on Bitcoin/Lightning (RGB assets). Sold to international buyers. New revenue stream for sustainable farming. Farmers receive Bitcoin directly for carbon sequestration.</div>
+<div class="use-metric"><span class="use-metric-val">New Revenue</span><span class="use-metric-lbl">Carbon credits + Bitcoin for farmers</span></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 9: THE CARD -->
+<div class="slide" data-index="8">
+<div class="s9c">
+<div class="s9-layout">
+<div class="s9-left">
+<div class="eyebrow g rv d1">The Engine</div>
+<h2 class="hed rv d2" style="font-size:clamp(2rem,3.2vw,3.8rem);margin-bottom:4px">The SARE Commerce Card.<br><span style="color:var(--gold)">Powered by Batolink.</span></h2>
+<p class="sub rv d3" style="max-width:420px;margin-bottom:16px">NFC contactless. Bitcoin and local currency. Identity, wallet, marketplace — all in one card. <strong style="color:#fff">This is the interface that 50,000 farmers and 250,000 cardholders will hold.</strong></p>
+<div class="rv d3" style="display:flex;flex-direction:column;gap:6px">
+<div class="s9-feature rv d3">
+<div class="s9-feat-ico">&#127380;</div><div><div class="s9-feat-title">Unified Identity + Payments</div><div class="s9-feat-desc">One card is your ID, your wallet, and your key to the entire SARE merchant network.</div></div>
+</div>
+<div class="s9-feature rv d4">
+<div class="s9-feat-ico">&#8383;</div><div><div class="s9-feat-title">Bitcoin + Fiat. One Instrument.</div><div class="s9-feat-desc">Hold BTC. Spend KES. Auto-convert. Multi-currency. Multi-wallet architecture.</div></div>
+</div>
+<div class="s9-feature rv d5">
+<div class="s9-feat-ico">&#9889;</div><div><div class="s9-feat-title">Lightning-Ready from Day One</div><div class="s9-feat-desc">Every card is connected to a Lightning wallet. Instant payments at every SARE merchant.</div></div>
+</div>
+</div>
+</div>
+<div class="s9-right">
+<div class="s9-glow"></div>
+<img class="s9-card-img rvs d2" src="C:\Users\User\Batolink\SARE\assets\Sare BTC Card.png" alt="SARE Bitcoin Commerce Card">
+<div class="s9-stats-row rv d4">
+<div class="s9-stat-block"><div class="s9-stat-num">$3M</div><div class="s9-stat-lbl" style="color:var(--earth)">SARE Year 3 Revenue</div></div>
+<div class="s9-stat-block"><div class="s9-stat-num">$4.5M</div><div class="s9-stat-lbl" style="color:var(--gold)">Batolink Year 3</div></div>
+<div class="s9-stat-block"><div class="s9-stat-num">$200M</div><div class="s9-stat-lbl">Annual TXN Volume</div></div>
+</div>
+<div class="s9-tagline rv d5">SARE x Batolink Bitcoin Commerce Card</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 10: ECONOMICS — DUAL REVENUE -->
+<div class="slide" data-index="9">
+<div class="s10c">
+<div class="s10-left">
+<div class="eyebrow g rv d1">The Economics</div>
+<h2 class="hed rv d2" style="font-size:clamp(1.7rem,2.6vw,2.8rem);margin-bottom:8px">How <span style="color:var(--earth)">SARE</span> + <span style="color:var(--gold)">Batolink</span><br>Win Together</h2>
+<p class="sub rv d3" style="max-width:420px;margin-bottom:14px">Multiple revenue streams. Aligned incentives. Both partners grow together. (Year 3 projections at 250K cardholders.)</p>
+
+<!-- SARE STREAMS -->
+<div style="font-size:.52rem;letter-spacing:4px;text-transform:uppercase;color:var(--earth);font-weight:700;margin-bottom:6px" class="rv d3">SARE Revenue</div>
+<div class="wf-item w3 rv d3">
+<div class="wf-label" style="color:var(--earth)">Marketplace Commissions</div>
+<div class="wf-amt">$1.8M / year</div>
+<div class="wf-desc"><strong style="color:#fff">2-3% per transaction</strong> on SARE Marketplace &mdash; diaspora purchases, institutional procurement, direct sales. 100% to SARE.</div>
+</div>
+<div class="wf-item w3 rv d3" style="margin-top:6px">
+<div class="wf-label" style="color:var(--earth)">Technology Fee Share</div>
+<div class="wf-amt">$900K / year</div>
+<div class="wf-desc"><strong style="color:#fff">30% of all tech fees</strong> &mdash; card issuance, conversion spreads, Lightning routing. SARE earns from every Batolink-powered transaction.</div>
+</div>
+<div class="wf-item w3 rv d3" style="margin-top:6px">
+<div class="wf-label" style="color:var(--earth)">Subscriptions + Data</div>
+<div class="wf-amt">$300K / year</div>
+<div class="wf-desc"><strong style="color:#fff">40% of subs + 100% data analytics</strong> &mdash; market intelligence reports, insights sold to institutions and partners.</div>
+</div>
+
+<!-- BATOLINK STREAMS -->
+<div style="font-size:.52rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:700;margin:10px 0 6px" class="rv d4">Batolink Revenue</div>
+<div class="wf-item w1 rv d4">
+<div class="wf-label" style="color:var(--gold)">Card Issuance + Annual Fees</div>
+<div class="wf-amt">$1.5M / year</div>
+<div class="wf-desc"><strong style="color:#fff">70% share</strong> &mdash; $3-5 per card + $2-5/year per active cardholder. Predictable, recurring revenue.</div>
+</div>
+<div class="wf-item w2 rv d4" style="margin-top:6px">
+<div class="wf-label" style="color:var(--btc)">Transaction & Conversion Fees</div>
+<div class="wf-amt">$2.2M / year</div>
+<div class="wf-desc"><strong style="color:#fff">70% share</strong> &mdash; 1-1.5% spread on BTC-KES + 0.01-0.05% Lightning routing. Scales with volume.</div>
+</div>
+<div class="wf-item w2 rv d4" style="margin-top:6px">
+<div class="wf-label" style="color:var(--btc)">Subscriptions + API</div>
+<div class="wf-amt">$800K / year</div>
+<div class="wf-desc"><strong style="color:#fff">60% share</strong> &mdash; Merchant dashboard, institutional accounts, API licensing.</div>
+</div>
+</div>
+<div class="s10-right">
+<!-- COMBINED TOTAL -->
+<div class="wf-total rv d4" style="background:linear-gradient(135deg,rgba(46,90,59,.12),rgba(245,166,35,.1));border:2px solid rgba(245,166,35,.25)">
+<div class="wf-total-lbl">Combined Year 3 Revenue</div>
+<div class="wf-total-val" style="font-size:2.6rem">$7.5M+</div>
+<div class="wf-total-sub"><span style="color:var(--earth);font-weight:600">SARE: $3M</span> &middot; <span style="color:var(--gold);font-weight:600">Batolink: $4.5M</span></div>
+</div>
+
+<!-- SPLIT TABLE -->
+<div class="rv d4" style="padding:16px 20px;border-radius:12px;background:rgba(255,255,255,.015);border:1px solid rgba(255,255,255,.06);margin-top:8px">
+<div style="font-size:.52rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px">Revenue Split Detail</div>
+<div style="display:flex;flex-direction:column;gap:4px;font-size:.63rem;color:#c8d4e0">
+<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.03)"><span>Marketplace Commission (2-3%)</span><span style="color:var(--earth);font-weight:600">100% SARE</span></div>
+<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.03)"><span>Card Issuance & Annual Fees</span><span style="color:var(--gold);font-weight:600">70% Batolink / 30% SARE</span></div>
+<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.03)"><span>BTC/Fiat Conversion Spread</span><span style="color:var(--gold);font-weight:600">70% Batolink / 30% SARE</span></div>
+<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.03)"><span>Lightning Routing Fees</span><span style="color:var(--gold);font-weight:600">70% Batolink / 30% SARE</span></div>
+<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.03)"><span>Merchant Subscriptions</span><span style="color:var(--gold);font-weight:600">60% Batolink / 40% SARE</span></div>
+<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.03)"><span>Institutional Accts + API</span><span style="color:var(--gold);font-weight:600">60% Batolink / 40% SARE</span></div>
+<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.03)"><span>Data Analytics</span><span style="color:var(--earth);font-weight:600">50% SARE / 50% Batolink</span></div>
+<div style="display:flex;justify-content:space-between;padding:3px 0"><span>BTC Withdrawal Fee</span><span style="color:var(--gold);font-weight:600">100% Batolink</span></div>
+</div>
+</div>
+
+<!-- 5-YEAR BAR -->
+<div class="s10-year-bar rv d5">
+<div class="s10-yb"><div class="s10-yb-yr">Year 1</div><div class="s10-yb-amt" style="font-size:.75rem">$270K</div><div class="s10-yb-sub">Per partner</div></div>
+<div class="s10-yb"><div class="s10-yb-yr">Year 2</div><div class="s10-yb-amt" style="font-size:.75rem">$1.28M</div><div class="s10-yb-sub">Per partner</div></div>
+<div class="s10-yb"><div class="s10-yb-yr">Year 3</div><div class="s10-yb-amt" style="font-size:.75rem"><span style="color:var(--earth)">$3M</span> / <span style="color:var(--gold)">$4.5M</span></div><div class="s10-yb-sub">SARE / Bato</div></div>
+<div class="s10-yb"><div class="s10-yb-yr">Year 4</div><div class="s10-yb-amt" style="font-size:.75rem">$7.5M</div><div class="s10-yb-sub">Per partner</div></div>
+<div class="s10-yb"><div class="s10-yb-yr">Year 5</div><div class="s10-yb-amt" style="font-size:.95rem">$18M</div><div class="s10-yb-sub">Per partner</div></div>
+</div>
+
+<div class="s10-highlight rv d6" style="margin-top:6px">
+<div style="font-size:1.2rem">&#128640;</div>
+<div><strong>Both partners achieve 15x return</strong> by Year 5. EBITDA positive Year 3. 35% margin. Batolink invests 55% ($1.46M), earns 60% of combined revenue. <span style="color:var(--earth);font-weight:600">SARE: $18M</span> &middot; <span style="color:var(--gold);font-weight:600">Batolink: $18M</span>.</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 11: RISK & GOVERNANCE -->
+<div class="slide" data-index="10">
+<div class="s11c">
+<div class="s11-left">
+<div class="eyebrow g rv d1">Trust & Control</div>
+<h2 class="hed rv d2" style="font-size:clamp(2rem,3.2vw,3.5rem);margin-bottom:10px">We've Thought<br><span style="color:var(--gold)">About Everything</span></h2>
+<p class="sub rv d3" style="margin-bottom:20px">A sophisticated partnership needs a clear risk framework and governance structure. Here's both.</p>
+<div class="s11-panel risks rv d3">
+<div style="font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:12px">Risk Management Framework</div>
+<div class="risk-row"><span class="risk-name">Regulatory</span><span class="risk-mitigation">Proactive engagement &middot; Sandbox application &middot; Separate legal entity for BTC ops</span></div>
+<div class="risk-row"><span class="risk-name">BTC Volatility</span><span class="risk-mitigation">Auto-conversion feature &middot; Stablecoin option &middot; User education</span></div>
+<div class="risk-row"><span class="risk-name">Rural Adoption</span><span class="risk-mitigation">USSD interface &middot; Agent network &middot; Offline card capability</span></div>
+<div class="risk-row"><span class="risk-name">Lightning Liquidity</span><span class="risk-mitigation">Professional LSP &middot; Automated channel mgmt &middot; Redundant nodes</span></div>
+<div class="risk-row"><span class="risk-name">Card Security</span><span class="risk-mitigation">Hardware security modules &middot; Penetration testing &middot; Industry cert</span></div>
+<div class="risk-row"><span class="risk-name">Compliance</span><span class="risk-mitigation">Full Travel Rule &middot; Blockchain analytics &middot; Transaction monitoring</span></div>
+</div>
+</div>
+<div class="s11-right">
+<div class="s11-panel gov rv d4">
+<div style="font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--earth);font-weight:700;margin-bottom:12px">Governance Structure</div>
+<div class="gov-row"><span class="gov-ico">&#127970;</span><div><strong style="color:#fff">Joint Steering Committee</strong><br><span style="font-size:.62rem;color:var(--gray)">3 SARE + 3 Batolink. Monthly meetings Phase 1-2. Quarterly thereafter.</span></div></div>
+<div class="gov-row"><span class="gov-ico">&#9878;</span><div><strong style="color:#fff">Decision Rights</strong><br><span style="font-size:.62rem;color:var(--gray)">Strategic: Unanimous. Operational: Majority. Tech: Batolink lead. Network: SARE lead. Investment: Batolink 55% majority.</span></div></div>
+<div class="gov-row"><span class="gov-ico">&#128179;</span><div><strong style="color:#fff">Revenue Sharing</strong><br><span style="font-size:.62rem;color:var(--gray)">Tech fees: 70% Batolink / 30% SARE. Marketplace: 100% SARE. Subs: 60% Batolink.</span></div></div>
+<div class="gov-row"><span class="gov-ico">&#128274;</span><div><strong style="color:#fff">IP & Ownership</strong><br><span style="font-size:.62rem;color:var(--gray)">SARE owns network + brand. Batolink owns technology platform. Clear boundaries.</span></div></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 12: TIMELINE -->
+<div class="slide" data-index="11">
+<div class="s12c">
+<div style="text-align:center;margin-bottom:28px">
+<div class="eyebrow g rv d1" style="text-align:center">The Roadmap</div>
+<h2 class="hed rv d2" style="font-size:clamp(2rem,3.2vw,3.8rem);margin-bottom:4px">From Signature<br><span style="color:var(--gold)">to $6M Revenue</span></h2>
+<p class="sub rv d3" style="max-width:520px;margin:0 auto">A phased, risk-managed rollout. Batolink generates revenue from the day cards are deployed. Every phase unlocks the next.</p>
+</div>
+<div class="tl-phases rv d3">
+<div class="tl-phase p1 rvs d2">
+<div class="tl-phase-num">01</div>
+<div class="tl-phase-title">Foundation</div>
+<div class="tl-phase-time">Months 1-4</div>
+<div class="tl-phase-items">Legal agreement signed<br>Technical integration<br>BTC node + Lightning deploy<br>500 beta testers<br>Regulatory sandbox</div>
+</div>
+<div class="tl-phase p2 rvs d3">
+<div class="tl-phase-num">02</div>
+<div class="tl-phase-title">Market Launch</div>
+<div class="tl-phase-time">Months 5-8</div>
+<div class="tl-phase-items">Public Kenya launch<br>5,000 farmers onboarded<br>1,000+ merchants<br>5 institutional pilots<br>Diaspora marketing</div>
+</div>
+<div class="tl-phase p3 rvs d4">
+<div class="tl-phase-num">03</div>
+<div class="tl-phase-title">Expansion</div>
+<div class="tl-phase-time">Months 9-18</div>
+<div class="tl-phase-items">Uganda + Tanzania entry<br>Smart contract escrow<br>Input financing product<br>150K cardholders<br>Carbon credit beta</div>
+</div>
+<div class="tl-phase p4 rvs d5">
+<div class="tl-phase-num">04</div>
+<div class="tl-phase-title">Ecosystem Scale</div>
+<div class="tl-phase-time">Months 19-36</div>
+<div class="tl-phase-items">5+ African countries<br>500K+ cardholders<br>Bitcoin DeFi integration<br>Tokenized agri-assets<br>$75M+ monthly volume</div>
+</div>
+</div>
+<div class="tl-bar rv d4">
+<div class="tl-bar-seg s1"></div><div class="tl-bar-seg s2"></div><div class="tl-bar-seg s3"></div><div class="tl-bar-seg s4"></div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 13: 5-YEAR VISION -->
+<div class="slide" data-index="12">
+<div class="s13c">
+<div style="text-align:center;margin-bottom:28px">
+<div class="eyebrow g rv d1" style="text-align:center">The Vision</div>
+<h2 class="hed rv d2" style="font-size:clamp(2rem,3.2vw,3.8rem);margin-bottom:4px">5-Year Revenue Forecast</h2>
+<p class="sub rv d3" style="max-width:520px;margin:0 auto">From the concept note. Conservative. Data-driven. Growing every year.</p>
+</div>
+<div class="vision-table rv d3">
+<div class="vision-row header"><span>Year</span><span>Active Users</span><span>Annual TXN Volume</span><span>Gross Revenue</span></div>
+<div class="vision-row"><span class="yr">1</span><span class="users">25,000</span><span class="vol">$18M</span><span class="rev">$540K</span></div>
+<div class="vision-row"><span class="yr">2</span><span class="users">120,000</span><span class="vol">$85M</span><span class="rev">$2.55M</span></div>
+<div class="vision-row"><span class="yr">3</span><span class="users">250,000</span><span class="vol">$200M</span><span class="rev">$6M</span></div>
+<div class="vision-row"><span class="yr">4</span><span class="users">450,000</span><span class="vol">$500M</span><span class="rev">$15M</span></div>
+<div class="vision-row"><span class="yr">5</span><span class="users">750,000</span><span class="vol">$1.2B</span><span class="rev">$36M</span></div>
+</div>
+<div class="vision-footer rv d4" style="max-width:1100px;margin:0 auto;width:100%;border-radius:0 0 14px 14px">
+<strong>Batolink's share:</strong> $270K (Y1) &rarr; $1.28M (Y2) &rarr; $3M (Y3) &rarr; $7.5M (Y4) &rarr; $18M (Y5)<br>
+Assumptions: 3% blended revenue rate &middot; Breakeven Month 20 &middot; 35% EBITDA margin by Year 5 &middot; $8.8M EBITDA
+</div>
+</div>
+</div>
+
+<!-- SLIDE 14: THE DEAL -->
+<div class="slide" data-index="13">
+<div class="s14c">
+<div class="deal-col sare rvl d2">
+<div class="deal-header"><div class="deal-name">SARE Africa</div><div class="deal-pct">45%</div></div>
+<div class="deal-role">Network Lead &middot; Brand Owner &middot; Operator</div>
+<div class="deal-item">Network operator & brand owner</div>
+<div class="deal-item">Merchant & farmer relationships</div>
+<div class="deal-item">Marketplace operations</div>
+<div class="deal-item">Regulatory engagement</div>
+<div class="deal-item">100% of marketplace commissions</div>
+<div class="deal-item">30% of technology fees</div>
+<div class="deal-item" style="margin-top:8px;color:var(--earth);font-weight:700">Investment: $1.19M</div>
+</div>
+<div class="deal-col bato rvr d2">
+<div class="deal-header"><div class="deal-name">Batolink</div><div class="deal-pct">55%</div></div>
+<div class="deal-role">Technology Lead &middot; Majority Investor</div>
+<div class="deal-item" style="color:var(--gold);font-weight:600">Technology infrastructure provider</div>
+<div class="deal-item" style="color:var(--gold);font-weight:600">Smart card manufacturing & issuance</div>
+<div class="deal-item" style="color:var(--gold);font-weight:600">Mobile app & platform development</div>
+<div class="deal-item" style="color:var(--gold);font-weight:600">Lightning node operations (LSP)</div>
+<div class="deal-item" style="color:var(--gold);font-weight:600">70% of all technology fees</div>
+<div class="deal-item" style="color:var(--gold);font-weight:600">60% of subscription revenue</div>
+<div class="deal-item" style="margin-top:8px;color:var(--gold);font-weight:700">Investment: $1.46M</div>
+</div>
+</div>
+<div class="deal-bottom rv d5" style="max-width:calc(100% - 160px);margin:0 auto;width:100%">
+<div class="deal-bottom-lbl">Total Investment Required</div>
+<div class="deal-bottom-val">$2.65M</div>
+<div class="deal-bottom-sub">Batolink: $1.46M (55%) &middot; SARE: $1.19M (45%) &middot; Two-year deployment across four phases &middot; 15x return for Batolink by Year 5</div>
+</div>
+</div>
+
+<!-- SLIDE 15: CLOSING -->
+<div class="slide" data-index="14">
+<div class="s15-bg"></div><div class="s15-grid"></div><div class="s15-glow"></div>
+<div class="s15-layout">
+<div class="s15-eyebrow rv d1">The Partnership</div>
+<h1 class="s15-hed rv d2" style="max-width:950px">
+Africa's First<br><span style="color:var(--gold)">Bitcoin Agricultural Commerce Ecosystem</span>
+</h1>
+<p class="s15-body rv d3"><strong>SARE Africa has built the network. Batolink provides the irreplaceable technology — and leads the investment.</strong> Together, they create the infrastructure that enables 250,000+ cardholders across 3+ countries. Batolink invests $1.46M (55% share), earns $4.5M+ by Year 3 from card issuance, transactions, and subscriptions. SARE invests $1.19M (45% share), earns $3M+ from marketplace commissions and technology fee shares. <strong style="color:#fff">Both partners achieve 15x return by Year 5 — $18M each.</strong></p>
+<div class="s15-quote rv d4">"The missing element is a scalable consumer and merchant interface. That element is Batolink."<br>&mdash; SARE Bitcoin Commerce Network Concept Note, June 2026</div>
+<button class="s15-cta rv d5" onclick="window.print()">Let's Build This &rarr;</button>
+<div class="s15-logos rv d6">
+<img src="assets/Sare Logo.png" alt="SARE">
+<div class="sep"></div>
+<img src="assets/Bato Logo.png" alt="Batolink">
+</div>
+<div class="s15-conf rv d7">Confidential &mdash; Strategic Collaboration Proposal &mdash; Cadet (Batolink) &mdash; Azim (SARE) &mdash; June 2026</div>
+</div>
+</div>
+
+</div><!-- end #pres -->
+
+<script>
+const canvas=document.getElementById('pc');
+const ctx=canvas.getContext('2d');
+let particles=[],mouse={x:0,y:0};
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+resizeCanvas();window.addEventListener('resize',resizeCanvas);
+class Particle{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.size=Math.random()*1.6+0.3;this.speedX=(Math.random()-.5)*.35;this.speedY=(Math.random()-.5)*.35;this.color=Math.random()>.5?'rgba(245,166,35,':'rgba(247,147,26,';this.opacity=Math.random()*.35+.06}
+update(){this.x+=this.speedX;this.y+=this.speedY;const dx=mouse.x-this.x,dy=mouse.y-this.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<140){this.x-=dx*.016;this.y-=dy*.016}if(this.x<0||this.x>canvas.width)this.speedX*=-1;if(this.y<0||this.y>canvas.height)this.speedY*=-1}
+draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=this.color+this.opacity+')';ctx.fill()}}
+for(let i=0;i<75;i++)particles.push(new Particle());
+function animateParticles(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{p.update();p.draw()});for(let i=0;i<particles.length;i++){for(let j=i+1;j<particles.length;j++){const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<115){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle='rgba(245,166,35,'+(0.07-dist/1375)+')';ctx.lineWidth=.35;ctx.stroke()}}}requestAnimationFrame(animateParticles)}
+animateParticles();document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+let cur=0;const slides=document.querySelectorAll('.slide'),total=slides.length,dots=document.querySelectorAll('.nd'),cslide=document.getElementById('cslide'),prev=document.getElementById('prev'),next=document.getElementById('next');
+function updateSlides(){slides.forEach((s,i)=>{s.classList.toggle('active',i===cur)});dots.forEach((d,i)=>d.classList.toggle('active',i===cur));cslide.textContent=String(cur+1).padStart(2,'0');prev.classList.toggle('dis',cur===0);next.classList.toggle('dis',cur===total-1);if([0,1,8,9,12].includes(cur))animateCounters()}
+function nextSlide(){if(cur<total-1){cur++;updateSlides()}}
+function prevSlide(){if(cur>0){cur--;updateSlides()}}
+function goToSlide(i){cur=i;updateSlides()}
+prev.addEventListener('click',prevSlide);next.addEventListener('click',nextSlide);
+dots.forEach((d,i)=>d.addEventListener('click',()=>goToSlide(i)));
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ')nextSlide();if(e.key==='ArrowLeft'||e.key==='ArrowUp')prevSlide()});
+let tsy=0;document.addEventListener('touchstart',e=>{tsy=e.touches[0].clientY});document.addEventListener('touchend',e=>{const d=tsy-e.changedTouches[0].clientY;if(Math.abs(d)>50)d>0?nextSlide():prevSlide()});
+function animateCounters(){document.querySelectorAll('[data-count]').forEach(el=>{const target=parseInt(el.dataset.count),dur=1800,start=performance.now();function update(now){const p=Math.min((now-start)/dur,1),eased=1-Math.pow(1-p,3),v=Math.floor(target*eased);if(target>=1000000)el.textContent=(v/1000000).toFixed(0)+'M+';else if(target>=1000)el.textContent=v.toLocaleString()+'+';else el.textContent=v+'%';if(p<1)requestAnimationFrame(update)}requestAnimationFrame(update)});document.querySelectorAll('[data-count-sav]').forEach(el=>{const target=parseInt(el.dataset.countSav),dur=1500,start=performance.now();function update(now){const p=Math.min((now-start)/dur,1),eased=1-Math.pow(1-p,3);el.textContent='KES '+Math.floor(target*eased).toLocaleString();if(p<1)requestAnimationFrame(update)}requestAnimationFrame(update)})}
+setTimeout(()=>document.getElementById('loader').classList.add('hidden'),2000);updateSlides();
+</script>
+</body>
+</html>
