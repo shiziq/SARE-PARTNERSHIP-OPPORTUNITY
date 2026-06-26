@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unilateral Non-Disclosure Agreement — Batolink Global Technologies</title>
+<style>
+:root {
+  --gold: #F5A623;
+  --blue: #2080C0;
+  --red: #A00;
+  --dark: #060D1A;
+  --paper: #0D1520;
+  --gray: #7A8499;
+  --border: rgba(255,255,255,.08);
+  --text: #C8D4E0;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Georgia', 'Times New Roman', serif; background: var(--dark); color: #aaa; line-height: 1.7; font-size: 15px; }
+header { text-align: center; padding: 50px 20px 30px; border-bottom: 1px solid var(--border); }
+header .tag { font-size: 11px; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+header h1 { font-size: 28px; color: #fff; font-weight: normal; letter-spacing: 1px; margin-bottom: 6px; }
+header h2 { font-size: 15px; color: var(--gray); font-weight: normal; letter-spacing: 1px; }
+header .date { margin-top: 16px; font-size: 13px; color: #777; letter-spacing: 2px; }
+.agreement { max-width: 800px; margin: 0 auto; padding: 20px 40px 60px; }
+.parties { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 30px 0 40px; padding: 25px; border: 1px solid var(--border); border-radius: 4px; background: rgba(255,255,255,.01); }
+.party h3 { font-size: 14px; color: #fff; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.party .name { font-size: 16px; color: #fff; margin-bottom: 2px; }
+.party .detail { font-size: 12px; color: var(--gray); line-height: 1.6; }
+.note { background: rgba(245,166,35,.08); border-left: 3px solid var(--gold); padding: 14px 18px; margin: 20px 0; font-size: 13px; line-height: 1.6; color: #b8a070; }
+.note.blue { background: rgba(32,128,192,.08); border-left-color: var(--blue); color: #90b8d8; }
+.section { margin: 30px 0; padding-bottom: 10px; }
+.section h3 { font-size: 15px; color: #fff; letter-spacing: 1px; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,.05); }
+.section h3 span { color: var(--gray); font-size: 12px; letter-spacing: 2px; margin-right: 8px; }
+.section p, .section li { margin-bottom: 10px; }
+ul, ol { padding-left: 20px; margin: 8px 0; }
+li { margin-bottom: 6px; }
+.definition { background: rgba(255,255,255,.015); border: 1px solid var(--border); padding: 16px 20px; border-radius: 4px; margin: 12px 0; }
+.definition strong { color: #fff; }
+.term { font-family: 'Courier New', monospace; background: rgba(255,255,255,.04); padding: 3px 8px; border-radius: 2px; font-size: 13px; color: var(--gold); display: inline-block; margin: 6px 0; }
+.highlight { border-left: 3px solid var(--red); padding: 14px 18px; background: rgba(170,0,0,.06); margin: 16px 0; }
+.highlight strong { color: var(--red); }
+.highlight.blue { border-left-color: var(--blue); background: rgba(32,128,192,.06); }
+.highlight.blue strong { color: var(--blue); }
+.sig-line { border-top: 1px solid var(--border); margin: 16px 0 6px; width: 60%; }
+.sig-label { font-size: 11px; color: var(--gray); letter-spacing: 1px; margin-bottom: 6px; }
+.sig-block { margin-top: 50px; }
+.sig-block h3 { font-size: 14px; color: #fff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; }
+.sig-block .company { color: var(--blue); font-size: 13px; letter-spacing: 1px; margin-bottom: 20px; }
+.footer { margin-top: 60px; text-align: center; font-size: 11px; color: #555; letter-spacing: 2px; border-top: 1px solid var(--border); padding-top: 20px; }
+fieldset { border: 1px solid var(--border); padding: 16px 20px; margin: 14px 0; border-radius: 4px; }
+legend { font-size: 11px; color: var(--gray); letter-spacing: 3px; text-transform: uppercase; padding: 0 8px; }
+.inline-fill { border-bottom: 1px solid rgba(255,255,255,.15); padding: 0 12px; display: inline-block; min-width: 180px; }
+@media print { body { background: #fff; color: #000; font-size: 12px; } .agreement { max-width: 100%; } .party, .definition, .highlight, .highlight.blue, .note, .note.blue { background: #f9f9f9; color: #222; border-color: #ccc; } .section h3, .sig-block h3, .party h3, .party .name { color: #000; } header h1 { color: #000; } }
+@media (max-width: 700px) { .agreement { padding: 15px 20px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="tag">Confidential — For Execution</div>
+  <h1>UNILATERAL NON-DISCLOSURE AGREEMENT</h1>
+  <h2>Protecting Batolink Global Technologies' Confidential Information Across All Partnership Discussions</h2>
+  <div class="date">Effective Date: <span class="inline-fill"></span>, 2026</div>
+</header>
+
+<article class="agreement">
+
+<div class="note">
+  <strong>Purpose:</strong> This Unilateral Non-Disclosure Agreement (&ldquo;Agreement&rdquo;) is entered into by Batolink Global Technologies (&ldquo;Disclosing Party&rdquo; or &ldquo;Batolink&rdquo;) and the undersigned recipient (&ldquo;Receiving Party&rdquo;). It governs <strong>any and all</strong> Confidential Information disclosed by Batolink to the Receiving Party across all discussions, meetings, presentations, demonstrations, site visits, correspondence, and exchanges — whether related to the SARE Bitcoin Commerce Network (SBCN) partnership or <strong>any other matter, opportunity, product, service, technology, or business venture</strong> that Batolink may discuss with the Receiving Party now or in the future. This is a blanket agreement — it covers everything Batolink chooses to share.
+</div>
+
+<div class="parties">
+  <div class="party">
+    <h3>Disclosing Party</h3>
+    <div class="name">Batolink Global Technologies</div>
+    <div class="detail">
+      Digital Smart Card &amp; Payment Platform Technology Provider<br>
+      Represented by: <span class="inline-fill"></span><br>
+      Title: <span class="inline-fill"></span><br>
+      Email: <span class="inline-fill"></span><br>
+      Address: <span class="inline-fill"></span>
+    </div>
+  </div>
+  <div class="party" style="margin-top:12px">
+    <h3>Receiving Party</h3>
+    <div class="name"><span class="inline-fill" style="min-width:300px"></span></div>
+    <div class="detail">
+      Company Name (Legal Entity): <span class="inline-fill"></span><br>
+      Registration / Incorporation No: <span class="inline-fill"></span><br>
+      Jurisdiction of Incorporation: <span class="inline-fill"></span><br>
+      Represented by: <span class="inline-fill"></span><br>
+      Title: <span class="inline-fill"></span><br>
+      Email: <span class="inline-fill"></span><br>
+      Address: <span class="inline-fill"></span>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1 -->
+<div class="section">
+  <h3><span>1.</span> DEFINITIONS — MAXIMUM BREADTH</h3>
+
+  <div class="definition">
+    <p><strong>1.1 "Confidential Information"</strong> means <strong>ANY AND ALL</strong> information, data, materials, documents, knowledge, and communications disclosed by Batolink to the Receiving Party, whether before, on, or after the Effective Date, in any form or medium whatsoever, including but not limited to:</p>
+
+    <p><strong>(a) Technical &amp; Engineering Information:</strong> All source code, object code, algorithms, software (in any form, including executable, compiled, interpreted, or source), firmware, hardware designs, schematics, circuit diagrams, chip designs, PCB layouts, mechanical drawings, CAD files, specifications, technical manuals, API documentation, SDK documentation, database schemas, data models, network architecture diagrams, system architecture designs, deployment configurations, container orchestration configurations, cloud infrastructure configurations, security architectures, penetration test results, vulnerability assessments, encryption methodologies, key management systems, authentication protocols, and all related technical documentation and know-how.</p>
+
+    <p><strong>(b) Product &amp; Platform Information:</strong> All information relating to Batolink's products, services, and platforms — whether existing, under development, or contemplated — including: smart card technology (contact and contactless), NFC/RFID specifications, payment processing systems, mobile applications, web platforms, API gateways, wallet architectures, multi-currency systems, cryptocurrency integration methodologies (including Bitcoin, Lightning Network, stablecoins, and others), blockchain implementations, digital identity systems, KYC/AML frameworks, biometric authentication systems, POS terminal specifications, merchant onboarding systems, agent network platforms, transaction processing engines, settlement systems, reconciliation systems, fraud detection systems, analytics platforms, reporting dashboards, and any other technology or product disclosed.</p>
+
+    <p><strong>(c) Business &amp; Strategic Information:</strong> All business plans, strategic roadmaps, financial models, projections, pricing strategies, revenue models, cost structures, profit margins, business cases, market analyses, competitive analyses, go-to-market strategies, partnership strategies, target markets, customer lists, prospect lists, sales pipelines, vendor lists, supplier agreements, distribution strategies, marketing plans, brand strategies, and all related analyses and documentation.</p>
+
+    <p><strong>(d) Intellectual Property &amp; Trade Secrets:</strong> All patents, patent applications (filed or contemplated), invention disclosures, copyrights, trademarks, service marks, trade names, domain names, trade secrets, proprietary know-how, research and development plans, experimental data, test results, prototypes, proof-of-concepts, minimum viable products, design mockups, wireframes, user experience designs, and all derivatives, improvements, and modifications thereof.</p>
+
+    <p><strong>(e) Operational Information:</strong> All information relating to Batolink's operations, including: organizational structure, employee information, contractor relationships, internal processes and procedures, quality assurance methodologies, testing protocols, deployment procedures, incident response plans, disaster recovery plans, business continuity plans, security policies, compliance frameworks, audit reports, regulatory filings, and internal communications.</p>
+
+    <p><strong>(f) Financial Information:</strong> All financial data, including: revenue figures, cost data, funding history, capitalization tables, investor information, fundraising plans, valuation analyses, audit reports, tax filings, banking relationships, payment processor relationships, and all related financial documentation.</p>
+
+    <p><strong>(g) Third-Party Information:</strong> Any Confidential Information received by Batolink from third parties that Batolink is obligated to treat as confidential, which is disclosed to the Receiving Party in connection with the discussions.</p>
+
+    <p><strong>(h) Oral &amp; Visual Information:</strong> All information conveyed orally, visually, or through demonstration — including presentations, pitches, whiteboard sessions, video conferences, screen shares, prototype demonstrations, site visits, and informal conversations — provided that such information is identified as confidential at the time of disclosure or would reasonably be understood to be confidential given the nature of the information and the circumstances of disclosure.</p>
+  </div>
+
+  <p><strong>1.2 Catch-All Provision.</strong> For the avoidance of doubt, the enumeration of specific categories in Section 1.1 is illustrative and not exhaustive. "Confidential Information" includes <strong>ALL</strong> information disclosed by Batolink that: (i) is marked or identified as "Confidential," "Proprietary," or with similar designation; (ii) would reasonably be understood to be confidential given the nature of the information and circumstances of disclosure; or (iii) derives independent economic value from not being generally known to the public.</p>
+
+  <p class="term">RULE OF INTERPRETATION: Any ambiguity as to whether particular information constitutes "Confidential Information" shall be resolved in favor of Batolink, the Disclosing Party. If it could reasonably be confidential, it IS confidential.</p>
+
+  <p><strong>1.3 Exclusions.</strong> Confidential Information does NOT include information that the Receiving Party can prove by <strong>clear and convincing written evidence</strong>:</p>
+  <p>(a) Was publicly known at the time of disclosure through no breach of this Agreement;</p>
+  <p>(b) Was rightfully in the Receiving Party's possession prior to disclosure by Batolink;</p>
+  <p>(c) Was independently developed by the Receiving Party without any use of or reference to Batolink's Confidential Information; or</p>
+  <p>(d) Was rightfully received from a third party without breach of any confidentiality obligation.</p>
+
+  <p class="term">BURDEN OF PROOF: The Receiving Party bears the burden of proving any exclusion by clear and convincing written evidence. Mere assertion is insufficient.</p>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section">
+  <h3><span>2.</span> OBLIGATIONS OF THE RECEIVING PARTY</h3>
+
+  <p><strong>2.1 Duty of Absolute Confidentiality.</strong> The Receiving Party shall:</p>
+  <p>(a) Hold all Confidential Information in the <strong>strictest confidence</strong> using at least the same degree of care that it uses to protect its own most sensitive confidential and proprietary information, and in no event less than a <strong>commercially reasonable</strong> standard of care;</p>
+  <p>(b) Not disclose, publish, disseminate, distribute, transmit, or otherwise make available any Confidential Information to any third party without Batolink's prior written consent;</p>
+  <p>(c) Not use any Confidential Information for any purpose other than evaluating or pursuing a specific business relationship or transaction with Batolink as expressly authorized in writing (the &ldquo;Permitted Purpose&rdquo;);</p>
+  <p>(d) Not copy, reproduce, photograph, record, or create summaries, extracts, or derivatives of any Confidential Information except as strictly necessary for the Permitted Purpose;</p>
+  <p>(e) Not export, re-export, or transfer any Confidential Information in violation of applicable export control laws or regulations.</p>
+
+  <div class="highlight">
+    <p><strong>2.2 Absolute Prohibition on Reverse Engineering.</strong> The Receiving Party expressly agrees that it shall <strong>NEVER</strong>, under any circumstances, directly or through any third party, agent, affiliate, or representative:</p>
+    <p>(a) Reverse engineer, decompile, disassemble, decrypt, extract, or otherwise attempt to discover or derive the source code, object code, underlying structure, ideas, algorithms, logic, design, architecture, or know-how of any software, hardware, firmware, or technology disclosed by Batolink;</p>
+    <p>(b) Modify, adapt, translate, or create derivative works based on Batolink's Confidential Information;</p>
+    <p>(c) Remove, obscure, or alter any proprietary notices, labels, or markings from Batolink's materials;</p>
+    <p>(d) Attempt to circumvent any technical protection measures, encryption, or security features of Batolink's technology;</p>
+    <p>(e) Use Batolink's Confidential Information to benchmark, test, evaluate, or compare any third-party product, service, or technology with Batolink's offerings, except as expressly authorized in writing;</p>
+    <p>(f) Use Batolink's Confidential Information to develop, create, build, design, or procure any product, service, platform, or technology that is similar to, competes with, or could substitute for Batolink's products, services, or technology.</p>
+  </div>
+
+  <p><strong>2.3 Limited Internal Disclosure.</strong> The Receiving Party may disclose Confidential Information only to those of its employees, officers, directors, contractors, agents, and professional advisors (collectively, &ldquo;Representatives&rdquo;) who: (i) have a <strong>genuine need to know</strong> for the Permitted Purpose; (ii) are expressly informed of the confidential nature of the information; (iii) have agreed in writing to confidentiality obligations at least as protective as those in this Agreement; and (iv) are under the Receiving Party's direct control and supervision. The Receiving Party shall be <strong>fully and unconditionally liable</strong> for any breach of this Agreement by any of its Representatives.</p>
+
+  <p><strong>2.4 Legally Compelled Disclosure.</strong> If the Receiving Party is legally compelled to disclose Confidential Information (by subpoena, court order, regulatory demand, or similar legal process), it shall: (i) immediately notify Batolink in writing; (ii) provide Batolink with a copy of the legal demand; (iii) cooperate fully with Batolink in seeking a protective order, quashing the demand, or otherwise resisting disclosure; (iv) disclose only the minimum information legally required; and (v) continue to treat all disclosed information as Confidential Information for all other purposes.</p>
+
+  <p><strong>2.5 Notification of Breach.</strong> The Receiving Party shall immediately notify Batolink in writing upon discovery of any unauthorized disclosure, access, use, or suspected breach of this Agreement, and shall cooperate fully with Batolink in investigating and remediating such breach.</p>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section">
+  <h3><span>3.</span> INTELLECTUAL PROPERTY — NO RIGHTS TRANSFERRED</h3>
+
+  <p><strong>3.1 No License.</strong> Nothing in this Agreement grants the Receiving Party any right, title, interest, or license (express, implied, by estoppel, or otherwise) in or to any of Batolink's Confidential Information, intellectual property, technology, patents, copyrights, trademarks, trade secrets, or other proprietary rights. All such rights remain the <strong>sole and exclusive property</strong> of Batolink.</p>
+
+  <p><strong>3.2 No Implied Rights.</strong> No patent, copyright, trademark, trade secret, or other intellectual property right is granted, conveyed, licensed, or implied by this Agreement or by any disclosure. Any feedback, suggestions, or ideas provided by the Receiving Party regarding Batolink's Confidential Information shall be the sole property of Batolink, and the Receiving Party hereby assigns all rights therein to Batolink without compensation.</p>
+
+  <p><strong>3.3 Acknowledgment of Value.</strong> The Receiving Party acknowledges that Batolink's Confidential Information derives independent economic value from not being generally known and not being readily ascertainable by proper means, and that Batolink has taken reasonable measures to maintain its secrecy. The Receiving Party further acknowledges that its disclosure or misuse would cause substantial and irreparable harm to Batolink.</p>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section">
+  <h3><span>4.</span> NON-CIRCUMVENTION — DON'T GO AROUND US</h3>
+
+  <div class="highlight blue">
+    <p><strong>4.1 Non-Circumvention.</strong> The Receiving Party agrees that during the term of this Agreement and for a period of <strong>three (3) years</strong> thereafter, it shall not, directly or indirectly through any affiliate, agent, representative, or third party:</p>
+    <p>(a) Solicit, contact, engage, or enter into any agreement with any technology provider, developer, consultancy, freelancer, contractor, or organization for the purpose of building, developing, replicating, or procuring any technology, product, service, or capability that is substantially similar to, derived from, or inspired by any Confidential Information disclosed by Batolink;</p>
+    <p>(b) Use any Confidential Information to develop, build, procure, fund, or commission any product, service, platform, or technology that competes with or could substitute for Batolink's offerings;</p>
+    <p>(c) Circumvent Batolink to enter into any business relationship, partnership, joint venture, or commercial arrangement with any third party that is based on, enabled by, or made possible through knowledge of Batolink's Confidential Information;</p>
+    <p>(d) Solicit for employment, hire, engage, or retain any employee, contractor, or consultant of Batolink who was involved in the discussions or whose identity was disclosed as part of the Confidential Information, for a period of two (2) years after termination of this Agreement;</p>
+    <p>(e) Use Batolink's business contacts, supplier relationships, partner networks, customer lists, or market intelligence to compete with Batolink or to benefit any competitor of Batolink.</p>
+  </div>
+
+  <p><strong>4.2 Non-Competition (Technology).</strong> For a period of <strong>two (2) years</strong> from the last disclosure of Confidential Information, the Receiving Party shall not, directly or indirectly, develop, fund, commission, procure, market, sell, or distribute any product, service, platform, or technology that is substantially similar to any product, service, platform, or technology disclosed as Confidential Information by Batolink, unless such activity is conducted pursuant to a formal written agreement with Batolink.</p>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section">
+  <h3><span>5.</span> CONSEQUENCES OF BREACH — THIS IS SERIOUS</h3>
+
+  <div class="highlight">
+    <p><strong>5.1 Irreparable Harm — Court Orders Without Bond.</strong> The Receiving Party acknowledges that any breach of this Agreement will cause Batolink <strong>irreparable harm</strong> for which monetary damages, while recoverable, would be an inadequate remedy. Batolink shall be entitled to seek <strong>immediate injunctive relief</strong> (including temporary restraining orders, preliminary injunctions, and permanent injunctions) from any court of competent jurisdiction <strong>without the necessity of proving actual damages or posting any bond or security</strong>. The Receiving Party waives any requirement for Batolink to post bond in connection with any such equitable relief.</p>
+  </div>
+
+  <p><strong>5.2 Monetary Damages — Full Recovery.</strong> In the event of breach, Batolink shall be entitled to recover:</p>
+  <p>(a) <strong>All Actual Damages:</strong> Including but not limited to direct damages, consequential damages, incidental damages, lost profits, lost business opportunities, loss of goodwill, diminution in value of intellectual property and trade secrets, costs of investigation and remediation, costs of notifying affected parties, and any other damages proximately caused by the breach;</p>
+  <p>(b) <strong>Disgorgement of Profits:</strong> All profits, revenues, gains, benefits, and advantages of any kind realized by the Receiving Party (and its affiliates, agents, and representatives) as a direct or indirect result of the breach, calculated on a <strong>gross basis</strong> without any deduction for costs, expenses, or taxes. The Receiving Party agrees to maintain and produce upon request complete and accurate records sufficient to calculate such disgorgement;</p>
+  <p>(c) <strong>Liquidated Damages:</strong> In the event of any unauthorized disclosure, use, reproduction, or implementation of Batolink's Confidential Information, technology, platform designs, source code, algorithms, or trade secrets, the Receiving Party shall pay Batolink liquidated damages of <strong>not less than USD $750,000 (Seven Hundred Fifty Thousand United States Dollars) per incident</strong>. Each separate unauthorized use, disclosure, or implementation constitutes a separate incident. The Parties agree that this amount represents a reasonable estimate of the minimum harm caused by such breach, given the inherent difficulty in precisely quantifying the value of intellectual property and the speed at which damage can spread in the digital domain;</p>
+  <p>(d) <strong>Exemplary/Punitive Damages:</strong> Where the breach is found to be willful, intentional, malicious, or in bad faith, Batolink shall be entitled to seek <strong>exemplary or punitive damages</strong> in an amount sufficient to punish the conduct and deter future breaches, in addition to all other remedies;</p>
+  <p>(e) <strong>All Legal Costs:</strong> The Receiving Party shall pay <strong>all</strong> of Batolink's costs and expenses incurred in enforcing this Agreement, including but not limited to: attorneys' fees (calculated at actual billing rates, without cap), court costs, arbitration fees, expert witness fees, forensic investigation costs, e-discovery costs, travel expenses, and any other costs or expenses arising from enforcement.</p>
+
+  <p><strong>5.3 Criminal Referral.</strong> Nothing in this Agreement prevents Batolink from reporting any conduct that may constitute a criminal offense (including theft of trade secrets, economic espionage, computer fraud, or unauthorized access) to appropriate law enforcement or regulatory authorities. The Receiving Party acknowledges that trade secret misappropriation may constitute a criminal offense under applicable laws.</p>
+
+  <p><strong>5.4 Cumulative Remedies; Survival.</strong> All remedies under this Agreement are <strong>cumulative and not exclusive</strong> and are in addition to any other remedies available at law, in equity, by statute, or otherwise. No single or partial exercise of any remedy precludes any other or further exercise thereof.</p>
+</div>
+
+<!-- SECTION 6 -->
+<div class="section">
+  <h3><span>6.</span> RETURN OR DESTRUCTION OF MATERIALS</h3>
+
+  <p><strong>6.1 Return Obligation.</strong> Immediately upon Batolink's written request (which may be made at any time, with or without cause), or upon termination of this Agreement, the Receiving Party shall:</p>
+  <p>(a) <strong>Return</strong> all tangible materials, documents, prototypes, hardware, devices, and physical media containing or embodying Confidential Information;</p>
+  <p>(b) <strong>Permanently and irreversibly delete</strong> all electronic copies of Confidential Information from all systems, servers, cloud storage, email accounts, devices, backup media, and any other storage medium under its possession, custody, or control;</p>
+  <p>(c) <strong>Confirm in writing</strong>, under penalty of perjury, that all Confidential Information has been returned or destroyed and that no copies remain in its possession.</p>
+
+  <p><strong>6.2 Exception for Legal Retention.</strong> The Receiving Party may retain one (1) archival copy of Confidential Information solely to the extent required by applicable law, regulation, or professional standards, provided that: (i) such retained copy is maintained in strict confidence; (ii) access is restricted to legal or compliance personnel; and (iii) the retained copy remains subject to all obligations under this Agreement.</p>
+</div>
+
+<!-- SECTION 7 -->
+<div class="section">
+  <h3><span>7.</span> TERM AND SURVIVAL</h3>
+
+  <p><strong>7.1 Initial Term.</strong> This Agreement shall take effect on the Effective Date and shall continue for an initial term of <strong>five (5) years</strong>.</p>
+
+  <p><strong>7.2 Perpetual Protection for Trade Secrets.</strong> Obligations relating to Confidential Information that constitutes a <strong>trade secret</strong> under applicable law shall survive <strong>in perpetuity</strong> — forever. The Receiving Party's duty to protect Batolink's trade secrets never expires.</p>
+
+  <p><strong>7.3 Extended Protection for All Other Confidential Information.</strong> Obligations relating to all other Confidential Information shall survive termination or expiration of this Agreement for a period of <strong>ten (10) years</strong> from the date of last disclosure.</p>
+
+  <p><strong>7.4 Survival of Restrictions.</strong> Non-circumvention obligations (Section 4.1) survive for three (3) years. Non-competition obligations (Section 4.2) survive for two (2) years. All other obligations survive as specified above.</p>
+</div>
+
+<!-- SECTION 8 -->
+<div class="section">
+  <h3><span>8.</span> GOVERNING LAW, JURISDICTION, AND DISPUTE RESOLUTION</h3>
+
+  <p><strong>8.1 Governing Law.</strong> This Agreement shall be governed by and construed in accordance with the laws of <span class="inline-fill"></span> [to be specified], without regard to conflict of laws principles.</p>
+
+  <p><strong>8.2 Dispute Resolution.</strong> Any dispute arising from this Agreement shall first be submitted to <strong>non-binding mediation</strong> conducted in good faith. If mediation fails after thirty (30) days, either Party may pursue any remedy available at law or equity, including immediate injunctive relief.</p>
+
+  <p><strong>8.3 Consent to Jurisdiction.</strong> The Receiving Party irrevocably consents to the <strong>exclusive jurisdiction</strong> of the courts of <span class="inline-fill"></span> [to be specified] for any action to enforce this Agreement, including actions for injunctive relief. The Receiving Party waives any objection based on forum non conveniens or lack of personal jurisdiction.</p>
+
+  <p><strong>8.4 Waiver of Jury Trial.</strong> Both Parties knowingly and voluntarily waive any right to trial by jury in any action arising from this Agreement.</p>
+
+  <p><strong>8.5 Severability.</strong> If any provision is held unenforceable, it shall be modified to the minimum extent necessary to make it enforceable. If modification is not possible, the provision shall be severed, and the remainder shall remain in full force.</p>
+</div>
+
+<!-- SECTION 9 -->
+<div class="section">
+  <h3><span>9.</span> GENERAL PROVISIONS</h3>
+
+  <p><strong>9.1 Entire Agreement.</strong> This Agreement is the complete and exclusive statement of the understanding between the Parties regarding confidential treatment of Batolink's information. It supersedes all prior agreements, understandings, and communications, whether oral or written. No amendment is effective unless in writing signed by both Parties.</p>
+
+  <p><strong>9.2 No Obligation to Proceed.</strong> Nothing in this Agreement obligates either Party to enter into any business relationship, partnership, or transaction. Batolink may terminate discussions at any time, for any reason, without liability.</p>
+
+  <p><strong>9.3 No Partnership.</strong> This Agreement does not create a partnership, joint venture, agency, or employment relationship. Both Parties are independent.</p>
+
+  <p><strong>9.4 Assignment.</strong> The Receiving Party may not assign this Agreement without Batolink's prior written consent. Batolink may assign this Agreement freely.</p>
+
+  <p><strong>9.5 Electronic Execution.</strong> This Agreement may be executed in counterparts, including by electronic signature (e.g., DocuSign, Adobe Sign) or scanned PDF. Electronic signatures shall have the same legal effect as original signatures.</p>
+
+  <p><strong>9.6 No Waiver.</strong> Batolink's failure to enforce any provision shall not constitute a waiver. All waivers must be in writing and signed by an authorized Batolink representative.</p>
+</div>
+
+<!-- SIGNATURES -->
+<div class="sig-block">
+  <h3>Batolink Global Technologies</h3>
+  <div class="company">Disclosing Party</div>
+  <div class="sig-line"></div>
+  <div class="sig-label">Signature</div>
+  <div class="sig-line"></div>
+  <div class="sig-label">Printed Name &amp; Title</div>
+  <div class="sig-line"></div>
+  <div class="sig-label">Date</div>
+</div>
+
+<div class="sig-block" style="margin-top:30px">
+  <h3>Receiving Party</h3>
+  <div class="company"><span class="inline-fill" style="min-width:300px"></span></div>
+  <div class="sig-line"></div>
+  <div class="sig-label">Signature</div>
+  <div class="sig-line"></div>
+  <div class="sig-label">Printed Name &amp; Title</div>
+  <div class="sig-line"></div>
+  <div class="sig-label">Date</div>
+</div>
+
+<div class="footer">
+  BATOLINK GLOBAL TECHNOLOGIES — UNILATERAL NON-DISCLOSURE AGREEMENT<br>
+  CONFIDENTIAL — PREPARED JUNE 2026 — VERSION 1.0 — COVERS ALL DISCUSSIONS
+</div>
+
+</article>
+
+</body>
+</html>
