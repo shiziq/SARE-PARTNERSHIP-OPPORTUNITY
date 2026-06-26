@@ -50,13 +50,16 @@ li { margin-bottom: 6px; }
 .footer { margin-top: 60px; text-align: center; font-size: 11px; color: #555; letter-spacing: 2px; border-top: 1px solid var(--border); padding-top: 20px; }
 fieldset { border: 1px solid var(--border); padding: 16px 20px; margin: 14px 0; border-radius: 4px; }
 legend { font-size: 11px; color: var(--gray); letter-spacing: 3px; text-transform: uppercase; padding: 0 8px; }
-.inline-fill { border-bottom: 1px solid rgba(255,255,255,.15); padding: 0 12px; display: inline-block; min-width: 180px; }
-@media print { body { background: #fff; color: #000; font-size: 12px; } .agreement { max-width: 100%; } .party, .definition, .highlight, .highlight.blue, .note, .note.blue { background: #f9f9f9; color: #222; border-color: #ccc; } .section h3, .sig-block h3, .party h3, .party .name { color: #000; } header h1 { color: #000; } }
+.page-break { page-break-before: always; }
+@media screen { .page-break { margin-top: 40px; border-top: 1px dashed rgba(255,255,255,.06); padding-top: 30px; } }
+@media print { body { background: #fff; color: #000; font-size: 12px; } .agreement { max-width: 100%; } .party, .definition, .highlight, .highlight.blue, .note, .note.blue { background: #f9f9f9; color: #222; border-color: #ccc; } .section h3, .sig-block h3, .party h3, .party .name { color: #000; } header h1 { color: #000; } .page-break { page-break-before: always; border-top: none; margin-top: 0; padding-top: 0; } }
 @media (max-width: 700px) { .agreement { padding: 15px 20px; } }
 </style>
 </head>
 <body>
 
+<!-- COVER PAGE -->
+<div class="cover-page" style="min-height:95vh;display:flex;flex-direction:column;justify-content:center">
 <header>
   <div class="tag">Confidential — For Execution</div>
   <h1>UNILATERAL NON-DISCLOSURE AGREEMENT</h1>
@@ -64,7 +67,7 @@ legend { font-size: 11px; color: var(--gray); letter-spacing: 3px; text-transfor
   <div class="date">Effective Date: <span class="inline-fill"></span>, 2026</div>
 </header>
 
-<article class="agreement">
+<article class="agreement" style="padding-top:30px">
 
 <div class="note">
   <strong>Purpose:</strong> This Unilateral Non-Disclosure Agreement (&ldquo;Agreement&rdquo;) is entered into by Batolink Global Technologies (&ldquo;Disclosing Party&rdquo; or &ldquo;Batolink&rdquo;) and the undersigned recipient (&ldquo;Receiving Party&rdquo;). It governs <strong>any and all</strong> Confidential Information disclosed by Batolink to the Receiving Party across all discussions, meetings, presentations, demonstrations, site visits, correspondence, and exchanges — whether related to the SARE Bitcoin Commerce Network (SBCN) partnership or <strong>any other matter, opportunity, product, service, technology, or business venture</strong> that Batolink may discuss with the Receiving Party now or in the future. This is a blanket agreement — it covers everything Batolink chooses to share.
@@ -96,9 +99,14 @@ legend { font-size: 11px; color: var(--gray); letter-spacing: 3px; text-transfor
     </div>
   </div>
 </div>
+</article>
+</div><!-- END COVER PAGE -->
+
+<!-- PAGE 2: DEFINITIONS AND SUBSTANTIVE TERMS -->
+<article class="agreement">
 
 <!-- SECTION 1 -->
-<div class="section">
+<div class="section page-break">
   <h3><span>1.</span> DEFINITIONS — MAXIMUM BREADTH</h3>
 
   <div class="definition">
