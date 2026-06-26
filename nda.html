@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mutual Non-Disclosure Agreement — Batolink Global × SARE Africa</title>
+<style>
+:root {
+  --gold: #F5A623;
+  --green: #2E5A3B;
+  --red: #A00;
+  --dark: #060D1A;
+  --gray: #7A8499;
+  --paper: #0D1520;
+  --border: rgba(255,255,255,.08);
+  --text: #C8D4E0;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: var(--dark);
+  color: #aaa;
+  line-height: 1.7;
+  font-size: 15px;
+}
+header {
+  text-align: center;
+  padding: 50px 20px 30px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+header .tag {
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+header h1 {
+  font-size: 28px;
+  color: #fff;
+  font-weight: normal;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+header h2 {
+  font-size: 16px;
+  color: var(--gray);
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+header .date {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #777;
+  letter-spacing: 2px;
+}
+.agreement {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 40px 60px;
+}
+.parties {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin: 30px 0 40px;
+  padding: 25px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: rgba(255,255,255,.01);
+}
+.party h3 {
+  font-size: 14px;
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.party .name { font-size: 16px; color: #fff; margin-bottom: 2px; }
+.party .detail { font-size: 12px; color: var(--gray); line-height: 1.6; }
+.note {
+  background: rgba(245,166,35,.08);
+  border-left: 3px solid var(--gold);
+  padding: 14px 18px;
+  margin: 20px 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #b8a070;
+}
+.section {
+  margin: 30px 0;
+  padding-bottom: 10px;
+}
+.section h3 {
+  font-size: 15px;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.section h3 span {
+  color: var(--gray);
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-right: 8px;
+}
+.section p, .section li {
+  margin-bottom: 10px;
+}
+ul, ol {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+li { margin-bottom: 6px; }
+.definition {
+  background: rgba(255,255,255,.015);
+  border: 1px solid var(--border);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 12px 0;
+}
+.definition strong { color: #fff; }
+.term {
+  font-family: 'Courier New', monospace;
+  background: rgba(255,255,255,.04);
+  padding: 1px 6px;
+  border-radius: 2px;
+  font-size: 13px;
+  color: var(--gold);
+}
+.highlight {
+  border-left: 3px solid var(--red);
+  padding: 12px 18px;
+  background: rgba(170,0,0,.06);
+  margin: 16px 0;
+}
+.highlight strong { color: var(--red); }
+.signature-block {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.sig {
+  padding-top: 30px;
+}
+.sig h3 {
+  font-size: 14px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+  border-bottom: none;
+}
+.sig .company { color: var(--gold); font-size: 13px; letter-spacing: 1px; margin-bottom: 20px; }
+.sig .sig-line { border-top: 1px solid var(--border); margin: 14px 0 4px; width: 60%; }
+.sig .sig-label { font-size: 11px; color: var(--gray); letter-spacing: 1px; }
+.footer {
+  margin-top: 60px;
+  text-align: center;
+  font-size: 11px;
+  color: #555;
+  letter-spacing: 2px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+@media print {
+  body { background: #fff; color: #000; font-size: 13px; }
+  .agreement { max-width: 100%; }
+  .party, .definition, .highlight, .note { background: #f9f9f9; color: #222; border-color: #ccc; }
+  .section h3, .sig h3, .party h3, .party .name { color: #000; }
+  header h1 { color: #000; }
+}
+@media (max-width: 700px) {
+  .parties, .signature-block { grid-template-columns: 1fr; }
+  .agreement { padding: 15px 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="tag">Confidential — For Execution</div>
+  <h1>MUTUAL NON-DISCLOSURE AGREEMENT</h1>
+  <h2>Concerning the SARE Bitcoin Commerce Network (SBCN) Partnership</h2>
+  <div class="date">Effective Date: June 26, 2026</div>
+</header>
+
+<article class="agreement">
+
+<div class="parties">
+  <div class="party">
+    <h3>Disclosing Party / Technology Partner</h3>
+    <div class="name">Batolink Global Technologies</div>
+    <div class="detail">
+      Digital Smart Card &amp; Payment Platform Technology Provider<br>
+      Contact: Cadet<br>
+      Email: ___________________________<br>
+      Address: _________________________
+    </div>
+  </div>
+  <div class="party">
+    <h3>Receiving Party / Network Partner</h3>
+    <div class="name">SARE Africa</div>
+    <div class="detail">
+      Sustainable Agriculture and Rural Empowerment Africa<br>
+      Contact: Azim<br>
+      Email: ___________________________<br>
+      Address: _________________________
+    </div>
+  </div>
+</div>
+
+<div class="note">
+  <strong>Purpose of Agreement:</strong> This Mutual Non-Disclosure Agreement (&ldquo;Agreement&rdquo;) governs the exchange of Confidential Information between Batolink Global Technologies (&ldquo;Batolink&rdquo;) and SARE Africa (&ldquo;SARE&rdquo;) in connection with the proposed SARE Bitcoin Commerce Network (SBCN) partnership. Both parties recognize that the discussions will involve proprietary technology, business strategies, trade secrets, financial models, and intellectual property whose unauthorized disclosure or misuse could cause irreparable harm.
+</div>
+
+<!-- SECTION 1 -->
+<div class="section">
+  <h3><span>1.</span> DEFINITIONS</h3>
+
+  <p><strong>1.1 "Confidential Information"</strong> means any and all information, data, materials, and knowledge disclosed by either Party (&ldquo;Disclosing Party&rdquo;) to the other (&ldquo;Receiving Party&rdquo;), whether in written, oral, electronic, visual, or tangible form, including but not limited to:</p>
+
+  <div class="definition">
+    <p><strong>(a) Technical Information:</strong> Source code, object code, algorithms, software architecture, API specifications, system designs, database schemas, network configurations, security protocols, cryptographic key management procedures, Lightning Network node deployments, smart card firmware, NFC/RFID specifications, mobile application source code, platform integration methodologies, and all related technical documentation.</p>
+
+    <p><strong>(b) Business Information:</strong> Business plans, financial projections, revenue models, pricing strategies, market analyses, customer lists, supplier relationships, partnership terms, investment structures, fundraising strategies, go-to-market plans, and competitive analyses.</p>
+
+    <p><strong>(c) Intellectual Property:</strong> Patents, patent applications, copyrights, trademarks, trade secrets, know-how, inventions (whether patentable or not), designs, prototypes, specifications, and all derivatives thereof.</p>
+
+    <p><strong>(d) Partnership-Specific Information:</strong> The SARE Bitcoin Commerce Network concept, the SBCN system architecture, the SARE Bitcoin Commerce Card design and specifications, the Batolink Technology platform architecture, multi-wallet configurations, Bitcoin-to-fiat conversion engine designs, escrow contract specifications, smart contract implementations, Lightning Service Provider (LSP) configurations, revenue-sharing models, and all information contained in or derived from the Concept Note dated June 2026 and any accompanying presentations, demonstrations, or discussions.</p>
+
+    <p><strong>(e) Personal Data:</strong> Any information relating to an identified or identifiable natural person, including but not limited to farmers, merchants, consumers, and institutional partners within the SARE network, processed or discussed in connection with the proposed partnership.</p>
+  </div>
+
+  <p><strong>1.2 "Confidential Information" does NOT include</strong> information that:</p>
+  <p>(a) Is or becomes publicly available through no breach of this Agreement by the Receiving Party;</p>
+  <p>(b) Was rightfully in the Receiving Party's possession prior to disclosure, as evidenced by written records;</p>
+  <p>(c) Is independently developed by the Receiving Party without use of or reference to the Disclosing Party's Confidential Information, as evidenced by written records; or</p>
+  <p>(d) Is rightfully received by the Receiving Party from a third party without restriction and without breach of any obligation of confidentiality.</p>
+
+  <p class="term">BURDEN OF PROOF: The Receiving Party bears the burden of proving that any information falls within exceptions (b), (c), or (d) above by clear and convincing written evidence.</p>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section">
+  <h3><span>2.</span> OBLIGATIONS OF THE RECEIVING PARTY</h3>
+
+  <p><strong>2.1 Non-Disclosure and Non-Use.</strong> The Receiving Party agrees:</p>
+  <p>(a) To hold all Confidential Information in strict confidence and to take all reasonable precautions to protect such Confidential Information (including, without limitation, all precautions the Receiving Party employs with respect to its own confidential materials of similar importance);</p>
+  <p>(b) Not to disclose any Confidential Information to any third party without the prior written consent of the Disclosing Party;</p>
+  <p>(c) Not to use any Confidential Information for any purpose other than evaluating and implementing the proposed SBCN partnership (the &ldquo;Permitted Purpose&rdquo;);</p>
+  <p>(d) Not to copy, reproduce, reverse engineer, decompile, disassemble, or otherwise attempt to derive the composition or underlying structure, ideas, or algorithms of any Confidential Information, including any software, hardware, or technology provided by Batolink;</p>
+  <p>(e) Not to export, re-export, or transfer any Confidential Information in violation of any applicable export control laws or regulations.</p>
+
+  <div class="highlight">
+    <p><strong>2.2 Reverse Engineering Prohibition (Batolink Technology).</strong> SARE expressly agrees that it shall NOT, under any circumstances, directly or through any third party: (i) reverse engineer, decompile, disassemble, or otherwise attempt to discover the source code, object code, underlying structure, ideas, know-how, or algorithms relevant to Batolink's smart card technology, payment platform, mobile application, API gateway, Lightning node infrastructure, multi-wallet architecture, or any other Batolink technology disclosed during the partnership discussions; (ii) modify, translate, or create derivative works based on Batolink's technology; (iii) remove any proprietary notices or labels from Batolink's materials; or (iv) attempt to build, develop, or procure any competing technology that replicates or substitutes for Batolink's disclosed technology.</p>
+  </div>
+
+  <p><strong>2.3 Limited Internal Disclosure.</strong> The Receiving Party may disclose Confidential Information only to those of its employees, officers, directors, contractors, and professional advisors (&ldquo;Representatives&rdquo;) who: (i) have a legitimate need to know such information for the Permitted Purpose; (ii) have been informed of the confidential nature of the information; and (iii) are bound by written confidentiality obligations at least as protective as those in this Agreement. The Receiving Party shall be fully liable for any breach of this Agreement by its Representatives.</p>
+
+  <p><strong>2.4 Required Disclosures.</strong> If the Receiving Party becomes legally compelled to disclose any Confidential Information (by deposition, interrogatory, request for documents, subpoena, civil investigative demand, or similar legal process), the Receiving Party shall: (i) promptly notify the Disclosing Party in writing of such requirement prior to disclosure; (ii) cooperate with the Disclosing Party in seeking a protective order or other appropriate remedy; and (iii) disclose only that portion of the Confidential Information that is legally required.</p>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section">
+  <h3><span>3.</span> INTELLECTUAL PROPERTY RIGHTS</h3>
+
+  <p><strong>3.1 No License or Transfer.</strong> Nothing in this Agreement grants the Receiving Party any right, title, interest, or license in or to the Disclosing Party's Confidential Information, intellectual property, or technology. All Confidential Information remains the sole and exclusive property of the Disclosing Party.</p>
+
+  <p><strong>3.2 No Implied Rights.</strong> No patent, copyright, trademark, trade secret, or other intellectual property right is granted, implied, or otherwise conveyed by this Agreement or by any disclosure of Confidential Information hereunder.</p>
+
+  <p><strong>3.3 Residual Knowledge.</strong> Nothing in this Agreement shall restrict the Receiving Party's use of general skills, knowledge, and experience retained in the unaided memory of its personnel who have had access to Confidential Information, provided that such use does not: (i) involve the reproduction, replication, or implementation of the Disclosing Party's specific Confidential Information, designs, architectures, or trade secrets; (ii) constitute a misappropriation of intellectual property; or (iii) violate any patent, copyright, or other intellectual property right of the Disclosing Party.</p>
+
+  <p class="term">CLARIFICATION: General knowledge of the existence of a Bitcoin commerce network concept is not Confidential Information. The specific architecture, implementation methodology, source code, API designs, security protocols, smart card specifications, and all technical documentation disclosed by Batolink ARE Confidential Information.</p>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section">
+  <h3><span>4.</span> NON-COMPETITION &amp; NON-CIRCUMVENTION</h3>
+
+  <div class="highlight">
+    <p><strong>4.1 Non-Circumvention.</strong> SARE agrees that during the term of this Agreement and for a period of <strong>three (3) years</strong> following its termination, SARE shall not, directly or through any affiliate, agent, or third party:</p>
+    <p>(a) Solicit, engage, or contract with any technology provider, developer, freelancer, or organization for the purpose of building, developing, or procuring technology that replicates, substitutes for, or competes with the technology disclosed by Batolink under this Agreement, including but not limited to: smart card issuance platforms, multi-wallet payment systems, NFC-enabled commerce cards, Bitcoin/Lightning payment gateways, or any similar infrastructure;</p>
+    <p>(b) Use Batolink's Confidential Information to develop, build, or procure any competing product, service, or platform;</p>
+    <p>(c) Circumvent Batolink to enter into a similar partnership or arrangement with any competitor of Batolink using knowledge gained through this Agreement;</p>
+    <p>(d) Solicit, hire, or engage any employee, contractor, or consultant of Batolink who was involved in the partnership discussions, for a period of two (2) years following the termination of this Agreement.</p>
+  </div>
+
+  <p><strong>4.2 Non-Competition (Technology).</strong> For a period of <strong>two (2) years</strong> following the termination of this Agreement, SARE shall not, directly or indirectly, develop, fund, commission, or procure any smart card payment platform, multi-wallet system, or Bitcoin/Lightning-enabled commerce network that is substantially similar to the technology disclosed by Batolink, unless such development is conducted under a formal partnership agreement with Batolink.</p>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section">
+  <h3><span>5.</span> TERM AND TERMINATION</h3>
+
+  <p><strong>5.1 Term.</strong> This Agreement shall become effective as of the Effective Date and shall continue in full force and effect for a period of <strong>five (5) years</strong> from the Effective Date (&ldquo;Term&rdquo;).</p>
+
+  <p><strong>5.2 Survival of Obligations.</strong> The obligations of confidentiality, non-use, non-circumvention, and non-competition set forth herein shall survive the termination or expiration of this Agreement as follows:</p>
+  <p>(a) <strong>Confidentiality and Non-Use obligations (Sections 2 and 3):</strong> Shall survive in perpetuity for trade secrets, and for a period of <strong>seven (7) years</strong> from the date of disclosure for all other Confidential Information.</p>
+  <p>(b) <strong>Non-Circumvention obligations (Section 4.1):</strong> Shall survive for <strong>three (3) years</strong> from termination.</p>
+  <p>(c) <strong>Non-Competition obligations (Section 4.2):</strong> Shall survive for <strong>two (2) years</strong> from termination.</p>
+
+  <p><strong>5.3 Return or Destruction.</strong> Upon termination or expiration of this Agreement, or upon the Disclosing Party's written request at any time, the Receiving Party shall promptly: (i) return all tangible materials containing Confidential Information; (ii) permanently delete or destroy all electronic copies of Confidential Information; and (iii) certify in writing that all such materials have been returned or destroyed. The Receiving Party may retain one copy of Confidential Information solely for legal compliance purposes, provided such retained copy remains subject to this Agreement's obligations.</p>
+</div>
+
+<!-- SECTION 6 -->
+<div class="section">
+  <h3><span>6.</span> REMEDIES AND CONSEQUENCES OF BREACH</h3>
+
+  <div class="highlight">
+    <p><strong>6.1 Irreparable Harm.</strong> The Parties acknowledge that any breach of this Agreement by the Receiving Party would cause the Disclosing Party <strong>irreparable harm</strong> for which monetary damages alone would be an inadequate remedy. Accordingly, the Disclosing Party shall be entitled to seek <strong>injunctive relief</strong> (including temporary restraining orders and preliminary and permanent injunctions) from any court of competent jurisdiction, without the necessity of posting bond or proving actual damages.</p>
+  </div>
+
+  <p><strong>6.2 Monetary Damages.</strong> In the event of a breach, the Disclosing Party shall be entitled to recover:</p>
+  <p>(a) <strong>Actual Damages:</strong> All direct and consequential damages resulting from the breach, including but not limited to lost profits, loss of business opportunity, diminution in value of intellectual property, and costs of investigation and remediation;</p>
+  <p>(b) <strong>Disgorgement:</strong> All profits, revenues, and benefits realized by the Receiving Party as a result of the breach, calculated on a gross basis without deduction for costs or expenses;</p>
+  <p>(c) <strong>Liquidated Damages:</strong> In the event that a breach involves the unauthorized use, reproduction, or implementation of Batolink's technology, platform, or system designs disclosed under this Agreement, SARE agrees to pay Batolink <strong>liquidated damages of not less than USD $500,000 (Five Hundred Thousand United States Dollars) per incident</strong>, which the Parties agree represents a reasonable estimate of the minimum harm caused by such breach given the difficulty of precisely quantifying damages to intellectual property;</p>
+  <p>(d) <strong>Exemplary/Punitive Damages:</strong> Where the breach is found to be willful, intentional, or malicious, the Disclosing Party shall be entitled to seek exemplary or punitive damages as permitted by applicable law;</p>
+  <p>(e) <strong>Attorneys' Fees and Costs:</strong> The prevailing party in any action to enforce this Agreement shall be entitled to recover all reasonable attorneys' fees, court costs, expert witness fees, investigation costs, and other expenses incurred in connection with such enforcement.</p>
+
+  <p><strong>6.3 Cumulative Remedies.</strong> All remedies set forth in this Agreement are <strong>cumulative and not exclusive</strong>. The exercise of one remedy shall not preclude the exercise of any other remedy available at law or in equity.</p>
+
+  <p><strong>6.4 No Waiver.</strong> No failure or delay by the Disclosing Party in exercising any right, power, or remedy under this Agreement shall operate as a waiver thereof. A waiver of any breach shall not constitute a waiver of any subsequent breach.</p>
+</div>
+
+<!-- SECTION 7 -->
+<div class="section">
+  <h3><span>7.</span> GOVERNING LAW AND DISPUTE RESOLUTION</h3>
+
+  <p><strong>7.1 Governing Law.</strong> This Agreement shall be governed by and construed in accordance with the laws of <strong>_______________</strong> [to be agreed: propose jurisdiction neutral to both parties, such as England and Wales, or a mutually acceptable African jurisdiction], without regard to its conflict of laws principles.</p>
+
+  <p><strong>7.2 Arbitration.</strong> Any dispute, controversy, or claim arising out of or relating to this Agreement, including the breach, termination, or validity thereof, shall be resolved by binding arbitration administered by <strong>_______________</strong> [to be agreed: e.g., ICC International Court of Arbitration, LCIA, Nairobi Centre for International Arbitration] in accordance with its rules. The arbitration shall be conducted in <strong>_______________</strong> [to be agreed: e.g., Nairobi, Dubai, London] in the English language. The arbitral award shall be final and binding, and judgment on the award may be entered in any court of competent jurisdiction.</p>
+
+  <p><strong>7.3 Equitable Relief Exception.</strong> Notwithstanding Section 7.2, either Party may seek injunctive or other equitable relief from any court of competent jurisdiction to prevent or restrain a breach or threatened breach of this Agreement, without the necessity of first pursuing arbitration.</p>
+
+  <p><strong>7.4 Severability.</strong> If any provision of this Agreement is held to be invalid, illegal, or unenforceable by a court or arbitral tribunal of competent jurisdiction, such provision shall be modified to the minimum extent necessary to make it enforceable, and the remaining provisions shall continue in full force and effect.</p>
+</div>
+
+<!-- SECTION 8 -->
+<div class="section">
+  <h3><span>8.</span> GENERAL PROVISIONS</h3>
+
+  <p><strong>8.1 Entire Agreement.</strong> This Agreement constitutes the entire understanding between the Parties with respect to the subject matter hereof and supersedes all prior or contemporaneous agreements, representations, and understandings, whether written or oral. No amendment or modification of this Agreement shall be effective unless in writing and signed by both Parties.</p>
+
+  <p><strong>8.2 Assignment.</strong> Neither Party may assign this Agreement or any rights or obligations hereunder without the prior written consent of the other Party, except that either Party may assign this Agreement to a successor in connection with a merger, acquisition, or sale of substantially all of its assets, provided that such successor agrees in writing to be bound by the terms hereof.</p>
+
+  <p><strong>8.3 Relationship of Parties.</strong> Nothing in this Agreement shall be construed to create a partnership, joint venture, agency, or employment relationship between the Parties. Each Party is an independent contractor.</p>
+
+  <p><strong>8.4 Notices.</strong> All notices under this Agreement shall be in writing and delivered by email with confirmed receipt, registered mail, or recognized international courier to the addresses set forth in the Parties section above, or to such other address as a Party may designate in writing.</p>
+
+  <p><strong>8.5 Counterparts; Electronic Signatures.</strong> This Agreement may be executed in counterparts, each of which shall be deemed an original and all of which together shall constitute one instrument. Facsimile, scanned, and electronic signatures (including DocuSign or similar) shall have the same legal effect as original signatures.</p>
+</div>
+
+<!-- SIGNATURES -->
+<div class="signature-block">
+  <div class="sig">
+    <h3>Batolink Global Technologies</h3>
+    <div class="company">Disclosing Party · Technology Partner</div>
+    <div class="sig-line"></div>
+    <div class="sig-label">Signature</div>
+    <div class="sig-line"></div>
+    <div class="sig-label">Printed Name &amp; Title</div>
+    <div class="sig-line"></div>
+    <div class="sig-label">Date</div>
+  </div>
+  <div class="sig">
+    <h3>SARE Africa</h3>
+    <div class="company">Receiving Party · Network Partner</div>
+    <div class="sig-line"></div>
+    <div class="sig-label">Signature</div>
+    <div class="sig-line"></div>
+    <div class="sig-label">Printed Name &amp; Title</div>
+    <div class="sig-line"></div>
+    <div class="sig-label">Date</div>
+  </div>
+</div>
+
+<div class="footer">
+  BATOLINK GLOBAL TECHNOLOGIES &amp; SARE AFRICA — MUTUAL NON-DISCLOSURE AGREEMENT<br>
+  CONFIDENTIAL — PREPARED JUNE 2026 — VERSION 1.0
+</div>
+
+</article>
+
+</body>
+</html>
